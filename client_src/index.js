@@ -13,3 +13,9 @@ setBasePath('/static/shoelace');
 
 
 import './g-lobby';
+import './g-app';
+import './g-odometer';
+import './g-upgrades';
+import './g-dashboard';
+import './g-calendar';
+import './g-snippets';

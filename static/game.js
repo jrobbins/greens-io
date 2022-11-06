@@ -1,8 +1,8 @@
 
 let rz = {};  // Resources
 let tz = {}; // Techs
-let sz = []; // Snippets
 let uz = []; // Upgrades
+let sz = []; // Snippets
 let nick = '';
 
 
@@ -23,14 +23,19 @@ let lastTimestamp = 0;
 
 function gameLoop() {
   if (!running) return;
-  gioClient.getArena().then((res) => {
-    rz = res.resources;
-    tz = res.techs;
-    sz = res.snippets;
-    uz = res.upgrades;
-  });
+  if (gioClient.playerId) {
+    gioClient.getArena().then((res) => {
+      rz = res.resources;
+      tz = res.techs;
+      uz = res.upgrades;
+      sz = res.snippets;
+      appEl.rz = rz;
+      appEl.uz = uz;
+      appEl.sz = sz;
+    });
+  }
   window.setTimeout(gameLoop, 1000);
 }
 
-// window.setTimeout(gameLoop, 1000);
+window.setTimeout(gameLoop, 1000);
 
