@@ -20,7 +20,7 @@ let roster = [];
 
 function updateLeaderboard() {
   if (!running) return;
-  xbClient.getPlayers().then((res) => {
+  gioClient.getPlayers().then((res) => {
     roster = res;
   });
   window.setTimeout(updateLeaderboard, 10000);
