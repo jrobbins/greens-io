@@ -17,10 +17,11 @@ class App extends LitElement {
        :host {
          top: 0h;
          left: 0;
-         width: 100vw;
-         height: 100vh;
+         width: 98vw;
+         height: 98vh;
          background: #fafaff;
          display: grid;
+         overflow: hidden;
          grid-template-columns: repeat(3, 1fr);
          grid-template-rows:  60px 80px 60px auto;
          grid-template-areas:
@@ -38,7 +39,10 @@ class App extends LitElement {
       }
       g-odometer { grid-area: odo; }
       g-upgrades  { grid-area: ups; }
-      g-dashboard  { grid-area: dsh; }
+      g-dashboard  { 
+        grid-area: dsh; 
+        overflow-x: auto;
+      }
       g-calendar  { grid-area: cal; }
       g-snippets  { grid-area: log; }
 

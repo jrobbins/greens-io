@@ -11,6 +11,11 @@ class Dashboard extends LitElement {
   static get styles() {
     return [
       css`
+:host {
+  display: flex;
+  flex-flow: column wrap;
+  overflow-x: auto;
+}
     `];
   }
 
@@ -21,7 +26,15 @@ class Dashboard extends LitElement {
 
   render() {
     return html`
-dashboard
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
+<g-box></g-box>
     `;
   }
 }
