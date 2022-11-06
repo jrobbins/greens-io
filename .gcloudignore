@@ -45,4 +45,4 @@ htmlcov
 
 # Python venv directory
 # because appengine runs pip itself after deployment
-xb-env
+gio-env

@@ -23,4 +23,4 @@ static/dist/
 htmlcov
 
 # venv directory
-xb-env
+gio-env
