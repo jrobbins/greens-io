@@ -1,0 +1,4 @@
+cron:
+- description: Keep our instance running
+  url: /hello
+  schedule: every 15 minutes synchronized
