@@ -32,5 +32,5 @@ function gameLoop() {
   window.setTimeout(gameLoop, 1000);
 }
 
-window.setTimeout(gameLoop, 1000);
+// window.setTimeout(gameLoop, 1000);
 

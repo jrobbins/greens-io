@@ -27,5 +27,7 @@
       "rollup": "^2.73.0"
   },
   "dependencies": {
+    "lit": "^2",
+    "@shoelace-style/shoelace": "^2.0.0-beta.83"
   }
 }

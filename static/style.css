@@ -1,41 +1,7 @@
 body {
-    background: #666;
+    background: #fafaff;
 }
 
-canvas {
-    top:0;
-    left:0;
-    width:100vw;
-    height: 100vh;
-    position: fixed;
-}
 
-dialog {
-    top: 40vh;
-}
 
-h1 {
-    margin-top: 0;
-    text-align: center;
-}
 
-#nick {
-    width: 35vw;
-    max-width: 16em;
-}
-
-ul {
-    border-top: 1px solid #999;
-    padding-top: 1em;
-}
-
-form {
-    text-align: center;
-}
-
-kbd {
-    background: #eee;
-    padding: 1px;
-    border: 1px solid #999;
-    border-radius: 4px;
-}
