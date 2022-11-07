@@ -4,41 +4,80 @@ class Box extends LitElement {
   
   static get properties() {
     return {
+      name: {type: String},
+      desc: {type: String},
+      resourceList: {type: Array},
       rz: {type: Object},
+      actionList: {type: Array},
     };
   }
   
   static get styles() {
     return [
       css`
-:host {
+sl-card {
   width: 20em;
   margin: 1em 0 1em 1em;
+}
+
+th {
+  text-align: left;
+  font-weight: normal;
+  padding-right: 1em;
 }
     `];
   }
 
   constructor() {
     super();
+    this.name = '';
+    this.desc = '';
+    this.resourceList = [];
     this.rz = {};
+    this.actionList = [];
   }
 
+  renderResource(resourceName) {
+    if (resourceName == '') {
+    return html`
+<tr>
+  <th>&nbsp;</th>
+  <td></td>
+</tr>
+    `;
+    };
+
+    const value = 12;
+    return html`
+<tr>
+  <th>${resourceName}:</th>
+  <td>${value}</td>
+  <td>=</td>
+  <td>59%</td>
+</tr>
+    `;
+  }
+
+  renderAction(actionName) {
+    return html`
+<sl-button size=small pill variant=primary>
+  ${actionName}
+</sl-button>
+    `;
+  }
+  
   render() {
     return html`
 <sl-card>
-<div slot=header>Cash</div>
-Some kind of description text.
+<div slot=header>${this.name}</div>
+${this.desc}
 
 <table cellspacing=3>
-  <tr><td>Quarters: </td><td>12</td></tr>
-  <tr><td>Nickles: </td><td>19</td></tr>
-  <tr><td>Dimes: </td><td>42</td></tr>
+  ${this.resourceList.map(this.renderResource)}
 </table>
 
 <div slot=footer>
-<sl-button size=small pill variant=primary>
-  Get change
-</sl-button>
+  ${this.actionList.map(this.renderAction)}
 </div>
 
 </sl-card>
