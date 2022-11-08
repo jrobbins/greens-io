@@ -29,7 +29,7 @@ class Dashboard extends LitElement {
 <g-box 
   name="Tests"
   .rz=${this.rz}
-  .resourceList=${['Cases', 'Run per hour', 'Greens per hour', '', 'Test files', 'Test suites']}
+  .resourceList=${['Cases', 'Runs per hour', 'Greens per hour', '', 'Test files', 'Test suites']}
   .actionList=${['Create test suite']}
 ></g-box>
     `;

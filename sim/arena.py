@@ -1,15 +1,32 @@
 import logging
 import collections
-import random
+import dataclasses
+
+
+@dataclasses.dataclass
+class Resources:
+  greens: int = 100000
+  cases: int = 200
+  functions: int = 1200
+  coverage_criteria: int = 10
+  runs_per_hour: int = 9999
+  greens_per_hour: int = 9999
+  run_tests: str = 'continuously'
+  day: int = 0
+  defects: int = 0
+  engineers: int = 1
+  recruiters: int = 0
+  productity: float = 1.0
+  defect_rate: float = 0.1
+
+  def asdict(self):
+    return dataclasses.asdict(self)
 
 
 def make_initial_resources():
   # A dict of resource name to value
-  return {
-    'greens_ever': 123456789,
-    'greens': 9999,
-    'hours': 888,
-  }
+  return Resources()
+
 
 def make_initial_techs():
   return {

@@ -1,4 +1,5 @@
 import {LitElement, css, html, nothing} from 'lit';
+import {toSnakeCase} from './utils.js';
 
 class Box extends LitElement {
   
@@ -18,6 +19,10 @@ class Box extends LitElement {
 sl-card {
   width: 20em;
   margin: 1em 0 1em 1em;
+}
+
+sl-card::part(header) {
+  font-weight: bold;
 }
 
 th {
@@ -47,7 +52,8 @@ th {
     `;
     };
 
-    const value = 12;
+    const rzKey = toSnakeCase(resourceName);
+    const value = this.rz[rzKey];
     return html`
 <tr>
   <th>${resourceName}:</th>
@@ -73,7 +79,7 @@ th {
 ${this.desc}
 
 <table cellspacing=3>
-  ${this.resourceList.map(this.renderResource)}
+  ${this.resourceList.map(rn => this.renderResource(rn))}
 </table>
 
 <div slot=footer>

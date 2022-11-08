@@ -2,7 +2,7 @@ import logging
 import time
 
 from sim import players
-from sim import arena
+from sim.arena import rz, tz, sz
 
 
 task_queue = []  # A list of pairs (callback, args)
@@ -11,9 +11,29 @@ task_queue = []  # A list of pairs (callback, args)
 # If we have not heard from a player in 20 seconds, forget them.
 PLAYER_TIMEOUT = 200
 
+UNLIMITED = 100000000
+
 
 def do_automation():
-  logging.info('do_automation')
+  avail_cycles = UNLIMITED
+  if rz.run_tests == 'continuously':
+    rz.greens += rz.greens_per_hour
+    rz.runs_per_hour = min(rz.cases, avail_cycles)
+    rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
+
+  new_cases = int(rz.engineers * rz.productity)
+  new_functions = int(rz.engineers * rz.productity)
+  
+  new_defects = int((new_cases + new_functions) * rz.defect_rate)
+  rz.defects += new_defects
+  max_cases = rz.functions * rz.coverage_criteria
+  rz.cases = max(rz.cases + new_cases, max_cases)
+  rz.functions += new_functions
+
+  rz.engineers += rz.recruiters  
+
+  rz.day += 1
+  
 
 
 def process_next_task():
@@ -40,8 +60,8 @@ def maybe_generate_tasks(now=None):
 
 
 def do_tasks():
-  process_next_task()
-  process_next_task()
+  # process_next_task()
+  # process_next_task()
   maybe_generate_tasks()
 
 
@@ -51,4 +71,4 @@ def remove_expired():
     if players.roster[player_id].last_contact < min_last_contact:
       logging.info('Goodbye ' + players.roster[player_id].nick)
       players.unenroll_player(player_id)
-      arena.unspawn_player(player_id)
+

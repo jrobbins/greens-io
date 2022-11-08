@@ -15,7 +15,7 @@ class ArenaAPI(basehandlers.APIHandler):
     snippets = arena.get_snippets()
     upgrades = arena.get_available_upgrades()
     return {
-      'resources': resources,
+      'resources': resources.asdict(),
       'techs': techs,
       'snippets': snippets,
       'upgrades': upgrades,

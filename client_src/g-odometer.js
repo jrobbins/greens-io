@@ -25,7 +25,7 @@ class Odometer extends LitElement {
 
   render() {
     return html`
-Greens: ${commas(this.rz.greens_ever)}
+Greens: ${commas(this.rz.greens)}
     `;
   }
 }
