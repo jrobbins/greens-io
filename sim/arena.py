@@ -8,11 +8,13 @@ class Resources:
   greens: int = 100000
   cases: int = 200
   functions: int = 1200
+  source_files: int = 95
   coverage_criteria: int = 10
   runs_per_hour: int = 9999
   greens_per_hour: int = 9999
   run_tests: str = 'continuously'
   day: int = 0
+  show_defects: int = 1
   defects: int = 0
   engineers: int = 1
   recruiters: int = 0

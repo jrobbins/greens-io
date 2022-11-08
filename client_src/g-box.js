@@ -1,5 +1,5 @@
 import {LitElement, css, html, nothing} from 'lit';
-import {toSnakeCase} from './utils.js';
+import {commas, toSnakeCase} from './utils.js';
 
 class Box extends LitElement {
   
@@ -42,8 +42,15 @@ th {
     this.actionList = [];
   }
 
-  renderResource(resourceName) {
-    if (resourceName == '') {
+  maybeRewrite(resourceName) {
+    if (resourceName == 'defects') {
+      return 'Est. defects';
+    }
+    return resourceName;
+  }
+  
+  renderResource(resourceSpec) {
+    if (resourceSpec == '') {
     return html`
 <tr>
   <th>&nbsp;</th>
@@ -52,14 +59,27 @@ th {
     `;
     };
 
-    const rzKey = toSnakeCase(resourceName);
-    const value = this.rz[rzKey];
+    if (resourceSpec.includes(' ? ')) {
+      let cond = null;
+      [cond, resourceSpec] = resourceSpec.split(' ? ');
+      const condValue = this.rz[toSnakeCase(cond)];
+      if (!condValue) return nothing;
+    }
+    let [resourceName, outOf] = resourceSpec.split('%');
+    const value = this.rz[toSnakeCase(resourceName)];
+    let percent = null;
+    if (outOf) {
+      const outOfValue = this.rz[toSnakeCase(outOf)];
+      percent = Math.floor(value / outOfValue * 100);
+    }
     return html`
 <tr>
-  <th>${resourceName}:</th>
-  <td>${value}</td>
-  <td>=</td>
-  <td>59%</td>
+  <th>${this.maybeRewrite(resourceName)}:</th>
+  <td>${commas(value)}</td>
+  ${percent === null ? nothing : html`
+    <td>=</td>
+    <td>${percent}%</td>
+    `}
 </tr>
     `;
   }

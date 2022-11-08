@@ -1,7 +1,10 @@
 const formatter = new Intl.NumberFormat();
 
-export function commas(number) {
-  return formatter.format(number);
+export function commas(value) {
+  if (typeof(value) == 'number') {
+    return formatter.format(value);
+  }
+  return value;
 }
 
 export function toCamelCase(s) {
