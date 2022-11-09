@@ -1,5 +1,7 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {commas, toSnakeCase} from './utils.js';
+import {start_order} from './orders.js';
+
 
 class Box extends LitElement {
   
@@ -84,9 +86,15 @@ th {
     `;
   }
 
+  handleAction(orderName) {
+    start_order(this, orderName, this.rz);
+  }
+  
   renderAction(actionName) {
     return html`
-<sl-button size=small pill variant=primary>
+<sl-button size=small pill variant=primary
+    @click=${this.handleAction.bind(this, actionName)}
+    >
   ${actionName}
 </sl-button>
     `;
@@ -103,7 +111,7 @@ ${this.desc}
 </table>
 
 <div slot=footer>
-  ${this.actionList.map(this.renderAction)}
+  ${this.actionList.map(an => this.renderAction(an))}
 </div>
 
 </sl-card>

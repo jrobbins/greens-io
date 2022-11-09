@@ -21,7 +21,7 @@ class OrdersAPI(basehandlers.APIHandler):
     # Note there is no security or orders.
 
     
-    arena.process_orders(orders)
+    arena.process_orders(player_id, orders)
     tasks.do_tasks()
     return {'message': 'OK'}
 
