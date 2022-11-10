@@ -27,12 +27,10 @@ function open_order_dialog(hostEl, orderName, options, rz) {
 
 
 export function start_order(hostEl, orderName, rz) {
-  console.log('in start_order');
   const options = ORDER_OPTIONS_BY_NAME[orderName];
   if (options) {
     open_order_dialog(hostEl, orderName, options, rz);
     return;
   }
-  console.log('Sending order name')
   gioClient.postOrders(orderName);  
 }

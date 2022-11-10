@@ -30,7 +30,7 @@ class Resources:
   defect_rate: float = 0.1
 
   # Theory box
-  languages: int = 1
+  languages: int = 0
 
   # Techs
   tech_test_file: int = 0
