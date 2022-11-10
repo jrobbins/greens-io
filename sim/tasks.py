@@ -2,7 +2,7 @@ import logging
 import time
 
 from sim import players
-from sim.arena import rz, tz, sz
+from sim.arena import rz, sz
 
 
 task_queue = []  # A list of pairs (callback, args)

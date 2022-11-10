@@ -5,21 +5,31 @@ import dataclasses
 
 @dataclasses.dataclass
 class Resources:
+  day: int = 0
   greens: int = 100000
+
+  # Tests box
   cases: int = 200
-  functions: int = 1200
-  source_files: int = 95
   coverage_criteria: int = 10
   runs_per_hour: int = 9999
   greens_per_hour: int = 9999
   run_tests: str = 'continuously'
-  day: int = 0
-  show_defects: int = 1
+
+  # Product box
+  functions: int = 1200
+  source_files: int = 95
   defects: int = 0
+
+  # People box
   engineers: int = 1
   recruiters: int = 0
   productity: float = 1.0
   defect_rate: float = 0.1
+
+  # Techs
+  write_code: int = 0
+  show_defects: int = 0
+  lang_cpp: int = 0
 
   def asdict(self):
     return dataclasses.asdict(self)
@@ -30,26 +40,16 @@ def make_initial_resources():
   return Resources()
 
 
-def make_initial_techs():
-  return {
-    'languages': ['C++'],
-  }
-
 def make_initial_snippets():
   return [(1, ['snip', 'snap'])]
 
 
 rz = make_initial_resources()
-tz = make_initial_techs()
 sz = make_initial_snippets()
 
 
 def get_resources():
   return rz
-
-
-def get_techs():
-  return tz
 
 
 def get_snippets():

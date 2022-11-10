@@ -1,6 +1,5 @@
 
 let rz = {};  // Resources
-let tz = {}; // Techs
 let uz = []; // Upgrades
 let sz = []; // Snippets
 let nick = '';
@@ -37,7 +36,6 @@ function gameLoop() {
     gioClient.getArena().then((res) => {
       const rzOrig = {...rz};
       rz = res.resources;
-      tz = res.techs;
       uz = res.upgrades;
       sz = res.snippets;
       appEl.rz = interp(rzOrig, rz, 0.2);

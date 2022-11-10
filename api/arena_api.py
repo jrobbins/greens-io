@@ -11,12 +11,10 @@ class ArenaAPI(basehandlers.APIHandler):
     players.record_contact(player_id)
     tasks.do_tasks()
     resources = arena.get_resources()
-    techs = arena.get_techs()
     snippets = arena.get_snippets()
     upgrades = arena.get_available_upgrades()
     return {
       'resources': resources.asdict(),
-      'techs': techs,
       'snippets': snippets,
       'upgrades': upgrades,
     }
