@@ -56,13 +56,22 @@ class Lobby extends LitElement {
     });
   }
 
+  checkEnter(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.join();
+    }
+  }
   
   render() {
     return html`
       <dialog ?open=${this.open}>
         <h1>Greens.io</h1>
         <form action="">
-          <sl-input id=nick autofocus placeholder="Nickname" size="small" ${ref(this.nickRef)}></sl-input>
+          <sl-input id=nick autofocus placeholder="Nickname" 
+              size="small" ${ref(this.nickRef)}
+              @keydown=${this.checkEnter}
+          ></sl-input>
           <sl-button variant="primary" size="small" pill
              @click=${this.join}>Join</sl-button>
         </form>
