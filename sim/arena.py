@@ -7,7 +7,6 @@ import dataclasses
 class Resources:
   day: int = 0
   greens: int = 0
-  unspent_greens: int = 0
 
   # Tests box
   cases: int = 0
@@ -22,7 +21,7 @@ class Resources:
   defects: int = 0
 
   # Machines box
-  cycles: int = 0
+  cycles: int = 1000
 
   # People box
   engineers: int = 0
@@ -34,13 +33,15 @@ class Resources:
   languages: int = 1
 
   # Techs
-  tech_write_code: int = 0
   tech_test_file: int = 0
   tech_source_file: int = 0
-  tech_cron: int = 0
+  learn_html: int = 0
+  learn_css: int = 0
+  learn_cron: int = 0
   tech_show_defects: int = 0
-  tech_cpp: int = 0
-  tech_java: int = 0
+  learn_cpp: int = 0
+  learn_java: int = 0
+  learn_javascript: int = 0
 
   def asdict(self):
     return dataclasses.asdict(self)
@@ -67,23 +68,16 @@ def get_snippets():
   return sz
 
 
-def get_available_upgrades():
-  avail = ['Learn java']
-  return avail
-
-
 def process_orders(player_id, orders):
   logging.info('process_orders %r %r', player_id, orders)
   # TODO: limit to one order per person per second.
 
   if orders == 'Poke around':
     rz.greens += 1
-    rz.unspent_greens += 1
     return
 
   if orders == 'Run tests':
     rz.greens += rz.cases
-    rz.unspent_greens += rz.cases
     return
 
   if orders == 'Create test case':
@@ -106,10 +100,42 @@ def process_orders(player_id, orders):
     rz.source_files += 1
     return
 
-  if (orders == 'Learn java' and
-      not rz.tech_java):
+  if (orders == 'Learn HTML' and
+      not rz.learn_html and
+      rz.greens > 10):
+    rz.learn_html = 1
+    rz.greens -= 10
+    return
+
+  if (orders == 'Learn CSS' and
+      not rz.learn_css and
+      rz.greens > 10):
+    rz.learn_css = 1
+    rz.greens -= 10
+    return
+
+  if (orders == 'Learn JavaScript' and
+      not rz.learn_javascript and
+      rz.greens > 10):
     rz.languages += 1
-    rz.tech_java = 1
+    rz.learn_javascript = 1
+    rz.greens -= 10
+    return
+
+  if (orders == 'Learn cron' and
+      not rz.learn_cron and
+      rz.greens > 300):
+    rz.languages += 1
+    rz.learn_cron = 1
+    rz.greens -= 300
+    return
+
+  if (orders == 'Learn Java' and
+      not rz.learn_java and
+      rz.greens > 10):
+    rz.languages += 1
+    rz.learn_java = 1
+    rz.greens -= 10
     return
 
 

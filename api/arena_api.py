@@ -12,10 +12,8 @@ class ArenaAPI(basehandlers.APIHandler):
     tasks.do_tasks()
     resources = arena.get_resources()
     snippets = arena.get_snippets()
-    upgrades = arena.get_available_upgrades()
     return {
       'resources': resources.asdict(),
       'snippets': snippets,
-      'upgrades': upgrades,
     }
 

@@ -5,7 +5,6 @@ class App extends LitElement {
   static get properties() {
     return {
       rz: {type: Object},
-      uz: {type: Object},
       sz: {type: Object},
       roster: {type: Array},
     };
@@ -52,7 +51,6 @@ class App extends LitElement {
   constructor() {
     super();
     this.rz = {};
-    this.uz = {};
     this.sz = {};
     this.roster = [];
   }
@@ -60,7 +58,7 @@ class App extends LitElement {
   render() {
     return html`
       <g-odometer .rz=${this.rz}></g-odometer>
-      <g-upgrades .rz=${this.rz} .uz=${this.uz}></g-upgrades>
+      <g-upgrades .rz=${this.rz}></g-upgrades>
       <g-dashboard .rz=${this.rz}></g-dashboard>
       <g-calendar .day=${this.rz.day}></g-calendar>
       <g-snippets .sz=${this.sz}></g-snippets>

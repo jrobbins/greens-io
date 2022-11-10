@@ -1,6 +1,5 @@
 
 let rz = {};  // Resources
-let uz = []; // Upgrades
 let sz = []; // Snippets
 let nick = '';
 
@@ -37,7 +36,6 @@ function gameLoop() {
     gioClient.getArena().then((res) => {
       const rzOrig = {...rz};
       rz = res.resources;
-      uz = res.upgrades;
       sz = res.snippets;
       appEl.rz = interp(rzOrig, rz, 0.2);
       window.setTimeout(() => {
@@ -47,7 +45,6 @@ function gameLoop() {
       window.setTimeout(() => {
 	appEl.rz = interp(rzOrig, rz, 0.8); }, 180*3);
       window.setTimeout(() => { appEl.rz = rz; }, 180*4);
-      appEl.uz = uz;
       appEl.sz = sz;
     });
   }

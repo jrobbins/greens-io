@@ -19,14 +19,14 @@ def do_automation():
   new_functions = int(rz.engineers * rz.productity)
   
   new_defects = int((new_cases + new_functions) * rz.defect_rate)
-  rz.defects += new_defects + 10
+  # rz.defects += new_defects
   max_cases = rz.functions * rz.coverage_criteria
   rz.cases = min(rz.cases + new_cases, max_cases)
   rz.functions += new_functions
 
   rz.engineers += rz.recruiters  
 
-  if rz.tech_cron:
+  if rz.learn_cron:
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
