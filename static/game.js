@@ -32,6 +32,7 @@ let lastTimestamp = 0;
 
 function gameLoop() {
   if (!running) return;
+  if (gioClient.errorCount > 5) return;
   if (gioClient.playerId) {
     gioClient.getArena().then((res) => {
       const rzOrig = {...rz};

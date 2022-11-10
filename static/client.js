@@ -3,6 +3,7 @@ class GreensClient {
     this.baseUrl = '/api/v0'; // Same scheme, host, and port.
     this.token = null;
     this.playerId = null;
+    this.errorCount = 0;
   }
 
   /* Make a JSON API call to the server.
@@ -25,6 +26,7 @@ class GreensClient {
     const response = await fetch(url, options);
 
     if (response.status !== 200) {
+      this.errorCount++;
       throw new Error(
           `Got error response from server ${resource}: ${response.status}`);
     }
