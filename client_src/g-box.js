@@ -32,6 +32,10 @@ th {
   font-weight: normal;
   padding-right: 1em;
 }
+
+sl-button {
+  margin: 4px;
+}
     `];
   }
 
@@ -72,7 +76,8 @@ th {
     let percent = null;
     if (outOf) {
       const outOfValue = this.rz[toSnakeCase(outOf)];
-      percent = Math.floor(value / outOfValue * 100);
+      if (outOfValue)
+        percent = Math.floor(value / outOfValue * 100);
     }
     return html`
 <tr>
@@ -90,7 +95,15 @@ th {
     start_order(this, orderName, this.rz);
   }
   
-  renderAction(actionName) {
+  renderAction(actionSpec) {
+    if (actionSpec.includes(' ? ')) {
+      let cond = null;
+      [cond, actionSpec] = actionSpec.split(' ? ');
+      const condValue = this.rz[toSnakeCase(cond)];
+      if (!condValue) return nothing;
+    }
+    const actionName = actionSpec;
+
     return html`
 <sl-button size=small pill variant=primary
     @click=${this.handleAction.bind(this, actionName)}
@@ -107,11 +120,11 @@ th {
 ${this.desc}
 
 <table cellspacing=3>
-  ${this.resourceList.map(rn => this.renderResource(rn))}
+  ${this.resourceList.map(rs => this.renderResource(rs))}
 </table>
 
 <div slot=footer>
-  ${this.actionList.map(an => this.renderAction(an))}
+  ${this.actionList.map(as => this.renderAction(as))}
 </div>
 
 </sl-card>

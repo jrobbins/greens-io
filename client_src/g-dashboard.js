@@ -31,12 +31,16 @@ class Dashboard extends LitElement {
   .rz=${this.rz}
   .resourceList=${[
     'Cases', 
-    'Runs per hour % cases', 
-    'Greens per hour % runs per hour', 
+    'tech_cron ? Runs per hour % cases', 
+    'tech_cron ? Greens per hour % runs per hour', 
     '',
-    'Test files',
-    'Test suites ? Test suites']}
-  .actionList=${['Create test suite']}
+    'test_files ? Test files',
+    'test_suites ? Test suites']}
+  .actionList=${[
+    'Poke around',
+    'cases ? Run tests',
+    'languages ? Create test case',
+  ]}
 ></g-box>
 
 <g-box 
@@ -45,9 +49,12 @@ class Dashboard extends LitElement {
   .resourceList=${[
     'Functions', 
     'Source files', 
-    'show defects ? defects', 
+    'show_defects ? Defects', 
    ]}
-  .actionList=${['Create source file']}
+  .actionList=${[
+    'languages ? Create function',
+    'languages ? Create source file'
+  ]}
 ></g-box>
 
     `;

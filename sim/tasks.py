@@ -8,29 +8,27 @@ from sim.arena import rz, sz
 task_queue = []  # A list of pairs (callback, args)
 
 
-# If we have not heard from a player in 20 seconds, forget them.
+# If we have not heard from a player in 200 seconds, forget them.
 PLAYER_TIMEOUT = 200
 
 UNLIMITED = 100000000
 
 
 def do_automation():
-  avail_cycles = 12000
-
   new_cases = int(rz.engineers * rz.productity)
   new_functions = int(rz.engineers * rz.productity)
   
   new_defects = int((new_cases + new_functions) * rz.defect_rate)
   rz.defects += new_defects + 10
   max_cases = rz.functions * rz.coverage_criteria
-  rz.cases = max(rz.cases + new_cases, max_cases)
+  rz.cases = min(rz.cases + new_cases, max_cases)
   rz.functions += new_functions
 
   rz.engineers += rz.recruiters  
 
-  if rz.run_tests == 'continuously':
+  if rz.tech_cron:
     rz.greens += rz.greens_per_hour
-    rz.runs_per_hour = min(rz.cases, avail_cycles)
+    rz.runs_per_hour = min(rz.cases, rz.cycles)
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
 
   rz.day += 1
