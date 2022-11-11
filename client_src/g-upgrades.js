@@ -21,10 +21,6 @@ class Upgrades extends LitElement {
   gap: 10px;
   overflow-x: scroll;
 }
-
-sl-button::part(base) {
-  height: 60px;
-}
     `];
   }
 
@@ -52,8 +48,7 @@ sl-button::part(base) {
   .disabled=${up.cost > this.rz['greens']}
   @click=${e => this.startUpgrade(up)}
   >
-  ${up.name}<br/>
-  ${up.cost < 1000 ? 'Cost:' : nothing} ${up.cost}
+  ${up.name} (${up.cost})
 </sl-button>`;
   }
   
