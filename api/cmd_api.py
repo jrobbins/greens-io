@@ -6,7 +6,7 @@ from sim import arena
 from sim import players
 from sim import tasks
 
-class OrdersAPI(basehandlers.APIHandler):
+class CommandAPI(basehandlers.APIHandler):
 
   def do_post(self, player_id=None):
     token = self.get_param('token')
@@ -16,12 +16,10 @@ class OrdersAPI(basehandlers.APIHandler):
       flask.abort(403, 'Secret does not match')
     players.record_contact(player_id)
 
-    orders = self.get_param('orders')
+    cmd = self.get_param('cmd')
     # TODO: arguments
-    # Note there is no security or orders.
-
     
-    arena.process_orders(player_id, orders)
+    arena.process_cmd(player_id, cmd)
     tasks.do_tasks()
     return {'message': 'OK'}
 

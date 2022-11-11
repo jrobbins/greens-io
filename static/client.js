@@ -77,11 +77,11 @@ class GreensClient {
     // TODO: catch((error) => { display message }
   }
 
-  postOrders(orders) {
-    const url = `/orders/${this.playerId}`;
+  postCmd(cmd) {
+    const url = `/cmd/${this.playerId}`;
     const body = {
       token: this.token,
-      orders,
+      cmd,
     };
     return this.doPost(url, body)
       .then((res) => res);

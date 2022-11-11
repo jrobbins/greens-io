@@ -5,7 +5,7 @@ import settings
 from api import basehandlers
 from api import arena_api
 from api import chapters_api
-from api import orders_api
+from api import cmd_api
 from api import players_api
 
 
@@ -13,7 +13,7 @@ api_routes = [
     ('/chapters', chapters_api.ChaptersAPI),
     ('/players', players_api.PlayersAPI),
     ('/players/<string:player_id>', players_api.PlayersAPI),
-    ('/orders/<int:player_id>', orders_api.OrdersAPI),
+    ('/cmd/<int:player_id>', cmd_api.CommandAPI),
     ('/arena/<int:player_id>', arena_api.ArenaAPI),
     ]
 

@@ -1,6 +1,6 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {commas, toSnakeCase} from './utils.js';
-import {start_order} from './orders.js';
+import {start_cmd} from './commands.js';
 
 
 class Box extends LitElement {
@@ -91,8 +91,8 @@ sl-button {
     `;
   }
 
-  handleAction(orderName) {
-    start_order(this, orderName, this.rz);
+  handleClick(cmd) {
+    start_cmd(this, cmd, this.rz);
   }
   
   renderAction(actionSpec) {
@@ -102,13 +102,13 @@ sl-button {
       const condValue = this.rz[toSnakeCase(cond)];
       if (!condValue) return nothing;
     }
-    const actionName = actionSpec;
+    const cmd = actionSpec;
 
     return html`
 <sl-button size=small pill variant=primary
-    @click=${this.handleAction.bind(this, actionName)}
+    @click=${this.handleClick.bind(this, cmd)}
     >
-  ${actionName}
+  ${cmd}
 </sl-button>
     `;
   }

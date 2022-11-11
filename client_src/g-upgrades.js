@@ -1,6 +1,6 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {commas, toSnakeCase} from './utils.js';
-import {start_order} from './orders.js';
+import {start_cmd} from './commands.js';
 
 
 class Upgrades extends LitElement {
@@ -43,7 +43,7 @@ sl-button::part(base) {
   }
 
   startUpgrade(up) {
-    start_order(this, up.name, this.rz);
+    start_cmd(this, up.name, this.rz);
   }
 
   renderUpgrade(up) {

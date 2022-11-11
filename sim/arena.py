@@ -79,49 +79,40 @@ def get_news():
   return nz
 
 
-xxUPGRADES = {
-  # order_name:       (prereq, cost, incr)
-  'Learn HTML':       (None,     10, None),
-  'Learn CSS':        (None,     10, None),
-  'Learn JavaScript': (None,     10, 'languages'),
-  'Learn Java':       (None,     10, 'languages'),
-  'Learn cron':       (None,    300, 'automation'),
-  }
+def process_cmd(player_id, cmd):
+  logging.info('process_cmd %r %r', player_id, cmd)
 
-def process_orders(player_id, orders):
-  logging.info('process_orders %r %r', player_id, orders)
-
-  if orders == 'Poke around':
+  if cmd == 'Poke around':
     rz.greens += 1
     return
 
-  if orders == 'Run tests':
+  if cmd == 'Run tests':
     rz.greens += rz.cases
     return
 
-  if orders == 'Create test case':
+  if cmd == 'Create test case':
     rz.cases += 1
     return
 
-  if (orders == 'Create test file' and
+  if (cmd == 'Create test file' and
       rz.languages):
     rz.cases += 10
     rz.test_files += 1
     return
 
-  if orders == 'Create function':
+  if cmd == 'Create function':
     rz.functions += 1
     return
 
-  if (orders == 'Create source file' and
+  if (cmd == 'Create source file' and
       rz.languages):
     rz.functions += 10
     rz.source_files += 1
     return
 
-  if orders in chapters.ALL_UPGRADES:
-    up = chapters.ALL_UPGRADES[orders]
-    snake = utils.to_snake_case(orders)
+  if cmd in chapters.ALL_UPGRADES:
+    up = chapters.ALL_UPGRADES[cmd]
+    snake = utils.to_snake_case(cmd)
     if (not getattr(sz, snake) and
         rz.greens >= up.cost and
         (not up.prereq or getattr(sz, up.prereq) or
