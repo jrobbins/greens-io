@@ -38,8 +38,8 @@ class Dashboard extends LitElement {
     'test_suites ? Test suites']}
   .actionList=${[
     'Poke around',
-    'cases ? Run tests',
     'languages ? Create test case',
+    'cases ? Run tests',
   ]}
 ></g-box>
 

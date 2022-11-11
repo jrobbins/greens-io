@@ -19,8 +19,6 @@ class Upgrades extends LitElement {
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
-  overflow-x: scroll;
-}
     `];
   }
 

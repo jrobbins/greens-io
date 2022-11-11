@@ -14,6 +14,8 @@ class Odometer extends LitElement {
       css`
         :host {
           font-size: 200%;
+          color: darkgreen;
+          font-weight: bold;
         }
     `];
   }

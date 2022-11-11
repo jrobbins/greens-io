@@ -23,7 +23,7 @@ class App extends LitElement {
          display: grid;
          overflow: hidden;
          grid-template-columns: repeat(3, 1fr);
-         grid-template-rows:  60px 45px 60px auto;
+         grid-template-rows:  60px 55px 60px auto;
          grid-template-areas:
            "odo odo cal"
            "ups ups cal"
@@ -37,14 +37,22 @@ class App extends LitElement {
         padding: 8px;
         overflow: hidden;
       }
-      g-odometer { grid-area: odo; }
-      g-upgrades  { grid-area: ups; }
+      g-odometer { 
+        grid-area: odo; 
+      }
+      g-upgrades  {
+        grid-area: ups;
+        overflow-x: auto;
+      }
       g-dashboard  { 
         grid-area: dsh; 
         overflow-x: auto;
       }
       g-calendar  { grid-area: cal; }
-      g-news  { grid-area: log; }
+      g-news  {
+        grid-area: log;
+        overflow-y: auto;
+      }
 
     `];
   }
