@@ -51,6 +51,7 @@ CHAP_2 = Chapter(
     Upgrade(100, 'Binary search', prereq='languages'),
     Upgrade(100, 'Bubble sort', prereq='languages'),
     Upgrade(3*K, 'Learn cron'),
+    Upgrade(3*K, 'Automation', incr='automation'),
   ],
 )
 

@@ -42,10 +42,19 @@ class PlayerSkills:
   learn_html: int = 0
   learn_css: int = 0
   learn_cron: int = 0
+  automation: int = 0
   tech_show_defects: int = 0
   learn_cpp: int = 0
   learn_java: int = 0
   learn_javascript: int = 0
+  learn_appscript: int = 0
+  learn_python: int = 0
+
+  linear_search: int = 0
+  recursion: int = 0
+  binary_search: int = 0
+  bubble_sort: int = 0
+  hashing: int = 0
 
 
 def make_initial_team_resources():
@@ -113,10 +122,13 @@ def process_cmd(player_id, cmd):
   if cmd in chapters.ALL_UPGRADES:
     up = chapters.ALL_UPGRADES[cmd]
     snake = utils.to_snake_case(cmd)
-    if (not getattr(sz, snake) and
-        rz.greens >= up.cost and
-        (not up.prereq or getattr(sz, up.prereq) or
-         getattr(rz. up.prereq))):
+    combined_resources = dataclasses.asdict(sz)
+    combined_resources.update(dataclasses.asdict(rz))
+    already_know = combined_resources.get(snake)
+    can_afford = rz.greens >= up.cost
+    satisfied = (not up.prereq or
+                 combined_resources.get(up.prereq))
+    if not already_know and can_afford and satisfied:
       setattr(sz, snake, 1)
       rz.greens -= up.cost
       if up.incr:
