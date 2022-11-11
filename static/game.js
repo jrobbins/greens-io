@@ -3,6 +3,8 @@ let rz = {};  // Team and player resources
 let nz = []; // News
 let nick = '';
 
+let chapters = [];
+
 
 function interp(oldObj, newObj, fraction) {
   const result = { ...oldObj };
@@ -17,6 +19,10 @@ function interp(oldObj, newObj, fraction) {
 
 
 function init() {
+  gioClient.getChapters().then((res) => {
+    chapters = res.chapters;
+    appEl.chapters = chapters;
+  });
 }
 
 

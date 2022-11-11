@@ -7,6 +7,7 @@ class App extends LitElement {
       rz: {type: Object},
       nz: {type: Object},
       roster: {type: Array},
+      chapters: {type: Array},
     };
   }
   
@@ -53,12 +54,14 @@ class App extends LitElement {
     this.rz = {};
     this.nz = {};
     this.roster = [];
+    this.chapters = [];
   }
 
   render() {
     return html`
       <g-odometer .rz=${this.rz}></g-odometer>
-      <g-upgrades .rz=${this.rz}></g-upgrades>
+      <g-upgrades .rz=${this.rz} .chapters=${this.chapters}>
+      </g-upgrades>
       <g-dashboard .rz=${this.rz}></g-dashboard>
       <g-calendar .day=${this.rz.day}></g-calendar>
       <g-news .nz=${this.nz}></g-news>

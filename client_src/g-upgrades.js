@@ -1,13 +1,14 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {commas, toSnakeCase} from './utils.js';
 import {start_order} from './orders.js';
-import {CHAPTERS} from './chapters.js';
+
 
 class Upgrades extends LitElement {
   
   static get properties() {
     return {
       rz: {type: Object},
+      chapters: {type: Array},
     };
   }
   
@@ -30,13 +31,13 @@ sl-button::part(base) {
   constructor() {
     super();
     this.rz = {};
+    this.chapters = [];
   }
 
   checkPrereq(up) {
-    const slug = up.slug || toSnakeCase(up.name);
-    if (this.rz[slug]) return false;  // aleady accomplished.
-    console.log('checking ' + up.prereq + ' = ' + this.rz[up.prereq]);
-    if (up.prereq === undefined) return true;  // no prereq.
+    const snake = up.snake || toSnakeCase(up.name);
+    if (this.rz[snake]) return false;  // aleady accomplished.
+    if (up.prereq === "") return true;  // no prereq.
     if (this.rz[up.prereq]) return true;  // satisfied. 
     return false;
   }
@@ -59,7 +60,7 @@ sl-button::part(base) {
   renderUpgrades() {
     const g = rz['greens'] || 1;
     const chapter = Math.floor(Math.log10(g) / 2);
-    const possibleUps = CHAPTERS[chapter].upgrades;
+    const possibleUps = this.chapters[chapter].upgrades;
     const displayedUps = possibleUps.filter(
       up => this.checkPrereq(up));
     return displayedUps.map(

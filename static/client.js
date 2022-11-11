@@ -66,6 +66,11 @@ class GreensClient {
     // TODO: catch((error) => { display message }
   }
 
+  getChapters() {
+    return this.doGet(`/chapters`).then((res) => res);
+    // TODO: catch((error) => { display message }
+  }
+
   getArena() {
     const url = `/arena/${this.playerId}`;
     return this.doGet(url).then((res) => res);

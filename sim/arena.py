@@ -1,5 +1,7 @@
 import logging
 import dataclasses
+from sim import utils
+from sim import chapters
 
 
 @dataclasses.dataclass
@@ -77,9 +79,17 @@ def get_news():
   return nz
 
 
+xxUPGRADES = {
+  # order_name:       (prereq, cost, incr)
+  'Learn HTML':       (None,     10, None),
+  'Learn CSS':        (None,     10, None),
+  'Learn JavaScript': (None,     10, 'languages'),
+  'Learn Java':       (None,     10, 'languages'),
+  'Learn cron':       (None,    300, 'automation'),
+  }
+
 def process_orders(player_id, orders):
   logging.info('process_orders %r %r', player_id, orders)
-  # TODO: limit to one order per person per second.
 
   if orders == 'Poke around':
     rz.greens += 1
@@ -109,43 +119,17 @@ def process_orders(player_id, orders):
     rz.source_files += 1
     return
 
-  if (orders == 'Learn HTML' and
-      not sz.learn_html and
-      rz.greens > 10):
-    sz.learn_html = 1
-    rz.greens -= 10
-    return
-
-  if (orders == 'Learn CSS' and
-      not sz.learn_css and
-      rz.greens > 10):
-    sz.learn_css = 1
-    rz.greens -= 10
-    return
-
-  if (orders == 'Learn JavaScript' and
-      not sz.learn_javascript and
-      rz.greens > 10):
-    rz.languages += 1
-    sz.learn_javascript = 1
-    rz.greens -= 10
-    return
-
-  if (orders == 'Learn cron' and
-      not sz.learn_cron and
-      rz.greens > 300):
-    rz.languages += 1
-    rz.automation += 1
-    sz.learn_cron = 1
-    rz.greens -= 300
-    return
-
-  if (orders == 'Learn Java' and
-      not sz.learn_java and
-      rz.greens > 10):
-    rz.languages += 1
-    sz.learn_java = 1
-    rz.greens -= 10
-    return
+  if orders in chapters.ALL_UPGRADES:
+    up = chapters.ALL_UPGRADES[orders]
+    snake = utils.to_snake_case(orders)
+    if (not getattr(sz, snake) and
+        rz.greens >= up.cost and
+        (not up.prereq or getattr(sz, up.prereq) or
+         getattr(rz. up.prereq))):
+      setattr(sz, snake, 1)
+      rz.greens -= up.cost
+      if up.incr:
+        setattr(rz, up.incr, getattr(rz, up.incr) + 1)
+  
 
 
