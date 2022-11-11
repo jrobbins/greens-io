@@ -5,7 +5,7 @@ class App extends LitElement {
   static get properties() {
     return {
       rz: {type: Object},
-      sz: {type: Object},
+      nz: {type: Object},
       roster: {type: Array},
     };
   }
@@ -43,7 +43,7 @@ class App extends LitElement {
         overflow-x: auto;
       }
       g-calendar  { grid-area: cal; }
-      g-snippets  { grid-area: log; }
+      g-news  { grid-area: log; }
 
     `];
   }
@@ -51,7 +51,7 @@ class App extends LitElement {
   constructor() {
     super();
     this.rz = {};
-    this.sz = {};
+    this.nz = {};
     this.roster = [];
   }
 
@@ -61,7 +61,7 @@ class App extends LitElement {
       <g-upgrades .rz=${this.rz}></g-upgrades>
       <g-dashboard .rz=${this.rz}></g-dashboard>
       <g-calendar .day=${this.rz.day}></g-calendar>
-      <g-snippets .sz=${this.sz}></g-snippets>
+      <g-news .nz=${this.nz}></g-news>
     `;
   }
 }

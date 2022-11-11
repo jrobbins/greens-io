@@ -26,7 +26,7 @@ def do_automation():
 
   rz.engineers += rz.recruiters  
 
-  if rz.learn_cron:
+  if rz.automation:
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)

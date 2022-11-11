@@ -1,10 +1,9 @@
 import logging
-import collections
 import dataclasses
 
 
 @dataclasses.dataclass
-class Resources:
+class TeamResources:
   day: int = 0
   greens: int = 0
 
@@ -14,6 +13,7 @@ class Resources:
   coverage_criteria: int = 10
   runs_per_hour: int = 0
   greens_per_hour: int = 0
+  automation: int = 0
 
   # Product box
   functions: int = 1200
@@ -32,7 +32,9 @@ class Resources:
   # Theory box
   languages: int = 0
 
-  # Techs
+
+@dataclasses.dataclass
+class PlayerSkills:
   tech_test_file: int = 0
   tech_source_file: int = 0
   learn_html: int = 0
@@ -43,29 +45,36 @@ class Resources:
   learn_java: int = 0
   learn_javascript: int = 0
 
-  def asdict(self):
-    return dataclasses.asdict(self)
+
+def make_initial_team_resources():
+  # A dataclass of resource values
+  return TeamResources()
 
 
-def make_initial_resources():
-  # A dict of resource name to value
-  return Resources()
+def make_initial_player_skills():
+  # A dataclass of skill values
+  return PlayerSkills()
 
 
-def make_initial_snippets():
+def make_initial_news():
   return [(1, ['snip', 'snap'])]
 
 
-rz = make_initial_resources()
-sz = make_initial_snippets()
+rz = make_initial_team_resources()
+sz = make_initial_player_skills()  # TODO: per player
+nz = make_initial_news()
 
 
-def get_resources():
+def get_team_resources():
   return rz
 
 
-def get_snippets():
+def get_player_skills():
   return sz
+
+
+def get_news():
+  return nz
 
 
 def process_orders(player_id, orders):
@@ -101,40 +110,41 @@ def process_orders(player_id, orders):
     return
 
   if (orders == 'Learn HTML' and
-      not rz.learn_html and
+      not sz.learn_html and
       rz.greens > 10):
-    rz.learn_html = 1
+    sz.learn_html = 1
     rz.greens -= 10
     return
 
   if (orders == 'Learn CSS' and
-      not rz.learn_css and
+      not sz.learn_css and
       rz.greens > 10):
-    rz.learn_css = 1
+    sz.learn_css = 1
     rz.greens -= 10
     return
 
   if (orders == 'Learn JavaScript' and
-      not rz.learn_javascript and
+      not sz.learn_javascript and
       rz.greens > 10):
     rz.languages += 1
-    rz.learn_javascript = 1
+    sz.learn_javascript = 1
     rz.greens -= 10
     return
 
   if (orders == 'Learn cron' and
-      not rz.learn_cron and
+      not sz.learn_cron and
       rz.greens > 300):
     rz.languages += 1
-    rz.learn_cron = 1
+    rz.automation += 1
+    sz.learn_cron = 1
     rz.greens -= 300
     return
 
   if (orders == 'Learn Java' and
-      not rz.learn_java and
+      not sz.learn_java and
       rz.greens > 10):
     rz.languages += 1
-    rz.learn_java = 1
+    sz.learn_java = 1
     rz.greens -= 10
     return
 

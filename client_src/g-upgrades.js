@@ -8,7 +8,6 @@ class Upgrades extends LitElement {
   static get properties() {
     return {
       rz: {type: Object},
-      upgraded: {type: Object},
     };
   }
   
@@ -31,14 +30,15 @@ sl-button::part(base) {
   constructor() {
     super();
     this.rz = {};
-    this.upgraded = {};
   }
 
   checkPrereq(up) {
     const slug = up.slug || toSnakeCase(up.name);
-    if (this.rz[slug]) return false;  // aleady have it.
-    if (up.prereq && this.rz[up.prereq]) return false;
-    return true;
+    if (this.rz[slug]) return false;  // aleady accomplished.
+    console.log('checking ' + up.prereq + ' = ' + this.rz[up.prereq]);
+    if (up.prereq === undefined) return true;  // no prereq.
+    if (this.rz[up.prereq]) return true;  // satisfied. 
+    return false;
   }
 
   startUpgrade(up) {

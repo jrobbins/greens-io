@@ -1,6 +1,6 @@
 
-let rz = {};  // Resources
-let sz = []; // Snippets
+let rz = {};  // Team and player resources
+let nz = []; // News
 let nick = '';
 
 
@@ -36,7 +36,7 @@ function gameLoop() {
     gioClient.getArena().then((res) => {
       const rzOrig = {...rz};
       rz = res.resources;
-      sz = res.snippets;
+      nz = res.news;
       appEl.rz = interp(rzOrig, rz, 0.2);
       window.setTimeout(() => {
 	appEl.rz = interp(rzOrig, rz, 0.4); }, 180);
@@ -45,7 +45,7 @@ function gameLoop() {
       window.setTimeout(() => {
 	appEl.rz = interp(rzOrig, rz, 0.8); }, 180*3);
       window.setTimeout(() => { appEl.rz = rz; }, 180*4);
-      appEl.sz = sz;
+      appEl.nz = nz;
     });
   }
   window.setTimeout(gameLoop, 1000);

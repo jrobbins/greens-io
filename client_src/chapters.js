@@ -14,8 +14,8 @@ const CHAP_1 = {
     {cost: 10, name: 'Learn HTML'},
     {cost: 10, name: 'Learn CSS'},
     {cost: 10, name: 'Learn JavaScript'},
-    {cost: 20, name: 'Linear search', prereq: 'learn_java'},
-    {cost: 20, name: 'Recursion', prereq: 'learn_java'},
+    {cost: 20, name: 'Linear search', prereq: 'languages'},
+    {cost: 20, name: 'Recursion', prereq: 'languages'},
   ],
 }
 

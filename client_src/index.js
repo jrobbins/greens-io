@@ -19,5 +19,5 @@ import './g-odometer';
 import './g-upgrades';
 import './g-dashboard';
 import './g-calendar';
-import './g-snippets';
+import './g-news';
 import './g-box';

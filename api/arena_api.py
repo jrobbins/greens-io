@@ -1,4 +1,6 @@
 import logging
+import dataclasses
+
 from api import basehandlers
 from sim import arena
 from sim import players
@@ -10,10 +12,13 @@ class ArenaAPI(basehandlers.APIHandler):
   def do_get(self, player_id):
     players.record_contact(player_id)
     tasks.do_tasks()
-    resources = arena.get_resources()
-    snippets = arena.get_snippets()
+    team_resources = arena.get_team_resources()
+    player_skills = arena.get_player_skills()
+    combined_resources = dataclasses.asdict(team_resources)
+    combined_resources.update(dataclasses.asdict(player_skills))
+    news = arena.get_news()
     return {
-      'resources': resources.asdict(),
-      'snippets': snippets,
+      'resources': combined_resources,
+      'news': news,
     }
 

@@ -1,10 +1,10 @@
 import {LitElement, css, html, nothing} from 'lit';
 
-class Snippets extends LitElement {
+class News extends LitElement {
   
   static get properties() {
     return {
-      sz: {type: Object},
+      nz: {type: Object},
     };
   }
   
@@ -16,13 +16,13 @@ class Snippets extends LitElement {
 
   constructor() {
     super();
-    this.sz = {};
+    this.nz = {};
   }
 
   render() {
     return html`
-Snippets
+News
     `;
   }
 }
-customElements.define('g-snippets', Snippets);
+customElements.define('g-news', News);
