@@ -14,12 +14,18 @@ CEO_MESSAGE = 'ceo_message'
 UPGRADES = 'upgrades'
 
 @dataclasses.dataclass
+class Quiz:
+  text: str
+
+
+@dataclasses.dataclass
 class Upgrade:
   cost: int
   name: str
   prereq: str = ''
   incr: str = ''
   snake: str = ''
+  quiz: Quiz = None
 
 
 @dataclasses.dataclass
@@ -28,11 +34,23 @@ class Chapter:
   upgrades: list[Upgrade]
 
 
+LEARN_HTML = Upgrade(
+  10, 'Learn HTML',
+  quiz=Quiz('''
+    Based on documentation on MDN, what HTML tag would you use to indicate
+    an Italian phrase in an English sentence?
+    |  Emphasis
+    |  Italic
+    |X Idomatic phrase
+    |  Italiano
+  '''))
+
+
 # greens < 100.
 CHAP_1 = Chapter(
   ceo_message = 'Welcome',
   upgrades = [
-    Upgrade(10, 'Learn HTML'),
+    LEARN_HTML,
     Upgrade(10, 'Learn CSS'),
     Upgrade(10, 'Learn JavaScript', incr='languages'),
     Upgrade(20, 'Linear search', prereq='languages'),

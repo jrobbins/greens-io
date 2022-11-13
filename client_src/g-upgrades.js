@@ -1,9 +1,11 @@
 import {LitElement, css, html, nothing} from 'lit';
+import {ref, createRef} from 'lit/directives/ref.js';
 import {commas, toSnakeCase} from './utils.js';
 import {start_cmd} from './commands.js';
 
 
 class Upgrades extends LitElement {
+  quizRef = createRef();
   
   static get properties() {
     return {
@@ -19,6 +21,7 @@ class Upgrades extends LitElement {
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
+}
     `];
   }
 
@@ -37,7 +40,12 @@ class Upgrades extends LitElement {
   }
 
   startUpgrade(up) {
-    start_cmd(this, up.name, this.rz);
+    if (up.quiz) {
+      // TODO: Try sl-dropdown
+      this.quizRef.value.openOn(up)
+    } else {
+      gioClient.postCmd(up.name);
+    }
   }
 
   renderUpgrade(up) {
@@ -60,9 +68,17 @@ class Upgrades extends LitElement {
       up => this.renderUpgrade(up));
   }
 
+  renderQuiz() {
+    return html`
+<g-quiz ${ref(this.quizRef)}>
+</g-quiz>
+    `;
+  }
+
   render() {
     return [
       this.renderUpgrades(),
+      this.renderQuiz(),
     ];
   }  
 }

@@ -5,6 +5,8 @@ console.log('this is JS code');
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
+import '@shoelace-style/shoelace/dist/components/radio-group/radio-group.js';
+import '@shoelace-style/shoelace/dist/components/radio/radio.js';
 import '@shoelace-style/shoelace/dist/components/card/card.js';
 
 import {setBasePath} from '@shoelace-style/shoelace/dist/utilities/base-path.js';
@@ -21,3 +23,4 @@ import './g-dashboard';
 import './g-calendar';
 import './g-news';
 import './g-box';
+import './g-quiz';
