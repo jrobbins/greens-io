@@ -90,6 +90,7 @@ class Quiz extends LitElement {
     this.choices = newChoices;
   }
 
+  
   renderQuiz() {
     if (this.choices == []) return nothing;
     return html`
@@ -105,18 +106,17 @@ class Quiz extends LitElement {
   }
 
   renderMessage() {
+    if (this.up.cost > this.rz.greens) {
+      return 'Your teammates depleated your greens.';
+    }
     if (this.step == 1) {
       return 'Checking...';
     }
 
     if (this.step == 2) {
       if (this.correct) {
-	if (this.up.cost <= this.rz.greens) {
           return 'Correct!  Buying upgrade for ' +
 	    this.up.cost + ' greens.';
-	} else {
-          return 'Your teammates depleated your greens.';
-	}
       } else {
 	return 'Nope, try again.';
       }
@@ -127,6 +127,10 @@ class Quiz extends LitElement {
   
   render() {
     if (this.up === {}) return nothing;
+    const disabled = (
+        (this.up.cost > this.rz.greens) ||
+	this.submitDisabled);
+
     return html`
 <sl-dialog label=${this.up.name} ?open=${this.open}
        @sl-hide=${e => this.open = false}>
@@ -136,7 +140,7 @@ class Quiz extends LitElement {
   </span>
   <sl-button slot="footer" variant="primary"
       ?loading=${this.step == 1}  
-      ?disabled=${this.submitDisabled}
+      ?disabled=${disabled}
       @click=${e => this.checkAnswer()}>
     Submit
   </sl-button>
