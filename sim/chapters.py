@@ -67,6 +67,48 @@ LEARN_JAVASCRIPT = Upgrade(
     |  NaN === NaN
   '''))
 
+LINEAR_SEARCH = Upgrade(
+  20, 'Linear Search', incr='algorithms', prereq='languages',
+  quiz=Quiz('''
+    "It's always in the last place you look" is true because:
+    |  People are not computers
+    |X You stop looking when you find it
+    |  Gaslighting gnomes
+    |  This is the worst timeline
+  '''))
+
+RECURSION = Upgrade(
+  10, 'Recursion', incr='algorithms', prereq='languages',
+  quiz=Quiz('''
+    What does a tail-recursive function do to unwind:
+    |  Light reading
+    |  Random walks
+    |  Goat yoga
+    |X Nothing
+  '''))
+
+LEARN_JAVA = Upgrade(
+  100, 'Learn Java', incr='languages',
+  quiz=Quiz('''
+    The mascot of the Java programming language is
+    |X A "software agent" with a red nose
+    |  A garbage collection truck
+    |  Bob, the factory factory builder
+    |  A solo jazz coffee cup
+  '''))
+
+LEARN_PYTHON = Upgrade(
+  100, 'Learn Python', incr='languages',
+  quiz=Quiz('''
+    Which of the following is NOT generally associated with Python?
+    |X Betta fish
+    |  Duck typing
+    |  Camel case
+    |  Pandas
+    |  Walrus operator
+    |  Snake case
+  '''))
+
 
 
 # greens < 100.
@@ -76,8 +118,8 @@ CHAP_1 = Chapter(
     LEARN_HTML,
     LEARN_CSS,
     LEARN_JAVASCRIPT,
-    Upgrade(20, 'Linear search', prereq='languages'),
-    Upgrade(20, 'Recursion', prereq='languages'),
+    LINEAR_SEARCH,
+    RECURSION,
   ],
 )
 
@@ -86,8 +128,8 @@ CHAP_1 = Chapter(
 CHAP_2 = Chapter(
   ceo_message = 'Promo',
   upgrades = [
-    Upgrade(100, 'Learn Java'),
-    Upgrade(100, 'Learn Python'),
+    LEARN_JAVA,
+    LEARN_PYTHON,
     Upgrade(100, 'Learn AppScript'),
     Upgrade(100, 'Binary search', prereq='languages'),
     Upgrade(100, 'Bubble sort', prereq='languages'),
