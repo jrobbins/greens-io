@@ -14,7 +14,7 @@
       "test": "source gio-env/bin/activate; python3 -m unittest discover -p '*_test.py'  -b",
       "webtest": "web-test-runner \"clientside/**/*_test.js\" --node-resolve",
       "lint": "gulp lint-fix && lit-analyzer \"clientside/**/*.js\"",
-      "deploy": "gcloud app deploy --project xbattle-io --version `git describe --always --abbrev=7 --match 'NOT A TAG' --dirty='-tainted'` --no-promote app.yaml cron.yaml",
+      "deploy": "gcloud app deploy --project greens-io --version `git describe --always --abbrev=7 --match 'NOT A TAG' --dirty='-tainted'` --no-promote app.yaml cron.yaml",
       "start-app": "npm run build && gunicorn --bind :8080 --workers 1 main:app",
       "start": "source gio-env/bin/activate; npm run start-app",
       "stop": "killall gio-env/bin/python3.9"
