@@ -70,7 +70,7 @@ class Upgrades extends LitElement {
 
   renderQuiz() {
     return html`
-<g-quiz ${ref(this.quizRef)}>
+<g-quiz .rz=${this.rz} ${ref(this.quizRef)}>
 </g-quiz>
     `;
   }

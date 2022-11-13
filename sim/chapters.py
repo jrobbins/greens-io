@@ -37,13 +37,36 @@ class Chapter:
 LEARN_HTML = Upgrade(
   10, 'Learn HTML',
   quiz=Quiz('''
-    Based on documentation on MDN, what HTML tag would you use to indicate
-    an Italian phrase in an English sentence?
+    Based on documentation on MDN, what HTML tag would you use
+    to indicate an Italian phrase in an English sentence?
     |  Emphasis
     |  Italic
-    |X Idomatic phrase
+    |X Idiomatic text
     |  Italiano
   '''))
+
+LEARN_CSS = Upgrade(
+  10, 'Learn CSS',
+  quiz=Quiz('''
+    According to MDN, CSS provides this many different kinds
+    of units for length:
+    |  8
+    |  14
+    |X 17
+    |  21
+  '''))
+
+LEARN_JAVASCRIPT = Upgrade(
+  10, 'Learn JavaScript', incr='languages',
+  quiz=Quiz('''
+    According to github project wtfjs, which of the following
+    expressions evaluates to true?
+    |  +true
+    |X parseInt(1 / 1999999) == 5
+    |  ![] + []
+    |  NaN === NaN
+  '''))
+
 
 
 # greens < 100.
@@ -51,8 +74,8 @@ CHAP_1 = Chapter(
   ceo_message = 'Welcome',
   upgrades = [
     LEARN_HTML,
-    Upgrade(10, 'Learn CSS'),
-    Upgrade(10, 'Learn JavaScript', incr='languages'),
+    LEARN_CSS,
+    LEARN_JAVASCRIPT,
     Upgrade(20, 'Linear search', prereq='languages'),
     Upgrade(20, 'Recursion', prereq='languages'),
   ],
