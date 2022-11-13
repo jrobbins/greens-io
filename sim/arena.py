@@ -72,16 +72,20 @@ def make_initial_news():
 
 
 rz = make_initial_team_resources()
-sz = make_initial_player_skills()  # TODO: per player
+all_sz: dict[int, PlayerSkills] = {}
 nz = make_initial_news()
+
+
+def spawn_player(p):
+  all_sz[p.player_id] = make_initial_player_skills()
 
 
 def get_team_resources():
   return rz
 
 
-def get_player_skills():
-  return sz
+def get_player_skills(player_id):
+  return all_sz.get(player_id)
 
 
 def get_news():
@@ -90,6 +94,9 @@ def get_news():
 
 def process_cmd(player_id, cmd):
   logging.info('process_cmd %r %r', player_id, cmd)
+  if player_id not in all_sz:
+    raise ValueError('unknown player %r' % player_id)
+  sz = all_sz[player_id]
 
   if cmd == 'Poke around':
     rz.greens += 1

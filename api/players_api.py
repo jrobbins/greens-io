@@ -25,6 +25,7 @@ class PlayersAPI(basehandlers.APIHandler):
     
     p = players.Player(nick)
     players.enroll_player(p)
+    arena.spawn_player(p)
     return serialize_player(p, include_token=True)
 
 

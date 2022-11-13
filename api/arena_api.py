@@ -13,7 +13,7 @@ class ArenaAPI(basehandlers.APIHandler):
     players.record_contact(player_id)
     tasks.do_tasks()
     team_resources = arena.get_team_resources()
-    player_skills = arena.get_player_skills()
+    player_skills = arena.get_player_skills(player_id)
     combined_resources = dataclasses.asdict(team_resources)
     combined_resources.update(dataclasses.asdict(player_skills))
     news = arena.get_news()
