@@ -96,6 +96,19 @@ class Dashboard extends LitElement {
   ]}
 ></g-box>
 
+<g-box 
+  name="Theory"
+  .rz=${this.rz}
+  .resourceList=${[
+    'Languages', 
+    'Algorithms', 
+    'Paradigms', 
+    'Realities', 
+   ]}
+  .actionList=${[
+  ]}
+></g-box>
+
     `;
   }
 }
