@@ -1,6 +1,6 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
-import {commas, toSnakeCase} from './utils.js';
+import {commas, toKMBTQ, toSnakeCase} from './utils.js';
 import {start_cmd} from './commands.js';
 
 
@@ -54,7 +54,7 @@ class Upgrades extends LitElement {
   .disabled=${up.cost > this.rz['greens']}
   @click=${e => this.startUpgrade(up)}
   >
-  ${up.name} (${up.cost})
+  ${up.name}: ${toKMBTQ(up.cost)}
 </sl-button>`;
   }
 

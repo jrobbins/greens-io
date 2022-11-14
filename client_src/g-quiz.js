@@ -1,6 +1,6 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
-import {commas, toSnakeCase} from './utils.js';
+import {commas, toKMBTQ, toSnakeCase} from './utils.js';
 import {start_cmd} from './commands.js';
 
 
@@ -116,7 +116,7 @@ class Quiz extends LitElement {
     if (this.step == 2) {
       if (this.correct) {
           return 'Correct!  Buying upgrade for ' +
-	    this.up.cost + ' greens.';
+	  toKMBTQ(this.up.cost) + ' greens.';
       } else {
 	return 'Nope, try again.';
       }
