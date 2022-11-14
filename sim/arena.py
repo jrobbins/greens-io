@@ -107,6 +107,7 @@ class PlayerSkills:
   hashing: int = 0
   insertion_sort: int = 0
   shell_sort: int = 0
+  quicksort: int = 0
   parsing: int = 0
   shortest_path: int = 0
   bin_packing: int = 0
@@ -287,11 +288,13 @@ def process_cmd(player_id, cmd):
     rz.cycles += 20000
     rz.cpus += 200
     rz.servers += 20
+    rz.racks += 1
 
   if cmd == 'Build datacenter':
     rz.cycles += 20000 * 2000
     rz.cpus += 200 * 2000
     rz.servers += 20 * 2000
+    rz.racks += 2000
     rz.datacenters += 1
 
   if cmd in chapters.ALL_UPGRADES:

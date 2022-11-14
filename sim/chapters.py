@@ -172,11 +172,11 @@ CHAP_4 = Chapter(
   upgrades = [
     Upgrade( 1*M, 'Learn Lisp', incr='languages'),
     Upgrade( 2*M, 'Leadership summit', incr='leadership_summit'),
-    Upgrade( 5*M, 'Cloud computing', incr='cloud_computing'),
+    Upgrade( 5*M, 'Cloud computing'),
     Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
-    Upgrade(20*M, 'Shell sort', prereq='languages', incr='algorithms'),
+    Upgrade(20*M, 'Quicksort', prereq='languages', incr='algorithms'),
     Upgrade(20*M, 'Bin packing', prereq='dynamic_programming', incr='algorithms'),
-    Upgrade(50*M, 'Warehouse computing', incr='warehouse_computing'),
+    Upgrade(50*M, 'Warehouse computing'),
   ],
 )
 
