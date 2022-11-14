@@ -129,7 +129,8 @@ class Quiz extends LitElement {
     if (this.up === {}) return nothing;
     const disabled = (
         (this.up.cost > this.rz.greens) ||
-	this.submitDisabled);
+ 	this.submitDisabled ||
+        this.step == 2);
 
     return html`
 <sl-dialog label=${this.up.name} ?open=${this.open}
@@ -139,7 +140,7 @@ class Quiz extends LitElement {
     ${this.renderMessage()}
   </span>
   <sl-button slot="footer" variant="primary"
-      ?loading=${this.step == 1}  
+      ?loading=${this.step == 1}
       ?disabled=${disabled}
       @click=${e => this.checkAnswer()}>
     Submit
