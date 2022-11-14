@@ -31,6 +31,7 @@ class TeamResources:
   outsourced_hr: int = 0
 
   # Machines box
+  multi_processing: int = 0
   cycles: int = 1000
   cpus: int = 0
   servers: int = 0
@@ -49,16 +50,22 @@ class TeamResources:
 
   # Theory box
   languages: int = 0
+  algorithms: int = 0
+  paradigms: int = 0
+  realities: int = 0
 
 
 @dataclasses.dataclass
 class PlayerSkills:
   tech_test_file: int = 0
   tech_source_file: int = 0
-  learn_html: int = 0
-  learn_css: int = 0
+
+  test_runner: int = 0
   automation: int = 0
   tech_show_defects: int = 0
+
+  learn_html: int = 0
+  learn_css: int = 0
   learn_cpp: int = 0
   learn_java: int = 0
   learn_javascript: int = 0
@@ -101,7 +108,7 @@ class PlayerSkills:
   agile: int = 0  # ??
   risk_management: int = 0
   test_driven_development: int = 0
-  performance_reviews: int = 0
+  promo_process: int = 0
   peer_reviews: int = 0
   leadership_summit: int = 0
 

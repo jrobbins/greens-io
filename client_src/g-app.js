@@ -22,13 +22,13 @@ class App extends LitElement {
          background: #fafaff;
          display: grid;
          overflow: hidden;
-         grid-template-columns: repeat(3, 1fr);
+         grid-template-columns: repeat(4, 1fr);
          grid-template-rows:  60px 55px 60px auto;
          grid-template-areas:
-           "odo odo cal"
-           "ups ups cal"
-           "dsh dsh log"
-           "dsh dsh log";
+           "odo odo odo cal"
+           "ups ups ups cal"
+           "dsh dsh dsh log"
+           "dsh dsh dsh log";
          grid-gap: 6px;
        }
 

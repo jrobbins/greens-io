@@ -39,7 +39,7 @@ class Dashboard extends LitElement {
   .actionList=${[
     'Poke around',
     'languages ? Create test case',
-    'cases ? Run tests',
+    'test_runner ? Run tests',
   ]}
 ></g-box>
 
@@ -70,7 +70,7 @@ class Dashboard extends LitElement {
    ]}
   .actionList=${[
     'waterfall_model ? Hire engineer',
-    'performance_reviews ? Promote to manager',
+    'promo_process ? Promote to manager',
     'test_driven_development ? Hire recruiter',
     'risk_management ? Promote to VP',
     'synergy ? Acquire small company',
@@ -82,7 +82,7 @@ class Dashboard extends LitElement {
   name="Machines"
   .rz=${this.rz}
   .resourceList=${[
-    'Cycles', 
+    'multi_processing ? Cycles', 
     'CPUs', 
     'Servers', 
     'Racks', 

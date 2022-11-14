@@ -57,15 +57,32 @@ class Upgrades extends LitElement {
   ${up.name} (${up.cost})
 </sl-button>`;
   }
-  
+
+  renderEmptyMessage() {
+      return html`
+        <div>
+          Use the blue buttons below to earn "greens" for
+          successful test case runs.   Then, spend your greens
+          on upgrades that will appear here.
+        </div>
+      `;    
+  }
+
   renderUpgrades() {
-    const g = rz['greens'] || 1;
-    const chapter = Math.floor(Math.log10(g) / 2);
+    const g = rz['greens'] || 0;
+    if (g == 0) return this.renderEmptyMessage();
+    const chapter = Math.min(
+      Math.floor(Math.log10(g) / 2),
+      this.chapters.length - 1);
     const possibleUps = this.chapters[chapter].upgrades;
     const displayedUps = possibleUps.filter(
       up => this.checkPrereq(up));
-    return displayedUps.map(
-      up => this.renderUpgrade(up));
+    if (displayedUps.length) {
+      return displayedUps.map(
+	up => this.renderUpgrade(up));
+    } else {
+      return this.renderEmptyMessage();
+    }
   }
 
   renderQuiz() {

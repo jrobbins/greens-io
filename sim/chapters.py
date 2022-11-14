@@ -78,7 +78,7 @@ LINEAR_SEARCH = Upgrade(
   '''))
 
 RECURSION = Upgrade(
-  10, 'Recursion', incr='algorithms', prereq='languages',
+  30, 'Recursion', incr='algorithms', prereq='languages',
   quiz=Quiz('''
     What does a tail-recursive function do to unwind:
     |  Light reading
@@ -118,6 +118,7 @@ CHAP_1 = Chapter(
     LEARN_HTML,
     LEARN_CSS,
     LEARN_JAVASCRIPT,
+    Upgrade(20, 'Test runner'),
     LINEAR_SEARCH,
     RECURSION,
   ],
@@ -148,7 +149,7 @@ CHAP_3 = Chapter(
     Upgrade( 10*K, 'Learn Go', incr='languages'),
     Upgrade( 10*K, 'Learn TypeScript', incr='languages'),
     Upgrade( 15*K, 'Waterfall model'),
-    Upgrade( 30*K, 'Performance reviews'),
+    Upgrade( 30*K, 'Promo process'),
     Upgrade( 30*K, 'Test driven development'),
     Upgrade( 50*K, 'Peer reviews', incr='peer_reviews'),
     Upgrade( 60*K, 'Multi-processing', incr='multi_processing'),
