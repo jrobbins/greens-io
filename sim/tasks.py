@@ -2,7 +2,8 @@ import logging
 import time
 
 from sim import players
-from sim.arena import rz
+from sim import arena
+rz = arena.rz
 
 
 task_queue = []  # A list of pairs (callback, args)
@@ -24,14 +25,28 @@ def do_automation():
   rz.cases = min(rz.cases + new_cases, max_cases)
   rz.functions += new_functions
 
-  rz.engineers += rz.recruiters  
+  rz.engineers = min(rz.engineers + rz.recruiters,
+                     10 + rz.managers * 10)
+  if rz.peer_reviews:
+    arena.maybe_promote_to_manager()
+  if rz.leadership_summit:
+    arena.maybe_promote_to_vp()
 
+  if rz.outsourced_hr and rz.recruiters:
+    if rz.hour == 0:
+      rz.recruiters += 1
+    
   if rz.automation:
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
 
-  rz.day += 1
+  rz.hour += 1
+  if rz.hour >= 8:
+    rz.day += 1
+    rz.hour = 0
+    rz.test_files += rz.engineers
+    rz.source_files += rz.engineers
   
 
 

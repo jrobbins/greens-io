@@ -54,6 +54,21 @@ sl-button {
     }
     return resourceName;
   }
+
+  showResource(resourceSpec) {
+    if (resourceSpec == '')
+      return false;
+    if (resourceSpec.includes(' ? ')) {
+      let cond = null;
+      [cond, resourceSpec] = resourceSpec.split(' ? ');
+      const condValue = this.rz[toSnakeCase(cond)];
+      if (!condValue)
+	return false;
+    }
+    let [resourceName, outOf] = resourceSpec.split('%');
+    const value = this.rz[toSnakeCase(resourceName)];
+    return value;
+  }
   
   renderResource(resourceSpec) {
     if (resourceSpec == '') {
@@ -73,6 +88,7 @@ sl-button {
     }
     let [resourceName, outOf] = resourceSpec.split('%');
     const value = this.rz[toSnakeCase(resourceName)];
+    if (!value) return nothing;
     let percent = null;
     if (outOf) {
       const outOfValue = this.rz[toSnakeCase(outOf)];
@@ -100,7 +116,7 @@ sl-button {
       let cond = null;
       [cond, actionSpec] = actionSpec.split(' ? ');
       const condValue = this.rz[toSnakeCase(cond)];
-      if (!condValue) return nothing;
+      if (!condValue) return '';  // Not nothing.
     }
     const cmd = actionSpec;
 
@@ -114,17 +130,28 @@ sl-button {
   }
   
   render() {
+    const shownResources = this.resourceList.filter(
+      rs => this.showResource(rs));
+    const resourceRows = this.resourceList.map(
+      rs => this.renderResource(rs));
+    const actionRows = this.actionList.map(
+      as => this.renderAction(as));
+    const shownActions = actionRows.filter(ar => ar);
+
+    if (shownResources.length + shownActions.length == 0)
+      return nothing;
+    
     return html`
 <sl-card>
 <div slot=header>${this.name}</div>
 ${this.desc}
 
 <table cellspacing=3>
-  ${this.resourceList.map(rs => this.renderResource(rs))}
+  ${resourceRows}
 </table>
 
 <div slot=footer>
-  ${this.actionList.map(as => this.renderAction(as))}
+  ${actionRows}
 </div>
 
 </sl-card>

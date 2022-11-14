@@ -133,8 +133,7 @@ CHAP_2 = Chapter(
     Upgrade(100, 'Learn AppScript'),
     Upgrade(100, 'Binary search', prereq='languages'),
     Upgrade(100, 'Bubble sort', prereq='languages'),
-    Upgrade(3*K, 'Learn cron'),
-    Upgrade(3*K, 'Automation', incr='automation'),
+    Upgrade(3*K, 'Automation', prereq='languages', incr='automation'),
   ],
 )
 
@@ -143,9 +142,18 @@ CHAP_2 = Chapter(
 CHAP_3 = Chapter(
   ceo_message = 'Teamwork',
   upgrades = [
-    Upgrade( 30*K, 'Learn C'),
-    Upgrade( 30*K, 'Learn Go'),
-    Upgrade( 30*K, 'Learn TypeScript'),
+    Upgrade( 10*K, 'Learn C'),
+    Upgrade( 10*K, 'Learn Go'),
+    Upgrade( 10*K, 'Learn TypeScript'),
+    Upgrade( 15*K, 'Waterfall model'),
+    Upgrade( 30*K, 'Performance reviews'),
+    Upgrade( 30*K, 'Test driven development'),
+    Upgrade( 40*K, 'Agile'),
+    Upgrade( 50*K, 'Peer reviews', incr='peer_reviews'),
+    Upgrade(300*K, 'Risk management'),
+    Upgrade(300*K, 'Outsourced HR', incr='outsourced_hr'),
+    Upgrade(600*K, 'Leadership summit', incr='leadership_summit'),
+    Upgrade(300*K, 'Von Neumann Machine', incr='van_neumonn_machine'),
     Upgrade(100*K, 'Shell sort', prereq='languages'),
     Upgrade(100*K, 'Pointers', prereq='learn_c'),
   ],

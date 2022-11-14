@@ -6,28 +6,40 @@ from sim import chapters
 
 @dataclasses.dataclass
 class TeamResources:
+  hour: int = 0
   day: int = 0
   greens: int = 0
 
   # Tests box
-  cases: int = 0
-  test_files: int = 0
+  cases: int = 19
+  test_files: int = 5
+  test_suites: int = 0
   coverage_criteria: int = 10
   runs_per_hour: int = 0
   greens_per_hour: int = 0
   automation: int = 0
 
   # Product box
-  functions: int = 1200
-  source_files: int = 95
+  functions: int = 6200
+  source_files: int = 18
+  source_trees:int = 0
   defects: int = 0
+
+  # Team box
+  peer_reviews: int = 0
+  leadership_summit: int = 0
+  outsourced_hr: int = 0
 
   # Machines box
   cycles: int = 1000
+  von_neumann_machine: int = 0
 
   # People box
   engineers: int = 0
   recruiters: int = 0
+  managers: int = 0
+  vps: int = 0
+  senior_vps: int = 0
   productity: float = 1.0
   defect_rate: float = 0.1
 
@@ -41,7 +53,6 @@ class PlayerSkills:
   tech_source_file: int = 0
   learn_html: int = 0
   learn_css: int = 0
-  learn_cron: int = 0
   automation: int = 0
   tech_show_defects: int = 0
   learn_cpp: int = 0
@@ -49,12 +60,45 @@ class PlayerSkills:
   learn_javascript: int = 0
   learn_appscript: int = 0
   learn_python: int = 0
+  learn_c: int = 0
+  learn_go: int = 0
+  learn_typescript: int = 0
+  learn_shell: int = 0
+  learn_http: int = 0
+  learn_php: int = 0
+  learn_pascal: int = 0
+  learn_perl: int = 0
+  learn_lisp: int = 0
+  learn_awk: int = 0
+  learn_objective_c: int = 0
+  learn_kotlin: int = 0
+  learn_markdown: int = 0
+  learn_fortran: int = 0
+  learn_prolog: int = 0
+  learn_ruby: int = 0
+  learn_swift: int = 0
+  learn_vhdl: int = 0
+  learn_postscript: int = 0
+  learn_forth: int = 0
+  learn_rust: int = 0
 
   linear_search: int = 0
   recursion: int = 0
   binary_search: int = 0
   bubble_sort: int = 0
   hashing: int = 0
+  shell_sort: int = 0
+  pointers: int = 0
+
+  waterfall_model: int = 0
+  agile: int = 0  # ??
+  risk_management: int = 0
+  test_driven_development: int = 0
+  performance_reviews: int = 0
+  peer_reviews: int = 0
+  leadership_summit: int = 0
+  
+  von_neumann_machine: int = 0
 
 
 def make_initial_team_resources():
@@ -92,6 +136,22 @@ def get_news():
   return nz
 
 
+def maybe_promote_to_manager():
+  if (rz.engineers > 0 and rz.managers + 1 < 10 + rz.vps * 10 and
+      rz.engineers > rz.managers * 6):
+    rz.engineers -= 1
+    rz.managers += 1
+    rz.test_suites += 1
+
+
+def maybe_promote_to_vp():
+  if (rz.managers > 0 and rz.vps + 1 < 10 + rz.senior_vps * 10 and
+      rz.managers > rz.vps * 6):
+    rz.managers -= 1
+    rz.vps += 1
+    rz.source_trees += 1
+
+
 def process_cmd(player_id, cmd):
   logging.info('process_cmd %r %r', player_id, cmd)
   if player_id not in all_sz:
@@ -125,6 +185,34 @@ def process_cmd(player_id, cmd):
     rz.functions += 10
     rz.source_files += 1
     return
+
+  if cmd == 'Hire engineer':
+    rz.engineers = min(
+      rz.engineers + 1,
+      10 + rz.managers * 10)
+    return
+
+  if cmd == 'Hire recruiter':
+    rz.recruiters = min(rz.recruiters + 1, rz.managers)
+    return
+
+  if cmd == 'Promote to manager':
+    maybe_promote_to_manager()
+    return
+  
+  if cmd == 'Promote to VP':
+    maybe_promote_to_vp()
+    return
+
+  if cmd == 'Acquire small company':
+    rz.vp += 1
+    rz.managers += 10
+    rz.engineers += 100
+
+  if cmd == 'Acquire large company':
+    rz.vp += 10
+    rz.managers += 100
+    rz.engineers += 1000
 
   if cmd in chapters.ALL_UPGRADES:
     up = chapters.ALL_UPGRADES[cmd]
