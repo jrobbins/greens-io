@@ -78,6 +78,24 @@ class Dashboard extends LitElement {
   ]}
 ></g-box>
 
+<g-box 
+  name="Machines"
+  .rz=${this.rz}
+  .resourceList=${[
+    'Cycles', 
+    'CPUs', 
+    'Servers', 
+    'Racks', 
+    'Data centers', 
+   ]}
+  .actionList=${[
+    'multi_processing ? Add CPU',
+    'testing_lab ? Add server',
+    'cloud_computing ? Add rack',
+    'warehouse_computing ? Build datacenter',
+  ]}
+></g-box>
+
     `;
   }
 }

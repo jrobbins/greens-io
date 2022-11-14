@@ -11,7 +11,7 @@ class TeamResources:
   greens: int = 0
 
   # Tests box
-  cases: int = 19
+  cases: int = 5
   test_files: int = 5
   test_suites: int = 0
   coverage_criteria: int = 10
@@ -22,7 +22,7 @@ class TeamResources:
   # Product box
   functions: int = 6200
   source_files: int = 18
-  source_trees:int = 0
+  source_trees: int = 0
   defects: int = 0
 
   # Team box
@@ -32,6 +32,10 @@ class TeamResources:
 
   # Machines box
   cycles: int = 1000
+  cpus: int = 0
+  servers: int = 0
+  racks: int = 0
+  data_centers: int = 0
   von_neumann_machine: int = 0
 
   # People box
@@ -40,7 +44,7 @@ class TeamResources:
   managers: int = 0
   vps: int = 0
   senior_vps: int = 0
-  productity: float = 1.0
+  productity: int = 1
   defect_rate: float = 0.1
 
   # Theory box
@@ -89,6 +93,9 @@ class PlayerSkills:
   hashing: int = 0
   shell_sort: int = 0
   pointers: int = 0
+  shortest_path: int = 0
+  bin_packing: int = 0
+  dynamic_programming: int = 0
 
   waterfall_model: int = 0
   agile: int = 0  # ??
@@ -97,7 +104,12 @@ class PlayerSkills:
   performance_reviews: int = 0
   peer_reviews: int = 0
   leadership_summit: int = 0
+
   
+  multi_processing: int = 0
+  testing_lab: int = 0  
+  cloud_computing: int = 0  
+  warehouse_computing: int = 0  
   von_neumann_machine: int = 0
 
 
@@ -193,7 +205,9 @@ def process_cmd(player_id, cmd):
     return
 
   if cmd == 'Hire recruiter':
-    rz.recruiters = min(rz.recruiters + 1, rz.managers)
+    rz.recruiters = min(
+      rz.recruiters + 1,
+      max(2, rz.managers))
     return
 
   if cmd == 'Promote to manager':
@@ -213,6 +227,26 @@ def process_cmd(player_id, cmd):
     rz.vp += 10
     rz.managers += 100
     rz.engineers += 1000
+
+  if cmd == 'Add CPU':
+    rz.cycles += 100
+    rz.cpus += 1
+
+  if cmd == 'Add server':
+    rz.cycles += 1000
+    rz.cpus += 10
+    rz.servers += 1
+
+  if cmd == 'Add rack':
+    rz.cycles += 20000
+    rz.cpus += 200
+    rz.servers += 20
+
+  if cmd == 'Build datacenter':
+    rz.cycles += 20000 * 2000
+    rz.cpus += 200 * 2000
+    rz.servers += 20 * 2000
+    rz.datacenters += 1
 
   if cmd in chapters.ALL_UPGRADES:
     up = chapters.ALL_UPGRADES[cmd]

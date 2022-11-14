@@ -130,10 +130,13 @@ CHAP_2 = Chapter(
   upgrades = [
     LEARN_JAVA,
     LEARN_PYTHON,
-    Upgrade(100, 'Learn AppScript'),
+    Upgrade(100, 'Learn AppScript', incr='languages'),
     Upgrade(100, 'Binary search', prereq='languages'),
     Upgrade(100, 'Bubble sort', prereq='languages'),
+    Upgrade(1*K, 'Learn C', incr='languages'),
     Upgrade(3*K, 'Automation', prereq='languages', incr='automation'),
+    Upgrade(5*K, 'Shell sort', prereq='languages'),
+    Upgrade(5*K, 'Pointers', prereq='learn_c'),
   ],
 )
 
@@ -142,23 +145,38 @@ CHAP_2 = Chapter(
 CHAP_3 = Chapter(
   ceo_message = 'Teamwork',
   upgrades = [
-    Upgrade( 10*K, 'Learn C'),
-    Upgrade( 10*K, 'Learn Go'),
-    Upgrade( 10*K, 'Learn TypeScript'),
+    Upgrade( 10*K, 'Learn Go', incr='languages'),
+    Upgrade( 10*K, 'Learn TypeScript', incr='languages'),
     Upgrade( 15*K, 'Waterfall model'),
     Upgrade( 30*K, 'Performance reviews'),
     Upgrade( 30*K, 'Test driven development'),
-    Upgrade( 40*K, 'Agile'),
     Upgrade( 50*K, 'Peer reviews', incr='peer_reviews'),
+    Upgrade( 60*K, 'Multi-processing', incr='multi_processing'),
+    Upgrade(100*K, 'Agile', incr='productity'),
     Upgrade(300*K, 'Risk management'),
     Upgrade(300*K, 'Outsourced HR', incr='outsourced_hr'),
-    Upgrade(600*K, 'Leadership summit', incr='leadership_summit'),
-    Upgrade(300*K, 'Von Neumann Machine', incr='van_neumonn_machine'),
+    Upgrade(500*K, 'Testing lab'),
     Upgrade(100*K, 'Shell sort', prereq='languages'),
-    Upgrade(100*K, 'Pointers', prereq='learn_c'),
+    Upgrade(100*K, 'Shortest path', prereq='dynamic_programming'),
   ],
 )
 
+
+# 1,000,000 <= greens < 100,000,000.
+CHAP_4 = Chapter(
+  ceo_message = 'Balance',
+  upgrades = [
+    Upgrade( 1*M, 'Learn Lisp', incr='languages'),
+    Upgrade( 2*M, 'Leadership summit', incr='leadership_summit'),
+    Upgrade( 5*M, 'Cloud computing', incr='cloud_computing'),
+    Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
+    Upgrade(20*M, 'Shell sort', prereq='languages'),
+    Upgrade(20*M, 'Bin packing', prereq='dynamic_programming'),
+    Upgrade(50*M, 'Warehouse computing', incr='warehouse_computing'),
+  ],
+)
+
+    
 CHAPTERS = [CHAP_1, CHAP_2, CHAP_3]
 
 
