@@ -48,13 +48,18 @@ class Dashboard extends LitElement {
   .rz=${this.rz}
   .resourceList=${[
     'Functions', 
-    'Source files', 
-    'Source trees', 
+    'use_case_workshop ? Use cases', 
+    'user_journey_workshop ? User journeys', 
+    'product_workshop ? Products', 
+    'category_workshop ? Categories', 
     'show_defects ? Defects', 
    ]}
   .actionList=${[
-    'languages ? Create function',
-    'languages ? Create source file'
+    'tech_writing ? Define function',
+    'use_case_workshop ? Define use case',
+    'user_journey_workshop ? Define user journey',
+    'product_workshop ? Define product',
+    'category_workshop ? Define category',
   ]}
 ></g-box>
 

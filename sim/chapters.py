@@ -132,12 +132,13 @@ CHAP_2 = Chapter(
     LEARN_JAVA,
     LEARN_PYTHON,
     Upgrade(100, 'Learn AppScript', incr='languages'),
-    Upgrade(100, 'Binary search', prereq='languages'),
-    Upgrade(100, 'Bubble sort', prereq='languages'),
+    Upgrade(100, 'Binary search', prereq='languages', incr='algorithms'),
+    Upgrade(100, 'Bubble sort', prereq='languages', incr='algorithms'),
     Upgrade(1*K, 'Learn C', incr='languages'),
     Upgrade(3*K, 'Automation', prereq='languages', incr='automation'),
-    Upgrade(5*K, 'Shell sort', prereq='languages'),
-    Upgrade(5*K, 'Pointers', prereq='learn_c'),
+    Upgrade(5*K, 'Insertion sort', prereq='languages', incr='algorithms'),
+    Upgrade(5*K, 'Parsing', prereq='learn_c', incr='algorithms'),
+    Upgrade(5*K, 'Tech writing'),
   ],
 )
 
@@ -154,11 +155,13 @@ CHAP_3 = Chapter(
     Upgrade( 50*K, 'Peer reviews', incr='peer_reviews'),
     Upgrade( 60*K, 'Multi-processing', incr='multi_processing'),
     Upgrade(100*K, 'Agile', incr='productity'),
+    Upgrade(100*K, 'Shell sort', prereq='languages', incr='algorithms'),
+    Upgrade(100*K, 'Use case workshop', prereq='tech_writing'),
+    Upgrade(100*K, 'Shortest path', prereq='dynamic_programming', incr='algorithms'),
     Upgrade(300*K, 'Risk management'),
     Upgrade(300*K, 'Outsourced HR', incr='outsourced_hr'),
     Upgrade(500*K, 'Testing lab'),
-    Upgrade(100*K, 'Shell sort', prereq='languages'),
-    Upgrade(100*K, 'Shortest path', prereq='dynamic_programming'),
+    Upgrade(600*K, 'User journey workshop', prereq='use_case_workshop'),
   ],
 )
 
@@ -171,14 +174,14 @@ CHAP_4 = Chapter(
     Upgrade( 2*M, 'Leadership summit', incr='leadership_summit'),
     Upgrade( 5*M, 'Cloud computing', incr='cloud_computing'),
     Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
-    Upgrade(20*M, 'Shell sort', prereq='languages'),
-    Upgrade(20*M, 'Bin packing', prereq='dynamic_programming'),
+    Upgrade(20*M, 'Shell sort', prereq='languages', incr='algorithms'),
+    Upgrade(20*M, 'Bin packing', prereq='dynamic_programming', incr='algorithms'),
     Upgrade(50*M, 'Warehouse computing', incr='warehouse_computing'),
   ],
 )
 
     
-CHAPTERS = [CHAP_1, CHAP_2, CHAP_3]
+CHAPTERS = [CHAP_1, CHAP_2, CHAP_3, CHAP_4]
 
 
 ALL_UPGRADES = {

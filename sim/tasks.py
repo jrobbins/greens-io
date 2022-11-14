@@ -12,12 +12,11 @@ task_queue = []  # A list of pairs (callback, args)
 # If we have not heard from a player in 200 seconds, forget them.
 PLAYER_TIMEOUT = 200
 
-UNLIMITED = 100000000
 
 
 def do_automation():
   new_cases = int(rz.engineers * rz.productity)
-  new_functions = int(rz.engineers * rz.productity)
+  new_functions = int(rz.engineers * rz.productity / 10)
   
   new_defects = int((new_cases + new_functions) * rz.defect_rate)
   # rz.defects += new_defects
@@ -45,8 +44,8 @@ def do_automation():
   if rz.hour >= 8:
     rz.day += 1
     rz.hour = 0
-    rz.test_files += rz.engineers
-    rz.source_files += rz.engineers
+    rz.test_files += rz.engineers // 10
+    rz.use_cases += rz.engineers // 100
   
 
 

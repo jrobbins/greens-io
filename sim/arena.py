@@ -20,9 +20,11 @@ class TeamResources:
   automation: int = 0
 
   # Product box
-  functions: int = 6200
-  source_files: int = 18
-  source_trees: int = 0
+  functions: int = 62
+  use_cases: int = 20
+  user_journeys: int = 1
+  products: int = 1
+  categories: int = 1
   defects: int = 0
 
   # Team box
@@ -58,11 +60,16 @@ class TeamResources:
 @dataclasses.dataclass
 class PlayerSkills:
   tech_test_file: int = 0
-  tech_source_file: int = 0
 
   test_runner: int = 0
   automation: int = 0
   tech_show_defects: int = 0
+
+  tech_writing: int = 0
+  use_case_workshop: int = 0
+  user_journey_workshop: int = 0
+  product_workshop: int = 0
+  category_workshop: int = 0
 
   learn_html: int = 0
   learn_css: int = 0
@@ -98,8 +105,9 @@ class PlayerSkills:
   binary_search: int = 0
   bubble_sort: int = 0
   hashing: int = 0
+  insertion_sort: int = 0
   shell_sort: int = 0
-  pointers: int = 0
+  parsing: int = 0
   shortest_path: int = 0
   bin_packing: int = 0
   dynamic_programming: int = 0
@@ -161,6 +169,9 @@ def maybe_promote_to_manager():
     rz.engineers -= 1
     rz.managers += 1
     rz.test_suites += 1
+    rz.functions += 100
+    rz.use_cases += 10
+    rz.user_journeys += 1
 
 
 def maybe_promote_to_vp():
@@ -168,7 +179,10 @@ def maybe_promote_to_vp():
       rz.managers > rz.vps * 6):
     rz.managers -= 1
     rz.vps += 1
-    rz.source_trees += 1
+    rz.functions += 1000
+    rz.use_cases += 100
+    rz.user_journeys += 10
+    rz.products += 1
 
 
 def process_cmd(player_id, cmd):
@@ -195,14 +209,39 @@ def process_cmd(player_id, cmd):
     rz.test_files += 1
     return
 
-  if cmd == 'Create function':
+  if (cmd == 'Define function' and
+      sz.tech_writing):
     rz.functions += 1
     return
 
-  if (cmd == 'Create source file' and
-      rz.languages):
+  if (cmd == 'Define use case' and
+      sz.use_case_workshop):
     rz.functions += 10
-    rz.source_files += 1
+    rz.use_cases += 1
+    return
+
+  if (cmd == 'Define user journey' and
+      sz.user_journey_workshop):
+    rz.functions += 100
+    rz.use_cases += 10
+    rz.user_journeys += 1
+    return
+
+  if (cmd == 'Define product' and
+      sz.product_workshop):
+    rz.functions += 1000
+    rz.use_cases += 100
+    rz.user_journeys += 10
+    rz.products += 1
+    return
+
+  if (cmd == 'Define category' and
+      sz.category_workshop):
+    rz.functions += 10000
+    rz.use_cases += 1000
+    rz.user_journeys += 100
+    rz.products += 10
+    rz.categories += 1
     return
 
   if cmd == 'Hire engineer':
