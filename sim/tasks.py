@@ -4,6 +4,7 @@ import time
 from sim import players
 from sim import arena
 rz = arena.rz
+from sim import utils
 
 
 task_queue = []  # A list of pairs (callback, args)
@@ -42,12 +43,11 @@ def do_automation():
 
   rz.hour += 1
   if rz.hour >= 8:
-    rz.day += 1
+    rz.day = utils.next_weekday(rz.day)
     rz.hour = 0
     rz.test_files += rz.engineers // 10
     rz.use_cases += rz.engineers // 100
   
-
 
 def process_next_task():
   try:

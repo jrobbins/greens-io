@@ -22,12 +22,12 @@ class App extends LitElement {
          background: #fafaff;
          display: grid;
          overflow: hidden;
-         grid-template-columns: repeat(4, 1fr);
-         grid-template-rows:  60px 55px 60px auto;
+         grid-template-columns: auto auto;
+         grid-template-rows:  60px 55px 30px auto;
          grid-template-areas:
            "odo odo odo cal"
            "ups ups ups cal"
-           "dsh dsh dsh log"
+           "dsh dsh dsh cal"
            "dsh dsh dsh log";
          grid-gap: 6px;
        }
@@ -48,7 +48,9 @@ class App extends LitElement {
         grid-area: dsh; 
         overflow-x: auto;
       }
-      g-calendar  { grid-area: cal; }
+      g-calendar  { 
+        grid-area: cal;
+      }
       g-news  {
         grid-area: log;
         overflow-y: auto;

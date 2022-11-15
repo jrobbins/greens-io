@@ -131,7 +131,8 @@ class PlayerSkills:
 
 def make_initial_team_resources():
   # A dataclass of resource values
-  return TeamResources()
+  day = utils.next_weekday(0)
+  return TeamResources(day=day)
 
 
 def make_initial_player_skills():
