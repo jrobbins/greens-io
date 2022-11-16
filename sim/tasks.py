@@ -57,7 +57,7 @@ def process_next_task():
     pass
 
 
-STEP_DURATION_SECS = 1.0
+STEP_DURATION_SECS = 0.6
 last_time = 0
 
 def maybe_generate_tasks(now=None):

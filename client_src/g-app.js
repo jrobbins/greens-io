@@ -22,8 +22,8 @@ class App extends LitElement {
          background: #fafaff;
          display: grid;
          overflow: hidden;
-         grid-template-columns: auto auto;
-         grid-template-rows:  60px 55px 30px auto;
+         grid-template-columns: 1fr 1fr 1fr minmax(100px, 1fr);
+         grid-template-rows:  60px 55px 60px auto;
          grid-template-areas:
            "odo odo odo cal"
            "ups ups ups cal"

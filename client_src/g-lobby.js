@@ -79,7 +79,7 @@ class Lobby extends LitElement {
         <ul>
           <li>Choose a nickname for your teammates to see.
           <li>Do manual and automated testing to earn greens.
-          <li>Accumulate as many you can in 30 minutes.
+          <li>Accumulate as many you can in 20 minutes.
           <li>Work through upgrades to advance your progress.
           <li>Collaborate to unblock teammates.
         </ul>
