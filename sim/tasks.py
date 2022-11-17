@@ -1,9 +1,12 @@
 import logging
+import math
 import time
 
+from sim import chapters
 from sim import players
 from sim import arena
 rz = arena.rz
+nz = arena.nz
 from sim import utils
 
 
@@ -47,6 +50,15 @@ def do_automation():
     rz.hour = 0
     rz.test_files += rz.engineers // 10
     rz.use_cases += rz.engineers // 100
+
+  new_chapter = min(
+    int(math.log10(rz.greens or 1) / 2),
+    len(chapters.CHAPTERS) - 1)
+  if new_chapter > rz.chapter:
+    rz.chapter = new_chapter
+    if new_chapter in chapters.ALL_EMAILS:
+      arena.add_news(
+        nz, rz.day, chapters.ALL_EMAILS[new_chapter])
   
 
 def process_next_task():

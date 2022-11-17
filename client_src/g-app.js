@@ -5,7 +5,7 @@ class App extends LitElement {
   static get properties() {
     return {
       rz: {type: Object},
-      nz: {type: Object},
+      nz: {type: Array},
       roster: {type: Array},
       chapters: {type: Array},
     };
@@ -62,7 +62,7 @@ class App extends LitElement {
   constructor() {
     super();
     this.rz = {};
-    this.nz = {};
+    this.nz = [];
     this.roster = [];
     this.chapters = [];
   }

@@ -1,12 +1,13 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
+import {formatGameDay} from './g-calendar.js';
 
 class News extends LitElement {
   emailRef = createRef();
   
   static get properties() {
     return {
-      nz: {type: Object},
+      nz: {type: Array},
     };
   }
   
@@ -21,12 +22,16 @@ ul {
   margin-top: 8px;
   padding-inline-start: 16px;
 }
+
+a:visited {
+  color: blue;
+}
     `];
   }
 
   constructor() {
     super();
-    this.nz = {};
+    this.nz = [];
 
     this.msg1 = {
       from: 'The CEO',
@@ -41,26 +46,39 @@ ul {
     this.emailRef.value.openOn(message);
   }
 
-  render() {
+  renderItem(item) {
+    if (typeof item == 'string') {
+      return item;
+    }
     return html`
-  <g-email ${ref(this.emailRef)}></g-email>
-
-  <div>Jan 5, 2022</div><ul>
-    <li>USER1 learned JavaScript.
-    <li>USER2 wrote 3 test cases.
+     Email: 
+     <a href=# @click=${e => this.showEmail(item)}>
+       ${item.subject}
+     </a>
+    `;
+  }
+  
+  renderDay(dayNews) {
+    const [day, items] = dayNews;
+    return html`
+  <div>${formatGameDay(day)}</div>
+  <ul>
+    ${items.map(item => html`
+      <li>${this.renderItem(item)}
+      `)}
   </ul>
 
-  <div>Jan 4, 2022</div><ul>
-    <li>USER1 and USER2 poked around.
-    <li>USER2 learned JavaScript.
-  </ul>
+    `;
+  }
+  
+  render() {
+    if (this.nz === undefined) return nothing;
 
-  <div>Jan 3, 2022</div><ul>
-    <li>USER1 poked around.
-    <li>USER2 set up a test runner.
-    <li><a href=# @click=${e => this.showEmail(this.msg1)}>Welcome email</a> from the CEO
-  </ul>
+    return html`
+<g-email ${ref(this.emailRef)}></g-email>
 
+${this.nz.map((unused, index, array) => 
+    this.renderDay(array[array.length - 1 - index]))}
     `;
   }
 }

@@ -1,7 +1,8 @@
 import logging
 import dataclasses
-from sim import utils
 from sim import chapters
+from sim import players
+from sim import utils
 
 
 @dataclasses.dataclass
@@ -9,6 +10,7 @@ class TeamResources:
   hour: int = 0
   day: int = 0
   greens: int = 0
+  chapter: int = -1  # zero-based
 
   # Tests box
   cases: int = 5
@@ -141,7 +143,17 @@ def make_initial_player_skills():
 
 
 def make_initial_news():
-  return [(1, ['snip', 'snap'])]
+  # List of pairs: (day_number, [news_item, ...]).
+  # each news_item can be a string or email dict.
+  # Newer days are appended.   New items are appended with a day.
+  return []
+
+
+def add_news(news, day, item):
+  if news == [] or news[0][0] != day:
+    news.append((day, [item]))
+  else:
+    news[-1][1].append(item)
 
 
 rz = make_initial_team_resources()
@@ -192,6 +204,7 @@ def process_cmd(player_id, cmd):
   if player_id not in all_sz:
     raise ValueError('unknown player %r' % player_id)
   sz = all_sz[player_id]
+  p = players.get_player(player_id)
 
   if cmd == 'Poke around':
     rz.greens += 1
@@ -312,6 +325,8 @@ def process_cmd(player_id, cmd):
       rz.greens -= up.cost
       if up.incr:
         setattr(rz, up.incr, getattr(rz, up.incr) + 1)
+      news_item = f'{p.nick} earned "{cmd}"'
+      add_news(nz, rz.day, news_item)
   
 
 

@@ -6,6 +6,7 @@ from sim import arena
 from sim import players
 from sim import tasks
 
+
 class CommandAPI(basehandlers.APIHandler):
 
   def do_post(self, player_id=None):

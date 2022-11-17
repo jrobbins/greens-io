@@ -8,6 +8,15 @@ const MONTH_DAYS = [
   31, 30, 31, 30, 31];
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+export function formatGameDay(day) {
+  const year = (new Date()).getFullYear();
+  const gameDate = new Date(year, 0, day || 1);
+  const month = gameDate.getMonth();
+  const date = gameDate.getDate();
+  return MONTH_NAMES[month] + ' ' + date + ', ' + year;
+}
+
+
 class Calendar extends LitElement {
   
   static get properties() {

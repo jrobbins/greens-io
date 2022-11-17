@@ -188,3 +188,31 @@ ALL_UPGRADES = {
   up.name: up
   for chap in CHAPTERS
   for up in chap.upgrades}
+
+
+WELCOME_EMAIL = {
+  'from': 'The CEO',
+  'to': 'New hires',
+  'subject': 'Welcome aboard',
+  'body': [
+    """Congratulations on passing your interviews and welcome 
+    to the company!""",
+    """As you may have read in the press, our products have 
+    suffered some recent failures due to software defects. 
+    The board has made it clear to me that signigicant 
+    change is needed.  And we have exactly one calendar year
+    to do it.  That's why you're all 
+    here.""",
+    """Every single one of you has been recruited because of 
+    your single-minded obsession with tesing.  I need you
+    to reach way down into your inner-most self, grab that
+    testing energy with both hands and ride it like a
+    stampede of greased elephants galloping down a steep hill
+    during a hurricane. Don't stop for nothing or nobody.""",
+    "Let's get down to work!"],
+  }
+
+
+ALL_EMAILS = {
+  0: WELCOME_EMAIL,
+  }

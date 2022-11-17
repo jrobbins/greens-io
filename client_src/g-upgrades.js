@@ -69,12 +69,9 @@ class Upgrades extends LitElement {
   }
 
   renderUpgrades() {
-    const g = rz['greens'] || 0;
+    const g = this.rz['greens'] || 0;
     if (g == 0) return this.renderEmptyMessage();
-    const chapter = Math.min(
-      Math.floor(Math.log10(g) / 2),
-      this.chapters.length - 1);
-    const possibleUps = this.chapters[chapter].upgrades;
+    const possibleUps = this.chapters[this.rz.chapter].upgrades;
     const displayedUps = possibleUps.filter(
       up => this.checkPrereq(up));
     if (displayedUps.length) {
