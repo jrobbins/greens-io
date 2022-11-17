@@ -21,6 +21,10 @@ ul {
   margin-top: 8px;
   padding-inline-start: 16px;
 }
+
+sl-dialog::part(body) {
+  padding-top: 0;
+}
     `];
   }
 

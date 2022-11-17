@@ -27,6 +27,10 @@ class Quiz extends LitElement {
 #msg {
   padding-right: 2em;
 }
+
+sl-dialog::part(body) {
+  padding-top: 0;
+}
     `];
   }
 
