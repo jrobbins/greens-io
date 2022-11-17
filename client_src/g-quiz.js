@@ -154,6 +154,7 @@ sl-dialog::part(body) {
     const disabled = (
         (this.up.cost > this.rz.greens) ||
  	this.submitDisabled ||
+	this.rgRef.value.value == 'no such radio value' ||
         this.step == 2);
 
     return html`
