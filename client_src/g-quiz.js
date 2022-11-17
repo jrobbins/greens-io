@@ -41,11 +41,14 @@ class Quiz extends LitElement {
     this.answer = '';
     this.submitDisabled = true;
     this.correct = true;
+    this.totalDelay = 5000;
+    this.delaySoFar = 0;
   }
 
   openOn(upgrade) {
     this.up = upgrade;
     this.parseQuizText(upgrade.quiz.text);
+    this.resetRadios()    
     this.submitDisabled = true;
     this.step = 0;
     this.open = true;
@@ -56,23 +59,39 @@ class Quiz extends LitElement {
     const guess = this.rgRef.value.value;
     this.correct = (guess == this.answer);
 
-    setTimeout(this.checkAnswer2.bind(this), 1000);
+    if (this.correct) {
+      this.totalDelay = Math.max(2000, this.totalDelay - 3000);
+    } else {
+      this.totalDelay = Math.min(30000, this.totalDelay + 3000);
+    }
+    this.delaySoFar = 0;
+    setTimeout(this.checkAnswer2.bind(this), 100);
   }
 
   checkAnswer2() {
-    this.step = 2;  // show outcome
-    setTimeout(this.checkAnswer3.bind(this), 1000);
+    this.delaySoFar += 100;
+    if (this.delaySoFar < this.totalDelay) {
+      this.delaySoFar += 100;
+      setTimeout(this.checkAnswer2.bind(this), 100);
+    } else {
+      this.step = 2;  // show outcome
+      setTimeout(this.checkAnswer3.bind(this), 1500);
+    }
+  }
+
+  resetRadios() {
+    this.rgRef.value.value = 'no such radio value';
+    const radios = this.rgRef.value.getAllRadios();
+    radios.forEach(radio => (radio.checked = false));
   }
 
   checkAnswer3() {
     if (this.correct && this.up.cost <= this.rz.greens) {
       gioClient.postCmd(this.up.name);
-      this.open = false;    
-      this.rgRef.value.value = 'no such radio value';
-      const radios = this.rgRef.value.getAllRadios();
-      radios.forEach(radio => (radio.checked = false));
+      this.open = false;
+      this.resetRadios();
     } else {
-      this.submitDisabled = false;
+      this.step = 0;
     }
   }
   
@@ -97,7 +116,7 @@ class Quiz extends LitElement {
 <p>${this.prompt}</p>
 
 <sl-radio-group label="Select your answer" ${ref(this.rgRef)}
-  @sl-change=${e => this.submitDisabled = false}>
+  @sl-change=${e => {this.submitDisabled = false}}>
   ${this.choices.map(c => html`
       <sl-radio value="${c}">${c}</sl-radio>
     `)}
@@ -110,7 +129,8 @@ class Quiz extends LitElement {
       return 'Your teammates depleated your greens.';
     }
     if (this.step == 1) {
-      return 'Checking...';
+      const percent = Math.floor(this.delaySoFar / this.totalDelay * 100);
+      return 'Checking... ' + percent + '%';
     }
 
     if (this.step == 2) {
@@ -118,7 +138,7 @@ class Quiz extends LitElement {
           return 'Correct!  Buying upgrade for ' +
 	  toKMBTQ(this.up.cost) + ' greens.';
       } else {
-	return 'Nope, try again.';
+	return 'Incorrect.  Try again.';
       }
     }
 
