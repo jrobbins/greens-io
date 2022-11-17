@@ -37,8 +37,8 @@ class Chapter:
 LEARN_HTML = Upgrade(
   10, 'Learn HTML',
   quiz=Quiz('''
-    Based on documentation on MDN, what HTML tag would you use
-    to indicate an Italian phrase in an English sentence?
+    Based on documentation on MDN, what HTML element would you
+    use to indicate a foreign phrase in an English sentence?
     |  Emphasis
     |  Italic
     |X Idiomatic text
