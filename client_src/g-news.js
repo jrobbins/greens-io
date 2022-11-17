@@ -2,7 +2,7 @@ import {LitElement, css, html, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
 
 class News extends LitElement {
-  dialogRef = createRef();
+  emailRef = createRef();
   
   static get properties() {
     return {
@@ -21,32 +21,29 @@ ul {
   margin-top: 8px;
   padding-inline-start: 16px;
 }
-
-sl-dialog::part(body) {
-  padding-top: 0;
-}
     `];
   }
 
   constructor() {
     super();
     this.nz = {};
+
+    this.msg1 = {
+      from: 'The CEO',
+      to: 'New hires',
+      subject: 'Welcome!',
+      body: ['We are obsessed with quality.',
+	     'Now, get back to work :)'],
+    }
   }
   
-  showEmail(num) {
-    this.dialogRef.value.show();
+  showEmail(message) {
+    this.emailRef.value.openOn(message);
   }
 
   render() {
     return html`
-  <sl-dialog label="Email" ${ref(this.dialogRef)}>
-     <div>From: The CEO</div>
-     <div>To: New hires</div>
-     <div>Subject: Welcome!</div>
-     <p>
-       We are obsessed with quality.
-     </p>
-  </sl-dialog>
+  <g-email ${ref(this.emailRef)}></g-email>
 
   <div>Jan 5, 2022</div><ul>
     <li>USER1 learned JavaScript.
@@ -61,7 +58,7 @@ sl-dialog::part(body) {
   <div>Jan 3, 2022</div><ul>
     <li>USER1 poked around.
     <li>USER2 set up a test runner.
-    <li><a href=# @click=${e => this.showEmail(1)}>Welcome email</a> from the CEO
+    <li><a href=# @click=${e => this.showEmail(this.msg1)}>Welcome email</a> from the CEO
   </ul>
 
     `;

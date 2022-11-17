@@ -24,3 +24,4 @@ import './g-calendar';
 import './g-news';
 import './g-box';
 import './g-quiz';
+import './g-email';
