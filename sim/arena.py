@@ -78,7 +78,7 @@ class PlayerSkills:
   learn_cpp: int = 0
   learn_java: int = 0
   learn_javascript: int = 0
-  learn_appscript: int = 0
+  learn_basic: int = 0
   learn_python: int = 0
   learn_c: int = 0
   learn_go: int = 0

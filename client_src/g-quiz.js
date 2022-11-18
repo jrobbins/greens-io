@@ -15,7 +15,6 @@ class Quiz extends LitElement {
       step: {type: Number},
       prompt: {type: String},
       choices: {type: Array},
-      answer: {type: String},
       submitDisabled: {type: Boolean},
       correct: {type: Boolean},
     };
@@ -42,7 +41,7 @@ sl-dialog::part(body) {
     this.step = 0;
     this.prompt = '';
     this.choices = [];
-    this.answer = '';
+    this.answers = [];
     this.submitDisabled = true;
     this.correct = true;
     this.totalDelay = 5000;
@@ -61,7 +60,7 @@ sl-dialog::part(body) {
   checkAnswer() {
     this.step = 1;  // fake waiting
     const guess = this.rgRef.value.value;
-    this.correct = (guess == this.answer);
+    this.correct = this.answers.includes(guess);
 
     if (this.correct) {
       this.totalDelay = Math.max(2000, this.totalDelay - 3000);
@@ -102,11 +101,12 @@ sl-dialog::part(body) {
   parseQuizText(text) {
     const parts = text.split('   |'); // Needs 3 spaces.
     this.prompt = parts.shift();
+    this.answers = [];
     const newChoices = [];
     for (let choice of parts) {
       if (choice.startsWith('X ')) {
 	choice = choice.substring(2);
-	this.answer = choice;
+	this.answers.push(choice);
       }
       newChoices.push(choice);
     }

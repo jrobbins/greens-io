@@ -67,6 +67,18 @@ LEARN_JAVASCRIPT = Upgrade(
     |  NaN === NaN
   '''))
 
+TEST_RUNNER = Upgrade(
+  20, 'Test Runner',
+  quiz=Quiz('''
+    What does a test runner program do?
+    |  Traverse a source tree to discover test files
+    |  Execute test cases
+    |  Catch uncaught exceptions
+    |  Output a test run report
+    |X All of the above
+    |  None of the above
+  '''))
+
 LINEAR_SEARCH = Upgrade(
   20, 'Linear Search', incr='algorithms', prereq='languages',
   quiz=Quiz('''
@@ -95,18 +107,94 @@ LEARN_JAVA = Upgrade(
     |  A garbage collection truck
     |  Bob, the factory factory builder
     |  A solo jazz coffee cup
+    |  None of the above
   '''))
 
 LEARN_PYTHON = Upgrade(
   100, 'Learn Python', incr='languages',
   quiz=Quiz('''
     Which of the following is NOT generally associated with Python?
-    |X Betta fish
     |  Duck typing
     |  Camel case
     |  Pandas
     |  Walrus operator
     |  Snake case
+    |X Betta fish testing
+  '''))
+
+LEARN_BASIC = Upgrade(
+  100, 'Learn BASIC', incr='languages',
+  quiz=Quiz('''
+    Which of the following is NOT a BASIC keyword?
+    |  LET
+    |  GOTO
+    |  PRINT
+    |  GOSUB
+    |  DIM
+    |X BOOT
+    |  REM
+  '''))
+
+BINARY_SEARCH = Upgrade(
+  100, 'Binary Search', incr='algorithms', prereq='languages',
+  quiz=Quiz('''
+    If you were doing a binary search of these choices, you would first look
+    |  Here
+    |  Here
+    |  Here
+    |X Here
+    |  Here
+    |  Here
+    |  Here
+  '''))
+
+BUBBLE_SORT = Upgrade(
+  100, 'Bubble Sort', incr='algorithms', prereq='languages',
+  quiz=Quiz('''
+    Bubble Sort is called "Bubble Sort" because bubbles:
+    |  Burst
+    |  Bounce
+    |X Rise
+    |  Drift
+    |  Expand
+    |  Distort
+  '''))
+
+LEARN_C = Upgrade(
+  1*K, 'Learn C', incr='languages',
+  quiz=Quiz('''
+    The C programming language was developed by:
+    |  Bell Harbor
+    |  Taco Bell
+    |  Kristen Bell
+    |  Bell Gardens
+    |X Bell Labs
+    |  Blue Bell
+    |  Saved by the Bell
+  '''))
+
+AUTOMATION = Upgrade(
+  3*K, 'Automation', prereq='languages', incr='automation',
+  quiz=Quiz('''
+    A "deamon" is a program that:
+    |  Dwells in the lowest levels of the OS
+    |X Runs continuously
+    |  Requires a signature
+    |  Rules the game grid
+    |  Spawns zombie processess
+    |X Lurks in the background
+    |  Checks British spelling 
+  '''))
+
+INSERTION_SORT = Upgrade(
+  5*K, 'Insertion Sort', incr='algorithms', prereq='languages',
+  quiz=Quiz('''
+    Insertion Sort's main use is:
+    |  Sorting unicode strings
+    |  Initiating the "post office protocol"
+    |  When you know the items are already sorted
+    |  Compressing audio files
+    |X Teaching the concept of invariants
   '''))
 
 
@@ -118,7 +206,7 @@ CHAP_1 = Chapter(
     LEARN_HTML,
     LEARN_CSS,
     LEARN_JAVASCRIPT,
-    Upgrade(20, 'Test runner'),
+    TEST_RUNNER,
     LINEAR_SEARCH,
     RECURSION,
   ],
@@ -131,12 +219,12 @@ CHAP_2 = Chapter(
   upgrades = [
     LEARN_JAVA,
     LEARN_PYTHON,
-    Upgrade(100, 'Learn AppScript', incr='languages'),
-    Upgrade(100, 'Binary search', prereq='languages', incr='algorithms'),
-    Upgrade(100, 'Bubble sort', prereq='languages', incr='algorithms'),
-    Upgrade(1*K, 'Learn C', incr='languages'),
-    Upgrade(3*K, 'Automation', prereq='languages', incr='automation'),
-    Upgrade(5*K, 'Insertion sort', prereq='languages', incr='algorithms'),
+    LEARN_BASIC,
+    BINARY_SEARCH,
+    BUBBLE_SORT,
+    LEARN_C,
+    AUTOMATION,
+    INSERTION_SORT,
     Upgrade(5*K, 'Parsing', prereq='learn_c', incr='algorithms'),
     Upgrade(5*K, 'Tech writing'),
   ],
