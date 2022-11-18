@@ -256,7 +256,7 @@ CHAP_3 = Chapter(
 
 # 1,000,000 <= greens < 100,000,000.
 CHAP_4 = Chapter(
-  ceo_message = 'Balance',
+  ceo_message = 'Smarter',
   upgrades = [
     Upgrade( 1*M, 'Learn Lisp', incr='languages'),
     Upgrade( 2*M, 'Leadership summit', incr='leadership_summit'),
@@ -300,7 +300,63 @@ WELCOME_EMAIL = {
     "Let's get down to work!"],
   }
 
+PROMO_EMAIL = {
+  'from': 'The CEO',
+  'to': 'Top Performers',
+  'subject': 'Chance for promo',
+  'body': [
+    """You could be  on your way to your first promotion!""",
+    """We knew that you had passion, but you are demonstrating
+    that you also have problem-solving abilities.  That's
+    perfect, because we have a lot -- and I mean a LOT -- 
+    of problems.""",
+    """The promo committee will be expecting you to round out
+    your skillset by learning as many languages and algorithms
+    as you possibly can in the remainder of the quarter.""",
+    """Given your track record so far, I'm expecting you to
+    exceeed all expectations.  Even mine!"""],
+  }
+
+TEAMWORK_EMAIL = {
+  'from': 'The CEO',
+  'to': 'Team leads',
+  'subject': 'Teamwork makes the dream work',
+  'body': [
+    """Teamwork is essential for success in today's dog-eat-dog
+    competitive landscape.  If you're not moving your team
+    forward, then you're pulling it backwards.  And, do
+    you know what "team" spelled backwards is?""",
+    """Meat!""",
+    """Each of you brings unique value to the team.  You're
+    one-in-a-million and there is no one like you.  That's
+    why we need a bunch more people exactly like you.""",
+    """Your drive, determination, and fierce intelect make
+    you a force to be reckoned with.  There is no force in
+    the universe more powerful than the raw ambition
+    of a few determined, obsessive, dedicated... slightly
+    unbalanced.... individuals.""",
+    """Except, for butts-in-seats."""],
+  }
+
+SMARTER_EMAIL = {
+  'from': 'The CEO',
+  'to': 'Team leads',
+  'subject': 'Work smarter, not harder',
+  'body': [
+    """There was once a young lumberjack with mighty arms who set
+    out to chop down more trees than anyone else in the
+    crew.  On the first day he impressed everyone.   On the second
+    day, he worked harder, but chopped fewer.  On the third
+    day he wore himself out for the fewest logs.""",
+    """Finally, a wise old lumberjack gave him some valuable advice:
+    "Son, that's a chainsaw." """,
+    """Innovate!"""],
+  }
+
 
 ALL_EMAILS = {
   0: WELCOME_EMAIL,
+  1: PROMO_EMAIL,
+  2: TEAMWORK_EMAIL,
+  3: SMARTER_EMAIL,
   }
