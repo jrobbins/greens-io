@@ -173,8 +173,8 @@ def get_player_skills(player_id):
   return all_sz.get(player_id)
 
 
-def get_news():
-  return nz
+def get_recent_news():
+  return nz[-2:]
 
 
 def maybe_promote_to_manager():

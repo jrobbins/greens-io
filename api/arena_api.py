@@ -16,7 +16,7 @@ class ArenaAPI(basehandlers.APIHandler):
     player_skills = arena.get_player_skills(player_id)
     combined_resources = dataclasses.asdict(team_resources)
     combined_resources.update(dataclasses.asdict(player_skills))
-    news = arena.get_news()
+    news = arena.get_recent_news()
     return {
       'resources': combined_resources,
       'news': news,

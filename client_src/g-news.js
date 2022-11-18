@@ -7,7 +7,7 @@ class News extends LitElement {
   
   static get properties() {
     return {
-      nz: {type: Array},
+      nz: {type: Array}, // New news for yesterday and today.
     };
   }
   
@@ -32,20 +32,29 @@ a:visited {
   constructor() {
     super();
     this.nz = [];
-
-    this.msg1 = {
-      from: 'The CEO',
-      to: 'New hires',
-      subject: 'Welcome!',
-      body: ['We are obsessed with quality.',
-	     'Now, get back to work :)'],
-    }
+    this.allNews = [];
   }
-  
+
+  mergeNews() {
+    for (let [day, items] of this.nz) {
+      let found = false;
+      for (let i=this.allNews.length - 1; i >= 0 && day <= this.allNews[i][0]; i--) {
+	if (day == this.allNews[i][0]) {
+	  this.allNews[i][1] = items;
+	  found = true;
+	}
+      }
+      if (!found) {
+	this.allNews.push([day, items]);
+      }
+    }
+
+  }
+    
   showEmail(message) {
     this.emailRef.value.openOn(message);
   }
-
+    
   renderItem(item) {
     if (typeof item == 'string') {
       return item;
@@ -74,10 +83,12 @@ a:visited {
   render() {
     if (this.nz === undefined) return nothing;
 
+    this.mergeNews();
+
     return html`
 <g-email ${ref(this.emailRef)}></g-email>
 
-${this.nz.map((unused, index, array) => 
+${this.allNews.map((unused, index, array) => 
     this.renderDay(array[array.length - 1 - index]))}
     `;
   }
