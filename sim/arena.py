@@ -1,6 +1,6 @@
 import logging
 import dataclasses
-from sim import chapters
+from sim import story
 from sim import players
 from sim import utils
 
@@ -311,8 +311,8 @@ def process_cmd(player_id, cmd):
     rz.racks += 2000
     rz.datacenters += 1
 
-  if cmd in chapters.ALL_UPGRADES:
-    up = chapters.ALL_UPGRADES[cmd]
+  if cmd in story.ALL_UPGRADES:
+    up = story.ALL_UPGRADES[cmd]
     snake = utils.to_snake_case(cmd)
     combined_resources = dataclasses.asdict(sz)
     combined_resources.update(dataclasses.asdict(rz))

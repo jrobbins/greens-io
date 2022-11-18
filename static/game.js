@@ -19,7 +19,7 @@ function interp(oldObj, newObj, fraction) {
 
 
 function init() {
-  gioClient.getChapters().then((res) => {
+  gioClient.getStory().then((res) => {
     chapters = res.chapters;
     appEl.chapters = chapters;
   });

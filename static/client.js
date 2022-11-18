@@ -66,8 +66,8 @@ class GreensClient {
     // TODO: catch((error) => { display message }
   }
 
-  getChapters() {
-    return this.doGet(`/chapters`).then((res) => res);
+  getStory() {
+    return this.doGet(`/story`).then((res) => res);
     // TODO: catch((error) => { display message }
   }
 

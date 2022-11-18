@@ -4,13 +4,13 @@ import flask
 import settings
 from api import basehandlers
 from api import arena_api
-from api import chapters_api
 from api import cmd_api
 from api import players_api
+from api import story_api
 
 
 api_routes = [
-    ('/chapters', chapters_api.ChaptersAPI),
+    ('/story', story_api.StoryAPI),
     ('/players', players_api.PlayersAPI),
     ('/players/<string:player_id>', players_api.PlayersAPI),
     ('/cmd/<int:player_id>', cmd_api.CommandAPI),
