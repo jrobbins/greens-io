@@ -226,12 +226,12 @@ CHAP_2 = Chapter(
     BUBBLE_SORT,
     AUTOMATION,
     LEARN_C,
-    INSERTION_SORT,
+    Upgrade(2*K, 'Statement coverage', prereq='languages',
+            incr='coverage_criteria'),
     Upgrade(3*K, 'Spec writing'),
     Upgrade(4*K, 'IDEs', prereq='languages', incr='productity'),
     Upgrade(4*K, 'Version control', prereq='languages', incr='productity'),
-    Upgrade(4*K, 'Statement coverage', prereq='languages',
-            incr='coverage_criteria'),
+    INSERTION_SORT,
     Upgrade(5*K, 'Parsing', prereq='learn_c', incr='algorithms'),
     Upgrade(6*K, 'Use case workshop', prereq='spec_writing'),
   ],
@@ -279,7 +279,7 @@ CHAP_4 = Chapter(
   ],
 )
 
-    
+
 CHAPTERS = [CHAP_1, CHAP_2, CHAP_3, CHAP_4]
 
 

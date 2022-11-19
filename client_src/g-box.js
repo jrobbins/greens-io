@@ -1,4 +1,5 @@
 import {LitElement, css, html, nothing} from 'lit';
+import {styleMap} from 'lit/directives/style-map.js';
 import {commas, toSnakeCase} from './utils.js';
 import {start_cmd} from './commands.js';
 
@@ -46,6 +47,7 @@ sl-button {
     this.resourceList = [];
     this.rz = {};
     this.actionList = [];
+    this.perturbance = -10;
   }
 
   maybeRewrite(resourceName) {
@@ -109,8 +111,14 @@ sl-button {
 
   handleClick(cmd) {
     start_cmd(this, cmd, this.rz);
+    if (this.perturbance < 20) {
+      window.setTimeout(() => {
+        this.perturbance = Math.max(-10, this.perturbance - .8)},
+                        3000);
+      this.perturbance = Math.min(20, this.perturbance + .8);
+    }
   }
-  
+
   renderAction(actionSpec) {
     if (actionSpec.includes(' ? ')) {
       let cond = null;
@@ -130,7 +138,7 @@ sl-button {
 </sl-button>
     `;
   }
-  
+
   render() {
     const shownResources = this.resourceList.filter(
       rs => this.showResource(rs));
@@ -142,9 +150,19 @@ sl-button {
 
     if (shownResources.length + shownActions.length == 0)
       return nothing;
-    
+
+    const pert = Math.max(0, this.perturbance);
+    const top = 16 + (2 * Math.random() - 1) * pert;
+    const left = 16 + (2 * Math.random() - 1) * pert;
+    const styles = {
+      marginTop: top + 'px',
+      marginLeft: left + 'px',
+      marginBottom: (16 - top) + 'px',
+      marginRight: (16 - left) + 'px',
+    };
+
     return html`
-<sl-card>
+<sl-card style=${styleMap(styles)}>
 <div slot=header>${this.name}</div>
 ${this.desc}
 
