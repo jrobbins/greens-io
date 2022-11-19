@@ -25,7 +25,7 @@ def do_automation():
 
   new_cases = int(rz.engineers * rz.productity)
   new_functions = int(rz.engineers * rz.productity / 10)
-  
+
   new_defects = int((new_cases + new_functions) * rz.defect_rate)
   # rz.defects += new_defects
   max_cases = rz.functions * rz.coverage_criteria
@@ -42,7 +42,7 @@ def do_automation():
   if rz.outsourced_hr and rz.recruiters:
     if rz.hour == 0:
       rz.recruiters += 1
-    
+
   if rz.automation:
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
@@ -61,7 +61,7 @@ def do_automation():
       arena.add_news(
         nz, rz.day, story.make_final_email())
       rz.final_email = 1
-    
+
   new_chapter = min(
     int(math.log10(rz.greens or 1) / 2),
     len(story.CHAPTERS) - 1)
@@ -70,7 +70,7 @@ def do_automation():
     if new_chapter in story.ALL_EMAILS:
       arena.add_news(
         nz, rz.day, story.ALL_EMAILS[new_chapter])
-  
+
 
 def process_next_task():
   try:

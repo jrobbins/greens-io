@@ -41,7 +41,7 @@ class TeamResources:
   cycles: int = 1000
   cpus: int = 0
   servers: int = 0
-  racks: int = 0
+  clusters: int = 0
   data_centers: int = 0
   von_neumann_machine: int = 0
 
@@ -296,21 +296,21 @@ def process_cmd(player_id, cmd):
     rz.cpus += 1
 
   if cmd == 'Add server':
-    rz.cycles += 1000
-    rz.cpus += 10
+    rz.cycles += 500
+    rz.cpus += 5
     rz.servers += 1
 
-  if cmd == 'Add rack':
-    rz.cycles += 20000
-    rz.cpus += 200
-    rz.servers += 20
-    rz.racks += 1
+  if cmd == 'Deploy cluster':
+    rz.cycles += 5000
+    rz.cpus += 50
+    rz.servers += 5
+    rz.clusters += 1
 
   if cmd == 'Build datacenter':
-    rz.cycles += 20000 * 2000
-    rz.cpus += 200 * 2000
-    rz.servers += 20 * 2000
-    rz.racks += 2000
+    rz.cycles += 15000 * 50
+    rz.cpus += 150 * 50
+    rz.servers += 15 * 50
+    rz.clusters += 3 * 50
     rz.datacenters += 1
 
   if cmd in story.ALL_UPGRADES:
