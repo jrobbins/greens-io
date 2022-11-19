@@ -114,7 +114,7 @@ sl-button {
     if (this.perturbance < 20) {
       window.setTimeout(() => {
         this.perturbance = Math.max(-10, this.perturbance - .8)},
-                        3000);
+                        4000);
       this.perturbance = Math.min(20, this.perturbance + .8);
     }
   }
@@ -154,11 +154,13 @@ sl-button {
     const pert = Math.max(0, this.perturbance);
     const top = 16 + (2 * Math.random() - 1) * pert;
     const left = 16 + (2 * Math.random() - 1) * pert;
+    const rot =  (2 * Math.random() - 1) * Math.max(0, pert - 8);
     const styles = {
       marginTop: top + 'px',
       marginLeft: left + 'px',
       marginBottom: (16 - top) + 'px',
       marginRight: (16 - left) + 'px',
+      transform: 'rotate(' + rot + 'deg)',
     };
 
     return html`
