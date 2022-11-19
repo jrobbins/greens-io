@@ -6,14 +6,14 @@ import {start_cmd} from './commands.js';
 
 class Upgrades extends LitElement {
   quizRef = createRef();
-  
+
   static get properties() {
     return {
       rz: {type: Object},
       chapters: {type: Array},
     };
   }
-  
+
   static get styles() {
     return [
       css`
@@ -29,13 +29,24 @@ class Upgrades extends LitElement {
     super();
     this.rz = {};
     this.chapters = [];
+    this.possibleUpgrades = [];
+    this.currentChapter = -1;
+  }
+
+  maybeAddUpgrades() {
+    if (this.rz.chapter <= this.currentChapter)
+      return;
+    this.currentChapter = this.rz.chapter;
+    this.possibleUpgrades = [
+      ...this.possibleUpgrades,
+      ...this.chapters[this.currentChapter].upgrades];
   }
 
   checkPrereq(up) {
     const snake = up.snake || toSnakeCase(up.name);
     if (this.rz[snake]) return false;  // aleady accomplished.
     if (up.prereq === "") return true;  // no prereq.
-    if (this.rz[up.prereq]) return true;  // satisfied. 
+    if (this.rz[up.prereq]) return true;  // satisfied.
     return false;
   }
 
@@ -68,14 +79,13 @@ class Upgrades extends LitElement {
           successful test case runs.   Then, spend your greens
           on upgrades that will appear here.
         </div>
-      `;    
+      `;
   }
 
   renderUpgrades() {
     const g = this.rz['greens'] || 0;
     if (g == 0) return this.renderEmptyMessage();
-    const possibleUps = this.chapters[this.rz.chapter].upgrades;
-    const displayedUps = possibleUps.filter(
+    const displayedUps = this.possibleUpgrades.filter(
       up => this.checkPrereq(up));
     if (displayedUps.length) {
       return displayedUps.map(
@@ -93,10 +103,11 @@ class Upgrades extends LitElement {
   }
 
   render() {
+    this.maybeAddUpgrades();
     return [
       this.renderUpgrades(),
       this.renderQuiz(),
     ];
-  }  
+  }
 }
 customElements.define('g-upgrades', Upgrades);
