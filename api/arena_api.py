@@ -15,7 +15,11 @@ class ArenaAPI(basehandlers.APIHandler):
     team_resources = arena.get_team_resources()
     player_skills = arena.get_player_skills(player_id)
     combined_resources = dataclasses.asdict(team_resources)
-    combined_resources.update(dataclasses.asdict(player_skills))
+    skills_dict = dataclasses.asdict(player_skills)
+    for skill, value in skills_dict.items():
+      if (skill not in combined_resources or
+          value > combined_resources[skill]):
+        combined_resources[skill] = value
     news = arena.get_recent_news()
     return {
       'resources': combined_resources,
