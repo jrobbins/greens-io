@@ -34,10 +34,15 @@ const maxSteps = 0;
 let step = 0;
 let lastTimestamp = 0;
 
+const TICK = 500;
 
 function gameLoop() {
   if (!running) return;
   if (gioClient.errorCount > 5) return;
+  if (rz.day >= rz.maxdays) {
+    running = false;
+    return;
+  }
   if (gioClient.playerId) {
     gioClient.getArena().then((res) => {
       const rzOrig = {...rz};
@@ -45,17 +50,17 @@ function gameLoop() {
       nz = res.news;
       appEl.rz = interp(rzOrig, rz, 0.2);
       window.setTimeout(() => {
-	appEl.rz = interp(rzOrig, rz, 0.4); }, 180);
+	appEl.rz = interp(rzOrig, rz, 0.4); }, TICK/5);
       window.setTimeout(() => {
-	appEl.rz = interp(rzOrig, rz, 0.6); }, 180*2);
+	appEl.rz = interp(rzOrig, rz, 0.6); }, 2*TICK/5);
       window.setTimeout(() => {
-	appEl.rz = interp(rzOrig, rz, 0.8); }, 180*3);
-      window.setTimeout(() => { appEl.rz = rz; }, 180*4);
+	appEl.rz = interp(rzOrig, rz, 0.8); }, 3*TICK/5);
+      window.setTimeout(() => { appEl.rz = rz; }, 4*TICK/5);
       appEl.nz = nz;
     });
   }
-  window.setTimeout(gameLoop, 1000);
+  window.setTimeout(gameLoop, TICK);
 }
 
-window.setTimeout(gameLoop, 1000);
+window.setTimeout(gameLoop, TICK);
 

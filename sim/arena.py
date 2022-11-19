@@ -8,9 +8,11 @@ from sim import utils
 @dataclasses.dataclass
 class TeamResources:
   hour: int = 0
-  day: int = 0
+  day: int = 1
+  maxdays: int = 365
   greens: int = 0
   chapter: int = -1  # zero-based
+  final_email: int = 0
 
   # Tests box
   cases: int = 5

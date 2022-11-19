@@ -360,3 +360,23 @@ ALL_EMAILS = {
   2: TEAMWORK_EMAIL,
   3: SMARTER_EMAIL,
   }
+
+
+def make_final_email():
+  return {
+    'from': 'The CEO',
+    'to': 'Everyone',
+    'subject': 'One heck of a year!',
+    'body': [
+      """Wow... just wow.""",
+      """I did not see that coming.  If you had told me at the
+      start of the year that we would be where we are right now
+      I would have--""",
+      """Well, let's be honest.  I wouldn't change a thing.""",
+      """The highlight for me was that day when I thought that
+      we had aleady come so far and there was no way to take
+      things farther.  But, you proved me wrong.""",
+      """You. Kept. Going.""",
+      """Good luck with whatever comes next for you!"""],
+  }
+  

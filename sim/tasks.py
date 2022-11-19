@@ -19,6 +19,10 @@ PLAYER_TIMEOUT = 200
 
 
 def do_automation():
+  if rz.day >= rz.maxdays:
+    rz.day = rz.maxdays
+    return
+
   new_cases = int(rz.engineers * rz.productity)
   new_functions = int(rz.engineers * rz.productity / 10)
   
@@ -51,6 +55,13 @@ def do_automation():
     rz.test_files += rz.engineers // 10
     rz.use_cases += rz.engineers // 100
 
+  if rz.day >= rz.maxdays:
+    rz.day = rz.maxdays
+    if not rz.final_email:
+      arena.add_news(
+        nz, rz.day, story.make_final_email())
+      rz.final_email = 1
+    
   new_chapter = min(
     int(math.log10(rz.greens or 1) / 2),
     len(story.CHAPTERS) - 1)
@@ -69,7 +80,8 @@ def process_next_task():
     pass
 
 
-STEP_DURATION_SECS = 0.6
+
+STEP_DURATION_SECS = (20 * 60) / (8 * 5 * 52)
 last_time = 0
 
 def maybe_generate_tasks(now=None):
@@ -81,7 +93,9 @@ def maybe_generate_tasks(now=None):
       process_next_task()
     task_queue.append((do_automation, tuple()))
     remove_expired()
-    last_time = now
+    last_time += STEP_DURATION_SECS
+    if last_time + STEP_DURATION_SECS < now:
+      last_time = now
 
 
 def do_tasks():

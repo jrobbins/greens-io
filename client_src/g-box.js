@@ -65,7 +65,7 @@ sl-button {
       if (!condValue)
 	return false;
     }
-    let [resourceName, outOf] = resourceSpec.split('%');
+    let [resourceName, outOf] = resourceSpec.split(' % ');
     const value = this.rz[toSnakeCase(resourceName)];
     return value;
   }
@@ -86,7 +86,7 @@ sl-button {
       const condValue = this.rz[toSnakeCase(cond)];
       if (!condValue) return nothing;
     }
-    let [resourceName, outOf] = resourceSpec.split('%');
+    let [resourceName, outOf] = resourceSpec.split(' % ');
     const value = this.rz[toSnakeCase(resourceName)];
     if (!value) return nothing;
     let percent = null;
@@ -119,10 +119,12 @@ sl-button {
       if (!condValue) return '';  // Not nothing.
     }
     const cmd = actionSpec;
+    const disabled = this.rz.day >= this.rz.maxdays;
 
     return html`
 <sl-button size=small pill variant=primary
     @click=${this.handleClick.bind(this, cmd)}
+    ?disabled=${disabled}
     >
   ${cmd}
 </sl-button>

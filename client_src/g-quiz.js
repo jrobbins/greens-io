@@ -140,6 +140,9 @@ sl-dialog::part(body) {
   }
 
   renderMessage() {
+    if (this.rz.day >= this.rz.maxdays) {
+      return 'The game year has ended';
+    }
     if (this.up.cost > this.rz.greens) {
       return 'Your teammates depleated your greens.';
     }
@@ -166,7 +169,8 @@ sl-dialog::part(body) {
         (this.up.cost > this.rz.greens) ||
  	this.submitDisabled ||
 	this.rgRef.value.value == 'no such radio value' ||
-        this.step == 2);
+        this.step == 2 ||
+        this.rz.day >= this.rz.maxdays);
 
     return html`
 <sl-dialog label=${this.up.name} ?open=${this.open}

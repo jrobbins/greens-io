@@ -16,6 +16,7 @@ def next_weekday(day_of_year):
   next_day = day_one + datetime.timedelta(days=day_of_year)
   while next_day.weekday() >= 5:
     next_day = next_day + datetime.timedelta(days=1)
-  return next_day.timetuple()[7]
+  tt = next_day.timetuple()
+  return tt[7] + (tt[0] - year) * 365
 
 

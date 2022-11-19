@@ -49,9 +49,12 @@ class Upgrades extends LitElement {
   }
 
   renderUpgrade(up) {
+    const disabled = (
+      up.cost > this.rz.greens ||
+      this.rz.day >= this.rz.maxdays)
     return html`
 <sl-button size=small variant=success
-  .disabled=${up.cost > this.rz['greens']}
+  .disabled=${disabled}
   @click=${e => this.startUpgrade(up)}
   >
   ${up.name}: ${toKMBTQ(up.cost)}
