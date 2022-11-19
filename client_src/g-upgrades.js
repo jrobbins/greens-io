@@ -34,6 +34,8 @@ class Upgrades extends LitElement {
   }
 
   maybeAddUpgrades() {
+    if (this.rz.chapter === undefined || this.chapters == [])
+      return;
     if (this.rz.chapter <= this.currentChapter)
       return;
     this.currentChapter = this.rz.chapter;

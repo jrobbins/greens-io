@@ -16,15 +16,19 @@ class TeamResources:
 
   # Tests box
   cases: int = 5
+  test_coverage: int = 5  # always == cases
+  max_cases: int = 50
   test_files: int = 5
   test_suites: int = 0
-  coverage_criteria: int = 10
+  coverage_criteria: int = 0
   runs_per_hour: int = 0
   greens_per_hour: int = 0
   automation: int = 0
 
   # Product box
-  functions: int = 62
+  functions: int = 20
+  requirements_coverage: int = 62  # always == functions
+  max_functions: int = 20
   use_cases: int = 20
   user_journeys: int = 1
   products: int = 1
@@ -63,13 +67,18 @@ class TeamResources:
 
 @dataclasses.dataclass
 class PlayerSkills:
-  tech_test_file: int = 0
-
   test_runner: int = 0
   automation: int = 0
-  tech_show_defects: int = 0
 
-  tech_writing: int = 0
+  ides: int = 0
+  version_control: int = 0
+  function_coverage: int = 0
+  statement_coverage: int = 0
+  branch_coverage: int = 0
+  condition_coverage: int = 0
+  path_coverage: int = 0
+
+  spec_writing: int = 0
   use_case_workshop: int = 0
   user_journey_workshop: int = 0
   product_workshop: int = 0
@@ -222,42 +231,45 @@ def process_cmd(player_id, cmd):
 
   if (cmd == 'Create test file' and
       rz.languages):
-    rz.cases += 10
     rz.test_files += 1
     return
 
+  if (cmd == 'Create test suite' and
+      rz.languages):
+    rz.test_suites += 1
+    return
+
   if (cmd == 'Define function' and
-      sz.tech_writing):
+      sz.spec_writing):
     rz.functions += 1
     return
 
   if (cmd == 'Define use case' and
       sz.use_case_workshop):
-    rz.functions += 10
     rz.use_cases += 1
     return
 
   if (cmd == 'Define user journey' and
       sz.user_journey_workshop):
-    rz.functions += 100
+    rz.functions += 50
     rz.use_cases += 10
     rz.user_journeys += 1
     return
 
   if (cmd == 'Define product' and
       sz.product_workshop):
-    rz.functions += 1000
-    rz.use_cases += 100
+    rz.functions += 500
+    rz.use_cases += 70
     rz.user_journeys += 10
     rz.products += 1
     return
 
   if (cmd == 'Define category' and
       sz.category_workshop):
-    rz.functions += 10000
-    rz.use_cases += 1000
-    rz.user_journeys += 100
-    rz.products += 10
+    rz.functions += 5000
+    rz.use_cases += 600
+    rz.user_journeys += 70
+    rz.products += 8
     rz.categories += 1
     return
 

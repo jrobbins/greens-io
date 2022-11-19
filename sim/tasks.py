@@ -28,9 +28,15 @@ def do_automation():
 
   new_defects = int((new_cases + new_functions) * rz.defect_rate)
   # rz.defects += new_defects
-  max_cases = rz.functions * rz.coverage_criteria
-  rz.cases = min(rz.cases + new_cases, max_cases)
-  rz.functions += new_functions
+  max_cases_coverage = (10 if not rz.coverage_criteria
+                        else rz.functions * rz.coverage_criteria)
+  max_cases_files = rz.test_files * 100
+  rz.max_functions = rz.use_cases * (rz.languages or 1) * (rz.algorithms or 1)
+  rz.max_cases = min(max_cases_coverage, max_cases_files)
+  rz.cases = min(rz.cases + new_cases, rz.max_cases)
+  rz.test_coverage = rz.cases
+  rz.functions = min(rz.functions + new_functions, rz.max_functions)
+  rz.requirements_coverage = rz.functions
 
   rz.engineers = min(rz.engineers + rz.recruiters,
                      10 + rz.managers * 10)

@@ -26,13 +26,14 @@ class Dashboard extends LitElement {
 
   render() {
     return html`
-<g-box 
+<g-box
   name="Tests"
   .rz=${this.rz}
   .resourceList=${[
-    'Cases', 
-    'automation ? Runs per hour % cases', 
-    'automation ? Greens per hour % runs per hour', 
+    'Cases',
+    'automation ? Runs per hour % cases',
+    'automation ? Greens per hour % runs per hour',
+    'coverage_criteria ? Test coverage % max_cases',
     '',
     'Test files',
     'Test suites']}
@@ -40,6 +41,8 @@ class Dashboard extends LitElement {
     'Poke around',
     'languages ? Create test case',
     'test_runner ? Run tests',
+    'ides ? Create test file',
+    'version_control ? Create test suite',
   ]}
 ></g-box>
 
@@ -52,10 +55,12 @@ class Dashboard extends LitElement {
     'user_journey_workshop ? User journeys', 
     'product_workshop ? Products', 
     'category_workshop ? Categories', 
-    'show_defects ? Defects', 
+    'show_defects ? Defects',
+    '',
+    'use_case_workshop ? Requirements coverage % max_functions',
    ]}
   .actionList=${[
-    'tech_writing ? Define function',
+    'spec_writing ? Define function',
     'use_case_workshop ? Define use case',
     'user_journey_workshop ? Define user journey',
     'product_workshop ? Define product',

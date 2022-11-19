@@ -160,21 +160,8 @@ BUBBLE_SORT = Upgrade(
     |  Distort
   '''))
 
-LEARN_C = Upgrade(
-  1*K, 'Learn C', incr='languages',
-  quiz=Quiz('''
-    The C programming language was developed by:
-    |  Bell Harbor
-    |  Taco Bell
-    |  Kristen Bell
-    |  Bell Gardens
-    |X Bell Labs
-    |  Blue Bell
-    |  Saved by the Bell
-  '''))
-
 AUTOMATION = Upgrade(
-  3*K, 'Automation', prereq='languages', incr='automation',
+  1*K, 'Automation', prereq='languages', incr='automation',
   quiz=Quiz('''
     A "deamon" is a program that:
     |  Dwells in the lowest levels of the OS
@@ -184,6 +171,19 @@ AUTOMATION = Upgrade(
     |  Spawns zombie processess
     |X Lurks in the background
     |  Checks British spelling 
+  '''))
+
+LEARN_C = Upgrade(
+  2*K, 'Learn C', incr='languages',
+  quiz=Quiz('''
+    The C programming language was developed by:
+    |  Bell Harbor
+    |  Taco Bell
+    |  Kristen Bell
+    |  Bell Gardens
+    |X Bell Labs
+    |  Blue Bell
+    |  Saved by the Bell
   '''))
 
 INSERTION_SORT = Upgrade(
@@ -209,6 +209,8 @@ CHAP_1 = Chapter(
     TEST_RUNNER,
     LINEAR_SEARCH,
     RECURSION,
+    Upgrade(100, 'Function coverage', prereq='languages',
+            incr='coverage_criteria'),
   ],
 )
 
@@ -222,11 +224,16 @@ CHAP_2 = Chapter(
     LEARN_BASIC,
     BINARY_SEARCH,
     BUBBLE_SORT,
-    LEARN_C,
     AUTOMATION,
+    LEARN_C,
     INSERTION_SORT,
+    Upgrade(3*K, 'Spec writing'),
+    Upgrade(4*K, 'IDEs', prereq='languages', incr='productity'),
+    Upgrade(4*K, 'Version control', prereq='languages', incr='productity'),
+    Upgrade(4*K, 'Statement coverage', prereq='languages',
+            incr='coverage_criteria'),
     Upgrade(5*K, 'Parsing', prereq='learn_c', incr='algorithms'),
-    Upgrade(5*K, 'Tech writing'),
+    Upgrade(6*K, 'Use case workshop', prereq='spec_writing'),
   ],
 )
 
@@ -237,6 +244,8 @@ CHAP_3 = Chapter(
   upgrades = [
     Upgrade( 10*K, 'Learn Go', incr='languages'),
     Upgrade( 10*K, 'Learn TypeScript', incr='languages'),
+    Upgrade( 10*K, 'Branch coverage', prereq='languages',
+             incr='coverage_criteria'),
     Upgrade( 15*K, 'Waterfall model'),
     Upgrade( 30*K, 'Promo process'),
     Upgrade( 30*K, 'Test driven development'),
@@ -244,8 +253,8 @@ CHAP_3 = Chapter(
     Upgrade( 60*K, 'Multi-processing', incr='multi_processing'),
     Upgrade(100*K, 'Agile', incr='productity'),
     Upgrade(100*K, 'Shell sort', prereq='languages', incr='algorithms'),
-    Upgrade(100*K, 'Use case workshop', prereq='tech_writing'),
-    Upgrade(100*K, 'Shortest path', prereq='dynamic_programming', incr='algorithms'),
+    Upgrade(100*K, 'Shortest path', prereq='dynamic_programming',
+            incr='algorithms'),
     Upgrade(300*K, 'Risk management'),
     Upgrade(300*K, 'Outsourced HR', incr='outsourced_hr'),
     Upgrade(500*K, 'Testing lab'),
@@ -260,6 +269,8 @@ CHAP_4 = Chapter(
   upgrades = [
     Upgrade( 1*M, 'Learn Lisp', incr='languages'),
     Upgrade( 2*M, 'Leadership summit', incr='leadership_summit'),
+    Upgrade( 3*M, 'Condition coverage', prereq='languages',
+             incr='coverage_criteria'),
     Upgrade( 5*M, 'Cloud computing'),
     Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
     Upgrade(20*M, 'Quicksort', prereq='languages', incr='algorithms'),
