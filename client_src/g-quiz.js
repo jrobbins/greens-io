@@ -6,6 +6,7 @@ import {start_cmd} from './commands.js';
 
 class Quiz extends LitElement {
   rgRef = createRef();
+  btnRef = createRef();
   
   static get properties() {
     return {
@@ -55,6 +56,8 @@ sl-dialog::part(body) {
     this.submitDisabled = true;
     this.step = 0;
     this.open = true;
+    window.setTimeout(
+      () => { this.rgRef.value.handleSlotChange() }, 100);
   }
 
   checkAnswer() {
@@ -113,6 +116,13 @@ sl-dialog::part(body) {
     this.choices = newChoices;
   }
 
+
+  submitOnEnter(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      this.btnRef.value.click();
+    }
+  }
   
   renderQuiz() {
     if (this.choices == []) return nothing;
@@ -120,7 +130,8 @@ sl-dialog::part(body) {
 <p>${this.prompt}</p>
 
 <sl-radio-group label="Select your answer" ${ref(this.rgRef)}
-  @sl-change=${e => {this.submitDisabled = false}}>
+  @sl-change=${e => {this.submitDisabled = false}}
+  @keydown=${this.submitOnEnter}>
   ${this.choices.map(c => html`
       <sl-radio value="${c}">${c}</sl-radio>
     `)}
@@ -165,6 +176,7 @@ sl-dialog::part(body) {
     ${this.renderMessage()}
   </span>
   <sl-button slot="footer" variant="primary"
+      ${ref(this.btnRef)}
       ?loading=${this.step == 1}
       ?disabled=${disabled}
       @click=${e => this.checkAnswer()}>
