@@ -3,10 +3,8 @@ import math
 import time
 
 from sim import story
-from sim import players
 from sim import arena
 rz = arena.rz
-nz = arena.nz
 from sim import utils
 
 
@@ -14,11 +12,12 @@ task_queue = []  # A list of pairs (callback, args)
 
 
 # If we have not heard from a player in 200 seconds, forget them.
-PLAYER_TIMEOUT = 200
+PLAYER_TIMEOUT = 20
 
 
 
 def do_automation():
+  a = arena.main_arena
   if rz.day >= rz.maxdays:
     rz.day = rz.maxdays
     return
@@ -64,8 +63,8 @@ def do_automation():
   if rz.day >= rz.maxdays:
     rz.day = rz.maxdays
     if not rz.final_email:
-      arena.add_news(
-        nz, rz.day, story.make_final_email())
+      a.add_news(
+        rz.day, story.make_final_email())
       rz.final_email = 1
 
   new_chapter = min(
@@ -74,8 +73,8 @@ def do_automation():
   if new_chapter > rz.chapter:
     rz.chapter = new_chapter
     if new_chapter in story.ALL_EMAILS:
-      arena.add_news(
-        nz, rz.day, story.ALL_EMAILS[new_chapter])
+      a.add_news(
+        rz.day, story.ALL_EMAILS[new_chapter])
 
 
 def process_next_task():
@@ -111,9 +110,10 @@ def do_tasks():
 
 
 def remove_expired():
+  a = arena.main_arena
   min_last_contact = int(time.time()) - PLAYER_TIMEOUT
-  for player_id in list(players.roster):
-    if players.roster[player_id].last_contact < min_last_contact:
-      logging.info('Goodbye ' + players.roster[player_id].nick)
-      players.unenroll_player(player_id)
+  for player_id in a.roster:
+    if a.roster[player_id].last_contact < min_last_contact:
+      logging.info('Goodbye ' + a.roster[player_id].nick)
+      a.unenroll_player(player_id)
 

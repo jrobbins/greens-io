@@ -1,7 +1,10 @@
 import logging
 import dataclasses
+import secrets
+import time
+from typing import Any
+
 from sim import story
-from sim import players
 from sim import utils
 
 
@@ -160,20 +163,88 @@ def make_initial_news():
   return []
 
 
-def add_news(news, day, item):
-  if news == [] or news[0][0] != day:
-    news.append((day, [item]))
-  else:
-    news[-1][1].append(item)
-
 
 rz = make_initial_team_resources()
-all_sz: dict[int, PlayerSkills] = {}
 nz = make_initial_news()
+
+next_player_id = 1000
+
+
+class Player:
+  
+  def __init__(self, nick, now=None):
+    global next_player_id
+    
+    self.player_id = next_player_id
+    next_player_id += 1
+    self.nick = nick
+    self.token = secrets.token_urlsafe(16)
+    self.skills = make_initial_player_skills()
+    self.last_contact = now or time.time()
+  
+
+
+@dataclasses.dataclass
+class Arena:
+  team_name: str
+  resources: TeamResources = None
+  news: list[dict[int, list[Any]]] = None
+  roster: dict[int, Player] = None
+
+  def __init__(self, team_name):
+    self.team_name = team_name
+    self.resources = make_initial_team_resources()
+    self.news = []
+    self.roster = {}
+
+  def enroll_player(self, nick):
+    p = Player(nick)
+    self.roster[p.player_id] = p
+    self.add_news(rz.day, nick + ' has joined the game.')
+    return p
+
+  def get_player(self, player_id):
+    return self.roster.get(player_id)
+
+  def unenroll_player(self, player_id):
+    if player_id in self.roster:
+      self.add_news(rz.day, self.roster[player_id].nick + ' has left the game.')
+      del self.roster[player_id]
+
+  def record_contact(self, player_id):
+    if player_id in self.roster:
+      logging.info('Record_Contact %r %r', player_id, int(time.time()))
+      self.roster[player_id].last_contact = int(time.time())
+      
+  def authenticate(self, player_id, token):
+    p = self.get_player(player_id)
+    return p.token == token
+
+  def get_all_players(self):
+    return self.roster.values()
+
+  def add_news(self, day, item):
+    if self.news == [] or self.news[-1][0] != day:
+      self.news.append((day, [item]))
+    else:
+      self.news[-1][1].append(item)
+
+  def get_recent_news(self):
+    return self.news[-2:]
+    
+main_arena = Arena('My team')
+main_arena_id = 'My team'
+multiverse = {
+  main_arena_id: main_arena,
+}
+
+
+def get_arena(arena_id):
+  return multiverse.get(arena_id)
 
 
 def spawn_player(p):
-  all_sz[p.player_id] = make_initial_player_skills()
+  pass
 
 
 def get_team_resources():
@@ -181,11 +252,8 @@ def get_team_resources():
 
 
 def get_player_skills(player_id):
-  return all_sz.get(player_id)
+  return main_arena.roster.get(player_id).skills
 
-
-def get_recent_news():
-  return nz[-2:]
 
 
 def maybe_promote_to_manager():
@@ -211,11 +279,12 @@ def maybe_promote_to_vp():
 
 
 def process_cmd(player_id, cmd):
+  a = main_arena
   logging.info('process_cmd %r %r', player_id, cmd)
-  if player_id not in all_sz:
+  if player_id not in main_arena.roster:
     raise ValueError('unknown player %r' % player_id)
-  sz = all_sz[player_id]
-  p = players.get_player(player_id)
+  p = a.roster[player_id]
+  sz = p.skills
 
   if cmd == 'Poke around':
     rz.greens += 1
@@ -340,7 +409,7 @@ def process_cmd(player_id, cmd):
       if up.incr:
         setattr(rz, up.incr, getattr(rz, up.incr) + 1)
       news_item = f'{p.nick} earned "{cmd}"'
-      add_news(nz, rz.day, news_item)
+      a.add_news(rz.day, news_item)
   
 
 

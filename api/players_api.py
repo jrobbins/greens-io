@@ -3,16 +3,17 @@ import logging
 
 from api import basehandlers
 from sim import arena
-from sim import players
+
 
 class PlayersAPI(basehandlers.APIHandler):
 
   def do_get(self, player_id=None):
+    a = arena.main_arena
     if player_id:
-      p = players.get_player(player_id)
+      p = a.get_player(player_id)
       return serialize_player(p)
     else:
-      pl = players.get_all()
+      pl = a.get_all_players()
       return [serialize_player(p) for p in pl]
 
   def do_post(self, player_id=None):
@@ -23,9 +24,8 @@ class PlayersAPI(basehandlers.APIHandler):
     if msg := validate_nick(nick):
       flask.abort(400, msg)
     
-    p = players.Player(nick)
-    players.enroll_player(p)
-    arena.spawn_player(p)
+    a = arena.main_arena
+    p = a.enroll_player(nick)
     return serialize_player(p, include_token=True)
 
 
@@ -36,8 +36,6 @@ def serialize_player(p, include_token=False):
   result = {
     'player_id': p.player_id,
     'nick': p.nick,
-    'score': p.score,
-    'skin': p.skin,
     }
   if include_token:
     result['token'] = p.token
