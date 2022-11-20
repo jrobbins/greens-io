@@ -5,7 +5,7 @@
 
 // Example commands:
 // "Write a test case" ->  a tick list -> test_cases++
-// "Write a function" -> a slider -> functions++
+// "Define feature" -> a slider -> functions++
 // "Learn Perl ..." -> trivia question -> perl++
 
 // See orders.py for the little language for orders.

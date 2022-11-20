@@ -24,19 +24,19 @@ def do_automation():
     return
 
   new_cases = int(rz.engineers * rz.productity)
-  new_functions = int(rz.engineers * rz.productity / 10)
+  new_features = int(rz.engineers * rz.productity / 10)
 
-  new_defects = int((new_cases + new_functions) * rz.defect_rate)
+  new_defects = int((new_cases + new_features) * rz.defect_rate)
   # rz.defects += new_defects
   max_cases_coverage = (10 if not rz.coverage_criteria
-                        else rz.functions * rz.coverage_criteria)
+                        else rz.features * rz.coverage_criteria)
   max_cases_files = rz.test_files * 100
-  rz.max_functions = rz.use_cases * (rz.languages or 1) * (rz.algorithms or 1)
+  rz.max_features = rz.use_cases * (rz.languages or 1) * (rz.algorithms or 1)
   rz.max_cases = min(max_cases_coverage, max_cases_files)
   rz.cases = min(rz.cases + new_cases, rz.max_cases)
   rz.test_coverage = rz.cases
-  rz.functions = min(rz.functions + new_functions, rz.max_functions)
-  rz.requirements_coverage = rz.functions
+  rz.features = min(rz.features + new_features, rz.max_features)
+  rz.requirements_coverage = rz.features
 
   rz.engineers = min(rz.engineers + rz.recruiters,
                      10 + rz.managers * 10)

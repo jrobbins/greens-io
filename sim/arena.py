@@ -26,9 +26,9 @@ class TeamResources:
   automation: int = 0
 
   # Product box
-  functions: int = 20
-  requirements_coverage: int = 62  # always == functions
-  max_functions: int = 20
+  features: int = 20
+  requirements_coverage: int = 62  # always == features
+  max_features: int = 20
   use_cases: int = 20
   user_journeys: int = 1
   products: int = 1
@@ -72,7 +72,7 @@ class PlayerSkills:
 
   ides: int = 0
   version_control: int = 0
-  function_coverage: int = 0
+  feature_coverage: int = 0
   statement_coverage: int = 0
   branch_coverage: int = 0
   condition_coverage: int = 0
@@ -194,7 +194,7 @@ def maybe_promote_to_manager():
     rz.engineers -= 1
     rz.managers += 1
     rz.test_suites += 1
-    rz.functions += 100
+    rz.features += 100
     rz.use_cases += 10
     rz.user_journeys += 1
 
@@ -204,7 +204,7 @@ def maybe_promote_to_vp():
       rz.managers > rz.vps * 6):
     rz.managers -= 1
     rz.vps += 1
-    rz.functions += 1000
+    rz.features += 1000
     rz.use_cases += 100
     rz.user_journeys += 10
     rz.products += 1
@@ -239,9 +239,9 @@ def process_cmd(player_id, cmd):
     rz.test_suites += 1
     return
 
-  if (cmd == 'Define function' and
+  if (cmd == 'Define feature' and
       sz.spec_writing):
-    rz.functions += 1
+    rz.features += 1
     return
 
   if (cmd == 'Define use case' and
@@ -251,14 +251,14 @@ def process_cmd(player_id, cmd):
 
   if (cmd == 'Define user journey' and
       sz.user_journey_workshop):
-    rz.functions += 50
+    rz.features += 50
     rz.use_cases += 10
     rz.user_journeys += 1
     return
 
   if (cmd == 'Define product' and
       sz.product_workshop):
-    rz.functions += 500
+    rz.features += 500
     rz.use_cases += 70
     rz.user_journeys += 10
     rz.products += 1
@@ -266,7 +266,7 @@ def process_cmd(player_id, cmd):
 
   if (cmd == 'Define category' and
       sz.category_workshop):
-    rz.functions += 5000
+    rz.features += 5000
     rz.use_cases += 600
     rz.user_journeys += 70
     rz.products += 8

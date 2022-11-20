@@ -106,9 +106,9 @@ RECURSION = Upgrade(
     |X Nothing
   '''))
 
-FUNCTION_COVERAGE = Upgrade(
-  100, 'Function coverage', incr='coverage_criteria', prereq='languages',
-  tooltip='Allow more test cases for each function.',
+FEATURE_COVERAGE = Upgrade(
+  100, 'Feature coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
   quiz=Quiz('''
     Feature coverage is a meaurement of how many:
     |  Press articles are published about key features
@@ -235,7 +235,7 @@ CHAP_1 = Chapter(
     TEST_RUNNER,
     LINEAR_SEARCH,
     RECURSION,
-    FUNCTION_COVERAGE,
+    FEATURE_COVERAGE,
   ],
 )
 

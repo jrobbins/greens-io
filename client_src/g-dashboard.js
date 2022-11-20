@@ -50,17 +50,17 @@ class Dashboard extends LitElement {
   name="Product"
   .rz=${this.rz}
   .resourceList=${[
-    'Functions', 
+    'Features', 
     'use_case_workshop ? Use cases', 
     'user_journey_workshop ? User journeys', 
     'product_workshop ? Products', 
     'category_workshop ? Categories', 
     'show_defects ? Defects',
     '',
-    'use_case_workshop ? Requirements coverage % max_functions',
+    'use_case_workshop ? Requirements coverage % max_features',
    ]}
   .actionList=${[
-    'spec_writing ? Define function',
+    'spec_writing ? Define feature',
     'use_case_workshop ? Define use case',
     'user_journey_workshop ? Define user journey',
     'product_workshop ? Define product',
