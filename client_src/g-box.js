@@ -1,7 +1,6 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {styleMap} from 'lit/directives/style-map.js';
 import {commas, toSnakeCase} from './utils.js';
-import {start_cmd} from './commands.js';
 
 
 class Box extends LitElement {
@@ -110,7 +109,7 @@ sl-button {
   }
 
   handleClick(cmd) {
-    start_cmd(this, cmd, this.rz);
+    gioClient.postCmd(cmd);
     if (this.perturbance < 20) {
       window.setTimeout(() => {
         this.perturbance = Math.max(-10, this.perturbance - .8)},

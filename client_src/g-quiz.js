@@ -1,7 +1,6 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
 import {commas, toKMBTQ, toSnakeCase} from './utils.js';
-import {start_cmd} from './commands.js';
 
 
 class Quiz extends LitElement {
