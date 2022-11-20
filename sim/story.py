@@ -161,13 +161,13 @@ BINARY_SEARCH = Upgrade(
   tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
     If you were doing a binary search of these choices, you would first look
-    |  Here
-    |  Here
-    |  Here
-    |X Here
-    |  Here
-    |  Here
-    |  Here
+    |  A. Here
+    |  B. Here
+    |  C. Here
+    |X D. Here
+    |  E. Here
+    |  F. Here
+    |  G. Here
   '''))
 
 BUBBLE_SORT = Upgrade(
@@ -211,6 +211,60 @@ LEARN_C = Upgrade(
     |  Saved by the Bell
   '''))
 
+STATEMENT_COVERAGE = Upgrade(
+  2*K, 'Statement coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
+  quiz=Quiz('''
+    Statement coverage helps you test:
+    |  Every month, unless your app generates quarterly statements
+    |  Every line of code
+    |X Every executable statement of the code
+    |  Every tweet that your app posts
+  '''))
+
+SPEC_WRITING = Upgrade(
+  2*K, 'Spec writing',
+  tooltip='Define new features to address use cases.',
+  quiz=Quiz('''
+    Which of the following is part of writing a good feature specification:
+    |  Prose and poetry
+    |  Baubles and haberdashery
+    |  Supply and demand
+    |  Bells and whistles
+    |X Inputs and outputs
+    |  Settings and plotlines
+    |  Dogs and ponies
+    |  Hopes and dreams
+  '''))
+
+IDES = Upgrade(
+  4*K, 'IDEs', prereq='languages', incr='productity',
+  tooltip='Boost the productivity of engineers.',
+  quiz=Quiz('''
+    An Integrated Development Environment typically does NOT include a:
+    |  Source code editor
+    |  Compiler
+    |  Debugger
+    |  Version control client
+    |X Meme generator
+    |  Linting tool
+    |  All of the above
+    |  None of the above
+  '''))
+
+VERSION_CONTROL = Upgrade(
+  4*K, 'Version control', prereq='languages', incr='productity',
+  tooltip='Boost the productivity of engineers.',
+  quiz=Quiz('''
+    Version control systems can display a "diff," which is:
+    |  A particularly difficult part of the code
+    |  A delayed if-and-only-if condition
+    |  A tip on how to defuse a technical argument
+    |  A reversed fast-forward ID
+    |  All of the above
+    |  None of the above
+  '''))
+
 INSERTION_SORT = Upgrade(
   5*K, 'Insertion Sort', incr='algorithms', prereq='languages',
   tooltip='Grow your algorithm repertoire.',
@@ -223,6 +277,31 @@ INSERTION_SORT = Upgrade(
     |X Teaching the concept of invariants
   '''))
 
+PARSING = Upgrade(
+  5*K, 'Parsing', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
+  quiz=Quiz('''
+    Programming language syntax is specified using:
+    |  Examples consisting of causes and effects
+    |  Pipelines consisting of producers and consumers
+    |  Clauses consisting of nouns and verbs
+    |X Grammars consisting of tokens and productions
+    |  Guidelines consisting of Do's and Don't's
+    |  Regional accents consisting of dipthongs and digraphs
+  '''))
+
+USE_CASE_WORKSHOP = Upgrade(
+  6*K, 'Use case workshop', prereq='spec_writing',
+  tooltip='Define use cases as parts of a user journey.',
+  quiz=Quiz('''
+    Specifying use cases is useful in cases where:
+    |  People don't know how computers work today
+    |  Workers don't know why investors decide to invest
+    |  Deciders don't know when problems develop overnight
+    |X Developers don't know how users finish their tasks
+    |  Finishers don't know why they would quit
+    |  Quitters don't know who to blame
+  '''))
 
 
 # greens < 100.
@@ -251,14 +330,13 @@ CHAP_2 = Chapter(
     BUBBLE_SORT,
     AUTOMATION,
     LEARN_C,
-    Upgrade(2*K, 'Statement coverage', prereq='languages',
-            incr='coverage_criteria'),
-    Upgrade(3*K, 'Spec writing'),
-    Upgrade(4*K, 'IDEs', prereq='languages', incr='productity'),
-    Upgrade(4*K, 'Version control', prereq='languages', incr='productity'),
+    STATEMENT_COVERAGE,
+    SPEC_WRITING,
+    IDES,
+    VERSION_CONTROL,
     INSERTION_SORT,
-    Upgrade(5*K, 'Parsing', prereq='learn_c', incr='algorithms'),
-    Upgrade(6*K, 'Use case workshop', prereq='spec_writing'),
+    PARSING,
+    USE_CASE_WORKSHOP,
   ],
 )
 
