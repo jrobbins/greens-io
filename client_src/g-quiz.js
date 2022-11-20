@@ -175,6 +175,7 @@ sl-dialog::part(body) {
     return html`
 <sl-dialog label=${this.up.name} ?open=${this.open}
        @sl-hide=${e => this.open = false}>
+  <div>${this.up.tooltip}</div>
   ${this.renderQuiz()}
   <span slot="footer" id="msg">
     ${this.renderMessage()}

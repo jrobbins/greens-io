@@ -22,6 +22,7 @@ class Quiz:
 class Upgrade:
   cost: int
   name: str
+  tooltip: str = ''
   prereq: str = ''
   incr: str = ''
   snake: str = ''
@@ -36,6 +37,7 @@ class Chapter:
 
 LEARN_HTML = Upgrade(
   10, 'Learn HTML',
+  tooltip='HTML sure comes in handy when testing a web app.',
   quiz=Quiz('''
     Based on documentation on MDN, what HTML element would you
     use to indicate a foreign phrase in an English sentence?
@@ -47,6 +49,7 @@ LEARN_HTML = Upgrade(
 
 LEARN_CSS = Upgrade(
   10, 'Learn CSS',
+  tooltip='Make those tests pixel perfect!',
   quiz=Quiz('''
     According to MDN, CSS provides this many different kinds
     of units for length:
@@ -58,6 +61,7 @@ LEARN_CSS = Upgrade(
 
 LEARN_JAVASCRIPT = Upgrade(
   10, 'Learn JavaScript', incr='languages',
+  tooltip='Add a language to your collection.',
   quiz=Quiz('''
     According to github project wtfjs, which of the following
     expressions evaluates to true?
@@ -69,6 +73,7 @@ LEARN_JAVASCRIPT = Upgrade(
 
 TEST_RUNNER = Upgrade(
   20, 'Test Runner',
+  tooltip='It runs all tests.',
   quiz=Quiz('''
     What does a test runner program do?
     |  Traverse a source tree to discover test files
@@ -81,6 +86,7 @@ TEST_RUNNER = Upgrade(
 
 LINEAR_SEARCH = Upgrade(
   20, 'Linear Search', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
     "It's always in the last place you look" is true because:
     |  People are not computers
@@ -91,6 +97,7 @@ LINEAR_SEARCH = Upgrade(
 
 RECURSION = Upgrade(
   30, 'Recursion', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
     What does a tail-recursive function do to unwind:
     |  Light reading
@@ -99,8 +106,20 @@ RECURSION = Upgrade(
     |X Nothing
   '''))
 
+FUNCTION_COVERAGE = Upgrade(
+  100, 'Function coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each function.',
+  quiz=Quiz('''
+    Feature coverage is a meaurement of how many:
+    |  Press articles are published about key features
+    |X Features of the product are tested, even superficially
+    |  Insurance policies would cover a crash
+    |  Years old a product is before it is complete
+  '''))
+
 LEARN_JAVA = Upgrade(
   100, 'Learn Java', incr='languages',
+  tooltip='Add a language to your collection.',
   quiz=Quiz('''
     The mascot of the Java programming language is
     |X A "software agent" with a red nose
@@ -112,6 +131,7 @@ LEARN_JAVA = Upgrade(
 
 LEARN_PYTHON = Upgrade(
   100, 'Learn Python', incr='languages',
+  tooltip='Add a language to your collection.',
   quiz=Quiz('''
     Which of the following is NOT generally associated with Python?
     |  Duck typing
@@ -124,6 +144,7 @@ LEARN_PYTHON = Upgrade(
 
 LEARN_BASIC = Upgrade(
   100, 'Learn BASIC', incr='languages',
+  tooltip='Add a language to your collection.',
   quiz=Quiz('''
     Which of the following is NOT a BASIC keyword?
     |  LET
@@ -137,6 +158,7 @@ LEARN_BASIC = Upgrade(
 
 BINARY_SEARCH = Upgrade(
   100, 'Binary Search', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
     If you were doing a binary search of these choices, you would first look
     |  Here
@@ -150,6 +172,7 @@ BINARY_SEARCH = Upgrade(
 
 BUBBLE_SORT = Upgrade(
   100, 'Bubble Sort', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
     Bubble Sort is called "Bubble Sort" because bubbles:
     |  Burst
@@ -162,6 +185,7 @@ BUBBLE_SORT = Upgrade(
 
 AUTOMATION = Upgrade(
   1*K, 'Automation', prereq='languages', incr='automation',
+  tooltip='Run tests every hour.',
   quiz=Quiz('''
     A "deamon" is a program that:
     |  Dwells in the lowest levels of the OS
@@ -175,6 +199,7 @@ AUTOMATION = Upgrade(
 
 LEARN_C = Upgrade(
   2*K, 'Learn C', incr='languages',
+  tooltip='Add a language to your collection.',
   quiz=Quiz('''
     The C programming language was developed by:
     |  Bell Harbor
@@ -188,6 +213,7 @@ LEARN_C = Upgrade(
 
 INSERTION_SORT = Upgrade(
   5*K, 'Insertion Sort', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
     Insertion Sort's main use is:
     |  Sorting unicode strings
@@ -209,8 +235,7 @@ CHAP_1 = Chapter(
     TEST_RUNNER,
     LINEAR_SEARCH,
     RECURSION,
-    Upgrade(100, 'Function coverage', prereq='languages',
-            incr='coverage_criteria'),
+    FUNCTION_COVERAGE,
   ],
 )
 

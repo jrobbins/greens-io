@@ -67,6 +67,7 @@ class Upgrades extends LitElement {
       this.rz.day >= this.rz.maxdays)
     return html`
 <sl-button size=small variant=success
+  title=${up.tooltip || 'Learn a skill'}
   .disabled=${disabled}
   @click=${e => this.startUpgrade(up)}
   >
