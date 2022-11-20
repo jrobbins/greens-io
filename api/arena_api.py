@@ -12,9 +12,8 @@ class ArenaAPI(basehandlers.APIHandler):
     a = arena.main_arena
     a.record_contact(player_id)
     tasks.do_tasks()
-    team_resources = arena.get_team_resources()
     p = a.get_player(player_id)
-    combined_resources = dataclasses.asdict(team_resources)
+    combined_resources = dataclasses.asdict(a.resources)
     skills_dict = dataclasses.asdict(p.skills) if p else {}
     for skill, value in skills_dict.items():
       if (skill not in combined_resources or

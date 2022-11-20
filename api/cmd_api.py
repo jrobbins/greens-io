@@ -3,6 +3,7 @@ import logging
 
 from api import basehandlers
 from sim import arena
+from sim import commands
 from sim import tasks
 
 
@@ -20,7 +21,7 @@ class CommandAPI(basehandlers.APIHandler):
     cmd = self.get_param('cmd')
     # TODO: arguments
     
-    arena.process_cmd(player_id, cmd)
+    commands.process_cmd(player_id, cmd)
     tasks.do_tasks()
     return {'message': 'OK'}
 

@@ -4,7 +4,6 @@ import time
 
 from sim import story
 from sim import arena
-rz = arena.rz
 from sim import utils
 
 
@@ -18,6 +17,7 @@ PLAYER_TIMEOUT = 20
 
 def do_automation():
   a = arena.main_arena
+  rz = a.resources
   if rz.day >= rz.maxdays:
     rz.day = rz.maxdays
     return
