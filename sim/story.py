@@ -319,12 +319,12 @@ BRANCH_COVERAGE = Upgrade(
   )
 
 WATERFALL_MODEL = Upgrade(
-  15*K, 'Waterfall model',
+  12*K, 'Waterfall model',
   tooltip='Allow hiring of engineers.',
   )
 
 PROMO_PROCESS = Upgrade(
-  30*K, 'Promo process',
+  15*K, 'Promo process',
   tooltip='Allow promoting engineers to managers.',
   )
 
