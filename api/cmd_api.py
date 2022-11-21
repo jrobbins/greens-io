@@ -22,6 +22,6 @@ class CommandAPI(basehandlers.APIHandler):
     # TODO: arguments
     
     commands.process_cmd(player_id, cmd)
-    tasks.do_tasks()
+    tasks.do_tasks(a)
     return {'message': 'OK'}
 

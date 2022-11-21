@@ -11,7 +11,7 @@ class ArenaAPI(basehandlers.APIHandler):
   def do_get(self, player_id):
     a = arena.main_arena
     a.record_contact(player_id)
-    tasks.do_tasks()
+    tasks.do_tasks(a)
     p = a.get_player(player_id)
     combined_resources = dataclasses.asdict(a.resources)
     skills_dict = dataclasses.asdict(p.skills) if p else {}

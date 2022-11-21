@@ -7,16 +7,12 @@ from sim import arena
 from sim import utils
 
 
-task_queue = []  # A list of pairs (callback, args)
-
-
 # If we have not heard from a player in 200 seconds, forget them.
 PLAYER_TIMEOUT = 20
 
 
 
-def do_automation():
-  a = arena.main_arena
+def do_automation(a):
   rz = a.resources
   if rz.day >= rz.maxdays:
     rz.day = rz.maxdays
@@ -40,9 +36,9 @@ def do_automation():
   rz.engineers = min(rz.engineers + rz.recruiters,
                      10 + rz.managers * 10)
   if rz.peer_reviews:
-    arena.maybe_promote_to_manager()
+    a.maybe_promote_to_manager()
   if rz.leadership_summit:
-    arena.maybe_promote_to_vp()
+    a.maybe_promote_to_vp()
 
   if rz.outsourced_hr and rz.recruiters:
     if rz.hour == 0:
@@ -77,9 +73,9 @@ def do_automation():
         rz.day, story.ALL_EMAILS[new_chapter])
 
 
-def process_next_task():
+def process_next_task(a):
   try:
-    callback, args = task_queue.pop(0)
+    callback, args = a.task_queue.pop(0)
     callback(*args)
   except IndexError:
     pass
@@ -87,30 +83,27 @@ def process_next_task():
 
 
 STEP_DURATION_SECS = (20 * 60) / (8 * 5 * 52)
-last_time = 0
 
-def maybe_generate_tasks(now=None):
-  global last_time
+def maybe_generate_tasks(a, now=None):
   now = now or time.time()
-  if now > last_time + STEP_DURATION_SECS:
-    logging.info('Left over tasks: %d', len(task_queue))
-    while len(task_queue) > 0:
-      process_next_task()
-    task_queue.append((do_automation, tuple()))
-    remove_expired()
-    last_time += STEP_DURATION_SECS
-    if last_time + STEP_DURATION_SECS < now:
-      last_time = now
+  if now > a.last_time + STEP_DURATION_SECS:
+    logging.info('Left over tasks: %d', len(a.task_queue))
+    while len(a.task_queue) > 0:
+      process_next_task(a)
+    a.task_queue.append((do_automation, tuple([a])))
+    remove_expired(a)
+    a.last_time += STEP_DURATION_SECS
+    if a.last_time + STEP_DURATION_SECS < now:
+      a.last_time = now
 
 
-def do_tasks():
-  # process_next_task()
-  # process_next_task()
-  maybe_generate_tasks()
+def do_tasks(a):
+  # process_next_task(a)
+  # process_next_task(a)
+  maybe_generate_tasks(a)
 
 
-def remove_expired():
-  a = arena.main_arena
+def remove_expired(a):
   min_last_contact = int(time.time()) - PLAYER_TIMEOUT
   for player_id in a.roster:
     if a.roster[player_id].last_contact < min_last_contact:

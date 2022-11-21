@@ -166,9 +166,11 @@ class Player:
 @dataclasses.dataclass
 class Arena:
   team_name: str
+  last_time: int = 0
   resources: TeamResources = None
   news: list[dict[int, list[Any]]] = None
   roster: dict[int, Player] = None
+  task_queue: list[Any] = None
 
   def __init__(self, team_name):
     self.team_name = team_name
@@ -176,6 +178,7 @@ class Arena:
     self.resources = TeamResources(day=day)
     self.news = []
     self.roster = {}
+    self.task_queue = []
 
   def enroll_player(self, nick):
     p = Player(nick)
@@ -227,8 +230,7 @@ def get_arena(arena_id):
 
 
 
-def maybe_promote_to_manager():
-  a = main_arena
+def maybe_promote_to_manager(a):
   rz = a.resources
   if (rz.engineers > 0 and rz.managers + 1 < 10 + rz.vps * 10 and
       rz.engineers > rz.managers * 6):
@@ -240,8 +242,7 @@ def maybe_promote_to_manager():
     rz.user_journeys += 1
 
 
-def maybe_promote_to_vp():
-  a = main_arena
+def maybe_promote_to_vp(a):
   rz = a.resources
   if (rz.managers > 0 and rz.vps + 1 < 10 + rz.senior_vps * 10 and
       rz.managers > rz.vps * 6):

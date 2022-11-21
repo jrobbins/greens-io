@@ -83,11 +83,11 @@ def process_cmd(player_id, cmd):
     return
 
   if cmd == 'Promote to manager':
-    maybe_promote_to_manager()
+    arena.maybe_promote_to_manager(a)
     return
   
   if cmd == 'Promote to VP':
-    maybe_promote_to_vp()
+    arena.maybe_promote_to_vp(a)
     return
 
   if cmd == 'Acquire small company':
