@@ -20,6 +20,8 @@ def do_automation(a):
 
   new_cases = int(rz.engineers * rz.productivity)
   new_features = int(rz.engineers * rz.productivity / 10)
+  if rz.tech_leads:
+    new_features += rz.managers
 
   new_defects = int((new_cases + new_features) * rz.defect_rate)
   # rz.defects += new_defects
@@ -30,8 +32,13 @@ def do_automation(a):
   rz.max_cases = min(max_cases_coverage, max_cases_files)
   rz.cases = min(rz.cases + new_cases, rz.max_cases)
   rz.test_coverage = rz.cases
+
+  if (rz.prioritization and
+      rz.cases + new_cases > rz.max_cases):
+    new_features += (rz.cases + new_cases - rz.max_cases)
+  
   rz.features = min(rz.features + new_features, rz.max_features)
-  rz.requirements_coverage = rz.features
+  rz.feature_completeness = rz.features
 
   rz.engineers = min(rz.engineers + rz.recruiters,
                      10 + rz.managers * 10)
@@ -48,6 +55,11 @@ def do_automation(a):
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
+
+  rz.cpus += rz.ops_bots
+  rz.servers += rz.ops_bots // 10
+  if rz.self_replicating_bots:
+    rz.ops_bots = int(rz.ops_bots * 1.05)
 
   rz.hour += 1
   if rz.hour >= 8:

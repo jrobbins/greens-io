@@ -57,7 +57,7 @@ class Dashboard extends LitElement {
     'category_workshop ? Categories', 
     'show_defects ? Defects',
     '',
-    'use_case_workshop ? Requirements coverage % max_features',
+    'use_case_workshop ? Feature completeness % max_features',
    ]}
   .actionList=${[
     'spec_writing ? Define feature',
@@ -81,7 +81,7 @@ class Dashboard extends LitElement {
   .actionList=${[
     'waterfall_model ? Hire engineer',
     'promo_process ? Promote to manager',
-    'test_driven_development ? Hire recruiter',
+    'recruiting ? Hire recruiter',
     'risk_management ? Promote to VP',
     'synergy ? Acquire small company',
     'deal_making ? Acquire large company',
@@ -97,12 +97,14 @@ class Dashboard extends LitElement {
     'Servers', 
     'Clusters', 
     'Data centers', 
+    'Ops bots', 
    ]}
   .actionList=${[
     'multi_processing ? Add CPU',
     'testing_lab ? Add server',
     'cloud_computing ? Deploy cluster',
     'warehouse_computing ? Build data center',
+    'ops_bots ? Build ops bots',
   ]}
 ></g-box>
 

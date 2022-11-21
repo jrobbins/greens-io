@@ -42,6 +42,7 @@ class TeamResources:
   peer_reviews: int = 0
   leadership_summit: int = 0
   outsourced_hr: int = 0
+  prioritization: int = 0
 
   # Machines box
   multi_processing: int = 0
@@ -50,7 +51,8 @@ class TeamResources:
   servers: int = 0
   clusters: int = 0
   data_centers: int = 0
-  von_neumann_machine: int = 0
+  ops_bots: int = 0
+  self_replicating_bots: int = 0
 
   # People box
   engineers: int = 0
@@ -58,6 +60,7 @@ class TeamResources:
   managers: int = 0
   vps: int = 0
   senior_vps: int = 0
+  tech_leads: int = 0
   productivity: int = 1
   defect_rate: float = 0.1
 
@@ -79,6 +82,8 @@ class PlayerSkills:
   statement_coverage: int = 0
   branch_coverage: int = 0
   condition_coverage: int = 0
+  boundary_conditions: int = 0
+  fuzzing: int = 0
   path_coverage: int = 0
 
   spec_writing: int = 0
@@ -86,6 +91,12 @@ class PlayerSkills:
   user_journey_workshop: int = 0
   product_workshop: int = 0
   category_workshop: int = 0
+
+  recruiting: int = 0
+  tech_leads: int = 0
+  prioritization: int = 0
+  synergy: int = 0
+  deal_making: int = 0
 
   learn_html: int = 0
   learn_css: int = 0
@@ -98,6 +109,7 @@ class PlayerSkills:
   learn_go: int = 0
   learn_typescript: int = 0
   learn_shell: int = 0
+  learn_forth: int = 0
   learn_http: int = 0
   learn_php: int = 0
   learn_pascal: int = 0
@@ -117,20 +129,22 @@ class PlayerSkills:
   learn_rust: int = 0
 
   linear_search: int = 0
-  recursion: int = 0
-  binary_search: int = 0
   bubble_sort: int = 0
-  hashing: int = 0
   insertion_sort: int = 0
   shell_sort: int = 0
+  recursion: int = 0
+  binary_search: int = 0
+  hashing: int = 0
   quicksort: int = 0
   parsing: int = 0
   shortest_path: int = 0
   bin_packing: int = 0
-  dynamic_programming: int = 0
+  breadth_first_search: int = 0
+  min_max_search: int = 0
+  a_star_search: int = 0
 
   waterfall_model: int = 0
-  agile: int = 0  # ??
+  agile: int = 0
   risk_management: int = 0
   test_driven_development: int = 0
   promo_process: int = 0
@@ -142,7 +156,8 @@ class PlayerSkills:
   testing_lab: int = 0  
   cloud_computing: int = 0  
   warehouse_computing: int = 0  
-  von_neumann_machine: int = 0
+  ops_bots: int = 0
+  self_replicating_bots: int = 0
 
 
 

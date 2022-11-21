@@ -23,7 +23,7 @@ def process_cmd(player_id, cmd):
     return
 
   if cmd == 'Create test case':
-    rz.cases += 1
+    rz.cases += (rz.productivity or 1)
     return
 
   if (cmd == 'Create test file' and
@@ -41,7 +41,7 @@ def process_cmd(player_id, cmd):
 
   if (cmd == 'Define feature' and
       sz.spec_writing):
-    rz.features += 1
+    rz.features += (rz.productivity or 1)
     return
 
   if (cmd == 'Define use case' and
@@ -94,14 +94,19 @@ def process_cmd(player_id, cmd):
     return
 
   if cmd == 'Acquire small company':
-    rz.vp += 1
-    rz.managers += 10
-    rz.engineers += 100
+    rz.products += 1
+    rz.senior_vps += 1
+    rz.vps += 8
+    rz.managers += 70
+    rz.engineers += 600
 
   if cmd == 'Acquire large company':
-    rz.vp += 10
-    rz.managers += 100
-    rz.engineers += 1000
+    rz.categories += 1
+    rz.products += 10
+    rz.senior_vps += 10
+    rz.vps += 80
+    rz.managers += 700
+    rz.engineers += 6000
 
   if cmd == 'Add CPU':
     rz.cycles += 100
@@ -119,11 +124,14 @@ def process_cmd(player_id, cmd):
     rz.clusters += 1
 
   if cmd == 'Build data center':
-    rz.cycles += 15000 * 50
-    rz.cpus += 150 * 50
-    rz.servers += 15 * 50
-    rz.clusters += 3 * 50
+    rz.cycles += 5000 * 10
+    rz.cpus += 50 * 10
+    rz.servers += 5 * 10
+    rz.clusters += 1 * 10
     rz.data_centers += 1
+
+  if cmd == 'Build ops bots':
+    rz.ops_bots += 100
 
   if cmd in story.ALL_UPGRADES:
     up = story.ALL_UPGRADES[cmd]

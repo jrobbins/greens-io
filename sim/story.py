@@ -208,6 +208,7 @@ LEARN_C = Upgrade(
     |  Bell Gardens
     |X Bell Labs
     |  Blue Bell
+    |  Tinkerbell
     |  Saved by the Bell
   '''))
 
@@ -304,23 +305,23 @@ USE_CASE_WORKSHOP = Upgrade(
   '''))
 
 LEARN_GO = Upgrade(
-  10*K, 'Learn Go', incr='languages',
+  8*K, 'Learn Go', incr='languages',
   tooltip='Add a language to your collection.',
   )
 
 LEARN_TYPESCRIPT = Upgrade(
-  10*K, 'Learn Go', incr='languages',
+  9*K, 'Learn TypeScript', incr='languages',
   tooltip='Add a language to your collection.',
   )
 
-BRANCH_COVERAGE = Upgrade(
-  10*K, 'Branch coverage', incr='coverage_criteria', prereq='languages',
-  tooltip='Allow more test cases for each feature.',
+WATERFALL_MODEL = Upgrade(
+  10*K, 'Waterfall model',
+  tooltip='Allow hiring of engineers.',
   )
 
-WATERFALL_MODEL = Upgrade(
-  12*K, 'Waterfall model',
-  tooltip='Allow hiring of engineers.',
+BRANCH_COVERAGE = Upgrade(
+  12*K, 'Branch coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
   )
 
 PROMO_PROCESS = Upgrade(
@@ -329,7 +330,12 @@ PROMO_PROCESS = Upgrade(
   )
 
 TEST_DRIVEN_DEVELOPMENT = Upgrade(
-  30*K, 'Test driven development',
+  30*K, 'Test driven development', incr='coverage_criteria',
+  tooltip='Allow more test cases for each feature.',
+  )
+
+RECRUITING = Upgrade(
+  30*K, 'Recruiting',
   tooltip='Allow hiring of recruiters.',
   )
 
@@ -343,19 +349,39 @@ MULTI_PROCESSING = Upgrade(
   tooltip='Allow adding CPUs to run tests.',
   )
 
+LINT = Upgrade(
+  70*K, 'Lint', incr='productivity',
+  tooltip='Boost the productivity of engineers.',
+  )
+
 AGILE = Upgrade(
-  100*K, 'Agile', incr='productivity',
+  80*K, 'Agile', incr='productivity',
   tooltip='Boost the productivity of engineers.',
   )
 
 SHELL_SORT = Upgrade(
-  100*K, 'Shell sort', incr='algorithms', prereq='languages',
+  90*K, 'Shell sort', incr='algorithms', prereq='languages',
   tooltip='Grow your algorithm repertoire.',
   )
 
+BOUNDARY_CONDITIONS = Upgrade(
+  100*K, 'Boundary conditions', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
+  )
+
 SHORTEST_PATH = Upgrade(
-  100*K, 'Shortest path', incr='algorithms', prereq='languages',
+  110*K, 'Shortest path', incr='algorithms',
   tooltip='Grow your algorithm repertoire.',
+  )
+
+BREADTH_FIRST_SEARCH = Upgrade(
+  120*K, 'Breadth-first search', incr='algorithms',
+  tooltip='Grow your algorithm repertoire.',
+  )
+
+STYLE_GUIDE = Upgrade(
+  120*K, 'Style guide', incr='productivity',
+  tooltip='Boost the productivity of engineers.',
   )
 
 RISK_MANAGEMENT = Upgrade(
@@ -383,9 +409,24 @@ LEARN_LISP = Upgrade(
   tooltip='Add a language to your collection.',
   )
 
+LEARN_PROLOG = Upgrade(
+  1*M, 'Learn Prolog', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+LEARN_PERL = Upgrade(
+  1*M, 'Learn Perl', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
 LEADERSHIP_SUMMIT = Upgrade(
   2*M, 'Leadership summit', incr='leadership_summit',
   tooltip='Automatically promote to VP.',
+  )
+
+MIN_MAX_SEARCH = Upgrade(
+  3*M, 'Min-max search', incr='algorithms',
+  tooltip='Grow your algorithm repertoire.',
   )
 
 CONDITION_COVERAGE = Upgrade(
@@ -398,19 +439,74 @@ CLOUD_COMPUTING = Upgrade(
   tooltip='Allow deploying clusters to run tests.',
   )
 
+PRIORITIZATION = Upgrade(
+  10*M, 'Prioritization', incr='prioritization',
+  tooltip='Engineers work where most needed.',
+  )
+
+LEARN_FORTH = Upgrade(
+  10*M, 'Learn FORTH', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+HASHING = Upgrade(
+  12*M, 'Hashing', incr='prioritization',
+  tooltip='Engineers work where most needed.',
+  )
+
+LEARN_RUBY = Upgrade(
+  12*M, 'Learn Ruby', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+LEARN_SWIFT = Upgrade(
+  12*M, 'Learn Swift', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
 QUICKSORT = Upgrade(
-  20*M, 'Quicksort', incr='algorithms', prereq='languages',
+  12*M, 'Quicksort', incr='algorithms', prereq='languages',
   tooltip='Grow your algorithm repertoire.',
   )
 
 BIN_PACKING = Upgrade(
-  20*M, 'Bin packing', incr='algorithms', prereq='dynamic_programming',
+  14*M, 'Bin packing', incr='algorithms',
   tooltip='Grow your algorithm repertoire.',
   )
 
+LEARN_RUST = Upgrade(
+  16*M, 'Learn Rust', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+A_STAR_SEARCH = Upgrade(
+  20*M, 'A-star search', incr='algorithms',
+  tooltip='Grow your algorithm repertoire.',
+  )
+
+TECH_LEADS = Upgrade(
+  30*M, 'Tech leads', incr='tech_leads',
+  tooltip='Managers help write feature specs.',
+  )
+
+PRODUCT_WORKSHOP = Upgrade(
+  40*M, 'Product workshop', prereq='user_journey_workshop',
+  tooltip='Allow definition of new products.',
+  )
+
+FUZZING = Upgrade(
+  50*M, 'Fuzzing', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
+  )
+
 WAREHOUSE_COMPUTING = Upgrade(
-  50*M, 'Warehouse computing',
+  60*M, 'Warehouse computing',
   tooltip='Allow building data centers to run tests.',
+  )
+
+LEARN_FORTRAN = Upgrade(
+  70*M, 'Learn Fortran', incr='languages',
+  tooltip='Add a language to your collection.',
   )
 
 
@@ -418,6 +514,38 @@ PATH_COVERAGE = Upgrade(
   100*M, 'Path coverage', incr='coverage_criteria', prereq='languages',
   tooltip='Allow more test cases for each feature.',
   )
+
+LEARN_VHDL = Upgrade(
+  100*M, 'Learn VHDL', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+SYNERGY = Upgrade(
+  200*M, 'Synergy', prereq='risk_management',
+  tooltip='Allow acquision of small companies.',
+  )
+
+CATEGORY_WORKSHOP = Upgrade(
+  300*M, 'Category workshop', prereq='product_workshop',
+  tooltip='Allow definition of new product categories.',
+  )
+
+OPS_BOTS = Upgrade(
+  400*M, 'Ops bots', incr='ops_bots', prereq='warehouse_computing',
+  tooltip='Allow creation of bots that make servers.',
+  )
+
+DEAL_MAKING = Upgrade(
+  500*M, 'Deal making', prereq='synergy',
+  tooltip='Allow acquision of large companies.',
+  )
+
+SELF_REPLICATING_BOTS = Upgrade(
+  2*B, 'Self-replicating bots', incr='self_replicating_bots',
+  prereq='ops_bots',
+  tooltip='Bots also make bots.',
+  )
+
 
 
 # greens < 100.
@@ -463,15 +591,20 @@ CHAP_3 = Chapter(
   upgrades = [
     LEARN_GO,
     LEARN_TYPESCRIPT,
-    BRANCH_COVERAGE,
     WATERFALL_MODEL,
+    BRANCH_COVERAGE,
     PROMO_PROCESS,
     TEST_DRIVEN_DEVELOPMENT,
+    RECRUITING,
     PEER_REVIEWS,
     MULTI_PROCESSING,
+    LINT,
     AGILE,
     SHELL_SORT,
+    BOUNDARY_CONDITIONS,
     SHORTEST_PATH,
+    BREADTH_FIRST_SEARCH,
+    STYLE_GUIDE,
     RISK_MANAGEMENT,
     OUTSOURCED_HR,
     TESTING_LAB,
@@ -485,20 +618,44 @@ CHAP_4 = Chapter(
   ceo_message = 'Smarter',
   upgrades = [
     LEARN_LISP,
+    LEARN_PROLOG,
+    LEARN_PERL,
     LEADERSHIP_SUMMIT,
+    MIN_MAX_SEARCH,
     CONDITION_COVERAGE,
     CLOUD_COMPUTING,
+    PRIORITIZATION,
+    HASHING,
+    LEARN_RUBY,
+    LEARN_SWIFT,
     QUICKSORT,
     BIN_PACKING,
+    LEARN_RUST,
+    A_STAR_SEARCH,
+    TECH_LEADS,
+    PRODUCT_WORKSHOP,
+    FUZZING,
     WAREHOUSE_COMPUTING,
   ],
 )
 
-# PATH_COVERAGE
-# Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
+# 100,000,000 <= greens < 10,000,000,000.
+CHAP_7 = Chapter(
+  ceo_message = 'Ambition',
+  upgrades = [
+    PATH_COVERAGE,
+    LEARN_VHDL,
+    SYNERGY,
+    CATEGORY_WORKSHOP,
+    OPS_BOTS,
+    DEAL_MAKING,
+    SELF_REPLICATING_BOTS,
+  ],
+)
 
 
-CHAPTERS = [CHAP_1, CHAP_2, CHAP_3, CHAP_4]
+
+CHAPTERS = [CHAP_1, CHAP_2, CHAP_3, CHAP_4, CHAP_7]
 
 
 ALL_UPGRADES = {
