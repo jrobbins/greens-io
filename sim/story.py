@@ -152,7 +152,7 @@ LEARN_BASIC = Upgrade(
     |  PRINT
     |  GOSUB
     |  DIM
-    |X BOOT
+    |X HTML
     |  REM
   '''))
 
@@ -238,7 +238,7 @@ SPEC_WRITING = Upgrade(
   '''))
 
 IDES = Upgrade(
-  4*K, 'IDEs', prereq='languages', incr='productity',
+  4*K, 'IDEs', prereq='languages', incr='productivity',
   tooltip='Boost the productivity of engineers.',
   quiz=Quiz('''
     An Integrated Development Environment typically does NOT include a:
@@ -253,7 +253,7 @@ IDES = Upgrade(
   '''))
 
 VERSION_CONTROL = Upgrade(
-  4*K, 'Version control', prereq='languages', incr='productity',
+  4*K, 'Version control', prereq='languages', incr='productivity',
   tooltip='Boost the productivity of engineers.',
   quiz=Quiz('''
     Version control systems can display a "diff," which is:
@@ -262,7 +262,7 @@ VERSION_CONTROL = Upgrade(
     |  A tip on how to defuse a technical argument
     |  A reversed fast-forward ID
     |  All of the above
-    |  None of the above
+    |X None of the above
   '''))
 
 INSERTION_SORT = Upgrade(
@@ -302,6 +302,51 @@ USE_CASE_WORKSHOP = Upgrade(
     |  Finishers don't know why they would quit
     |  Quitters don't know who to blame
   '''))
+
+LEARN_GO = Upgrade(
+  10*K, 'Learn Go', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+LEARN_TYPESCRIPT = Upgrade(
+  10*K, 'Learn Go', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+BRANCH_COVERAGE = Upgrade(
+  10*K, 'Branch coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
+  )
+
+WATERFALL_MODEL = Upgrade(
+  15*K, 'Waterfall model',
+  tooltip='Allow hiring of engineers.',
+  )
+
+PROMO_PROCESS = Upgrade(
+  30*K, 'Promo process',
+  tooltip='Allow promoting engineers to managers.',
+  )
+
+TEST_DRIVEN_DEVELOPMENT = Upgrade(
+  30*K, 'Test driven development',
+  tooltip='Allow hiring of recruiters.',
+  )
+
+PEER_REVIEWS = Upgrade(
+  50*K, 'Peer reviews',
+  tooltip='Automatically promote engineers to managers.',
+  )
+
+MULTI_PROCESSING = Upgrade(
+  60*K, 'Multi-processing', incr='multi_processing',
+  tooltip='Allow adding CPUs to run tests.',
+  )
+
+AGILE = Upgrade(
+  100*K, 'Agile', incr='productivity',
+  tooltip='Boost the productivity of engineers.',
+  )
 
 
 # greens < 100.
@@ -345,16 +390,15 @@ CHAP_2 = Chapter(
 CHAP_3 = Chapter(
   ceo_message = 'Teamwork',
   upgrades = [
-    Upgrade( 10*K, 'Learn Go', incr='languages'),
-    Upgrade( 10*K, 'Learn TypeScript', incr='languages'),
-    Upgrade( 10*K, 'Branch coverage', prereq='languages',
-             incr='coverage_criteria'),
-    Upgrade( 15*K, 'Waterfall model'),
-    Upgrade( 30*K, 'Promo process'),
-    Upgrade( 30*K, 'Test driven development'),
-    Upgrade( 50*K, 'Peer reviews', incr='peer_reviews'),
-    Upgrade( 60*K, 'Multi-processing', incr='multi_processing'),
-    Upgrade(100*K, 'Agile', incr='productity'),
+    LEARN_GO,
+    LEARN_TYPESCRIPT,
+    BRANCH_COVERAGE,
+    WATERFALL_MODEL,
+    PROMO_PROCESS,
+    TEST_DRIVEN_DEVELOPMENT,
+    PEER_REVIEWS,
+    MULTI_PROCESSING,
+    AGILE,
     Upgrade(100*K, 'Shell sort', prereq='languages', incr='algorithms'),
     Upgrade(100*K, 'Shortest path', prereq='dynamic_programming',
             incr='algorithms'),

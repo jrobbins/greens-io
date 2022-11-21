@@ -46,7 +46,7 @@ sl-button {
     this.resourceList = [];
     this.rz = {};
     this.actionList = [];
-    this.perturbance = -10;
+    this.perturbance = -15;
   }
 
   maybeRewrite(resourceName) {
@@ -112,9 +112,9 @@ sl-button {
     gioClient.postCmd(cmd);
     if (this.perturbance < 20) {
       window.setTimeout(() => {
-        this.perturbance = Math.max(-10, this.perturbance - .7)},
-                        4000);
-      this.perturbance = Math.min(20, this.perturbance + .7);
+        this.perturbance = Math.max(-10, this.perturbance - .5)},
+                        8000);
+      this.perturbance = Math.min(18, this.perturbance + .5);
     }
   }
 

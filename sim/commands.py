@@ -83,11 +83,11 @@ def process_cmd(player_id, cmd):
     return
 
   if cmd == 'Promote to manager':
-    arena.maybe_promote_to_manager(a)
+    a.maybe_promote_to_manager()
     return
   
   if cmd == 'Promote to VP':
-    arena.maybe_promote_to_vp(a)
+    a.maybe_promote_to_vp()
     return
 
   if cmd == 'Acquire small company':
@@ -115,12 +115,12 @@ def process_cmd(player_id, cmd):
     rz.servers += 5
     rz.clusters += 1
 
-  if cmd == 'Build datacenter':
+  if cmd == 'Build data center':
     rz.cycles += 15000 * 50
     rz.cpus += 150 * 50
     rz.servers += 15 * 50
     rz.clusters += 3 * 50
-    rz.datacenters += 1
+    rz.data_centers += 1
 
   if cmd in story.ALL_UPGRADES:
     up = story.ALL_UPGRADES[cmd]

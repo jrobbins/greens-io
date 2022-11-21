@@ -102,7 +102,7 @@ class Dashboard extends LitElement {
     'multi_processing ? Add CPU',
     'testing_lab ? Add server',
     'cloud_computing ? Deploy cluster',
-    'warehouse_computing ? Build datacenter',
+    'warehouse_computing ? Build data center',
   ]}
 ></g-box>
 

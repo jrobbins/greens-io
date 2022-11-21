@@ -58,7 +58,7 @@ class TeamResources:
   managers: int = 0
   vps: int = 0
   senior_vps: int = 0
-  productity: int = 1
+  productivity: int = 1
   defect_rate: float = 0.1
 
   # Theory box
@@ -216,7 +216,31 @@ class Arena:
 
   def get_recent_news(self):
     return self.news[-2:]
-    
+
+  def maybe_promote_to_manager(self):
+    rz = self.resources
+    if (rz.engineers > 0 and rz.managers + 1 < 10 + rz.vps * 10 and
+        rz.engineers > rz.managers * 6):
+      rz.engineers -= 1
+      rz.managers += 1
+      rz.test_suites += 1
+      rz.features += 100
+      rz.use_cases += 10
+      rz.user_journeys += 1
+
+  def maybe_promote_to_vp(self):
+    rz = self.resources
+    if (rz.managers > 0 and rz.vps + 1 < 10 + rz.senior_vps * 10 and
+        rz.managers > rz.vps * 6):
+      rz.managers -= 1
+      rz.vps += 1
+      rz.features += 1000
+      rz.use_cases += 100
+      rz.user_journeys += 10
+      rz.products += 1
+
+
+
 main_arena = Arena('My team')
 main_arena_id = 'My team'
 multiverse = {
@@ -226,31 +250,5 @@ multiverse = {
 
 def get_arena(arena_id):
   return multiverse.get(arena_id)
-
-
-
-
-def maybe_promote_to_manager(a):
-  rz = a.resources
-  if (rz.engineers > 0 and rz.managers + 1 < 10 + rz.vps * 10 and
-      rz.engineers > rz.managers * 6):
-    rz.engineers -= 1
-    rz.managers += 1
-    rz.test_suites += 1
-    rz.features += 100
-    rz.use_cases += 10
-    rz.user_journeys += 1
-
-
-def maybe_promote_to_vp(a):
-  rz = a.resources
-  if (rz.managers > 0 and rz.vps + 1 < 10 + rz.senior_vps * 10 and
-      rz.managers > rz.vps * 6):
-    rz.managers -= 1
-    rz.vps += 1
-    rz.features += 1000
-    rz.use_cases += 100
-    rz.user_journeys += 10
-    rz.products += 1
 
 
