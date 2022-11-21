@@ -30,7 +30,7 @@ class TeamResources:
 
   # Product box
   features: int = 20
-  requirements_coverage: int = 62  # always == features
+  feature_completeness: int = 62  # always == features
   max_features: int = 20
   use_cases: int = 20
   user_journeys: int = 1
@@ -78,6 +78,9 @@ class PlayerSkills:
 
   ides: int = 0
   version_control: int = 0
+  style_guide: int = 0
+  lint: int = 0
+  recruiting: int = 0
   feature_coverage: int = 0
   statement_coverage: int = 0
   branch_coverage: int = 0
