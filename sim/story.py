@@ -334,7 +334,7 @@ TEST_DRIVEN_DEVELOPMENT = Upgrade(
   )
 
 PEER_REVIEWS = Upgrade(
-  50*K, 'Peer reviews',
+  50*K, 'Peer reviews', incr='peer_reviews',
   tooltip='Automatically promote engineers to managers.',
   )
 
@@ -346,6 +346,77 @@ MULTI_PROCESSING = Upgrade(
 AGILE = Upgrade(
   100*K, 'Agile', incr='productivity',
   tooltip='Boost the productivity of engineers.',
+  )
+
+SHELL_SORT = Upgrade(
+  100*K, 'Shell sort', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
+  )
+
+SHORTEST_PATH = Upgrade(
+  100*K, 'Shortest path', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
+  )
+
+RISK_MANAGEMENT = Upgrade(
+  200*K, 'Risk management',
+  tooltip='Allow promotion to VP.',
+  )
+
+OUTSOURCED_HR =  Upgrade(
+  300*K, 'Outsourced HR', incr='outsourced_hr',
+  tooltip='Automatically hire recruiters.',
+  )
+
+TESTING_LAB = Upgrade(
+  400*K, 'Testing lab',
+  tooltip='Allow adding servers to run tests.',
+  )
+
+USER_JOURNEY_WORKSHOP = Upgrade(
+  500*K, 'User journey workshop', prereq='use_case_workshop',
+  tooltip='Define user journeys as parts of a product.',
+  )
+
+LEARN_LISP = Upgrade(
+  1*M, 'Learn Lisp', incr='languages',
+  tooltip='Add a language to your collection.',
+  )
+
+LEADERSHIP_SUMMIT = Upgrade(
+  2*M, 'Leadership summit', incr='leadership_summit',
+  tooltip='Automatically promote to VP.',
+  )
+
+CONDITION_COVERAGE = Upgrade(
+  3*M, 'Condition coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
+  )
+
+CLOUD_COMPUTING = Upgrade(
+  5*M, 'Cloud computing',
+  tooltip='Allow deploying clusters to run tests.',
+  )
+
+QUICKSORT = Upgrade(
+  20*M, 'Quicksort', incr='algorithms', prereq='languages',
+  tooltip='Grow your algorithm repertoire.',
+  )
+
+BIN_PACKING = Upgrade(
+  20*M, 'Bin packing', incr='algorithms', prereq='dynamic_programming',
+  tooltip='Grow your algorithm repertoire.',
+  )
+
+WAREHOUSE_COMPUTING = Upgrade(
+  50*M, 'Warehouse computing',
+  tooltip='Allow building data centers to run tests.',
+  )
+
+
+PATH_COVERAGE = Upgrade(
+  100*M, 'Path coverage', incr='coverage_criteria', prereq='languages',
+  tooltip='Allow more test cases for each feature.',
   )
 
 
@@ -399,13 +470,12 @@ CHAP_3 = Chapter(
     PEER_REVIEWS,
     MULTI_PROCESSING,
     AGILE,
-    Upgrade(100*K, 'Shell sort', prereq='languages', incr='algorithms'),
-    Upgrade(100*K, 'Shortest path', prereq='dynamic_programming',
-            incr='algorithms'),
-    Upgrade(300*K, 'Risk management'),
-    Upgrade(300*K, 'Outsourced HR', incr='outsourced_hr'),
-    Upgrade(500*K, 'Testing lab'),
-    Upgrade(600*K, 'User journey workshop', prereq='use_case_workshop'),
+    SHELL_SORT,
+    SHORTEST_PATH,
+    RISK_MANAGEMENT,
+    OUTSOURCED_HR,
+    TESTING_LAB,
+    USER_JOURNEY_WORKSHOP,
   ],
 )
 
@@ -414,17 +484,18 @@ CHAP_3 = Chapter(
 CHAP_4 = Chapter(
   ceo_message = 'Smarter',
   upgrades = [
-    Upgrade( 1*M, 'Learn Lisp', incr='languages'),
-    Upgrade( 2*M, 'Leadership summit', incr='leadership_summit'),
-    Upgrade( 3*M, 'Condition coverage', prereq='languages',
-             incr='coverage_criteria'),
-    Upgrade( 5*M, 'Cloud computing'),
-    Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
-    Upgrade(20*M, 'Quicksort', prereq='languages', incr='algorithms'),
-    Upgrade(20*M, 'Bin packing', prereq='dynamic_programming', incr='algorithms'),
-    Upgrade(50*M, 'Warehouse computing'),
+    LEARN_LISP,
+    LEADERSHIP_SUMMIT,
+    CONDITION_COVERAGE,
+    CLOUD_COMPUTING,
+    QUICKSORT,
+    BIN_PACKING,
+    WAREHOUSE_COMPUTING,
   ],
 )
+
+# PATH_COVERAGE
+# Upgrade(10*M, 'Von Neumann Machine', incr='van_neumonn_machine'),
 
 
 CHAPTERS = [CHAP_1, CHAP_2, CHAP_3, CHAP_4]

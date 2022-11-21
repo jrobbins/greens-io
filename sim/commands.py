@@ -28,11 +28,14 @@ def process_cmd(player_id, cmd):
 
   if (cmd == 'Create test file' and
       rz.languages):
+    rz.cases += 10
     rz.test_files += 1
     return
 
   if (cmd == 'Create test suite' and
       rz.languages):
+    rz.cases += 10
+    rz.test_files += 10
     rz.test_suites += 1
     return
 

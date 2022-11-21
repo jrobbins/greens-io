@@ -18,8 +18,8 @@ def do_automation(a):
     rz.day = rz.maxdays
     return
 
-  new_cases = int(rz.engineers * rz.productity)
-  new_features = int(rz.engineers * rz.productity / 10)
+  new_cases = int(rz.engineers * rz.productivity)
+  new_features = int(rz.engineers * rz.productivity / 10)
 
   new_defects = int((new_cases + new_features) * rz.defect_rate)
   # rz.defects += new_defects
