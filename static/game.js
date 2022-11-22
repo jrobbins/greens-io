@@ -4,8 +4,15 @@ let nz = []; // News
 let nick = '';
 
 let chapters = [];
-let arena = location.pathname;
-gioClient.useArena(arena);
+let teamName = decodeURI(location.pathname);
+while (teamName.startsWith('/')) {
+  teamName = teamName.substring(1);
+}
+while (teamName.endsWith('/')) {
+  teamName = teamName.substring(0, teamName.length - 1);
+}
+
+gioClient.useArena(teamName);
 
 function interp(oldObj, newObj, fraction) {
   const result = { ...oldObj };

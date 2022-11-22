@@ -242,6 +242,8 @@ class Arena:
       self.news[-1][1].append(item)
 
   def get_recent_news(self):
+    if self.resources.day < 30:
+      return self.news
     return self.news[-2:]
 
   def maybe_promote_to_manager(self):

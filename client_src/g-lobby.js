@@ -15,8 +15,11 @@ class Lobby extends LitElement {
   static get styles() {
     return [
       css`
-       dialog {
+       sl-dialog {
          top: 30vh;
+       }
+       sl-dialog::part(close-button) {
+         display: none;
        }
        h1 { 
          margin-top: 0;
@@ -65,8 +68,9 @@ class Lobby extends LitElement {
   
   render() {
     return html`
-      <dialog ?open=${this.open}>
-        <h1>Greens.io</h1>
+      <sl-dialog ?open=${this.open} 
+        label="Greens.io: ${gioClient.arena}"
+        @sl-request-close=${e => e.preventDefault()}>
         <form action="">
           <sl-input id=nick autofocus placeholder="Nickname" 
               size="small" ${ref(this.nickRef)}
@@ -83,7 +87,7 @@ class Lobby extends LitElement {
           <li>Work through upgrades to advance your progress.
           <li>Collaborate to unblock teammates.
         </ul>
-      </dialog>
+      </sl-dialog>
     `;
   }
 }

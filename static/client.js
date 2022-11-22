@@ -4,6 +4,7 @@ class GreensClient {
     this.token = null;
     this.playerId = null;
     this.errorCount = 0;
+    this.arena = '';
     this.arenaId = 99;
   }
 
@@ -53,6 +54,7 @@ class GreensClient {
   // Specific API calls
 
   useArena(arena) {
+    this.arena = arena;
     return this.doPost('/arenas', {arena})
       .then((res) => {
 	this.arenaId = res.arena_id;
