@@ -34,15 +34,27 @@ def do_automation(a):
   rz.cases = min(rz.cases + new_cases, rz.max_cases)
   rz.test_coverage = rz.cases
 
+  rz.features_red = 1 if max_cases_coverage == rz.cases else 0
+  rz.coverage_criteria_red = rz.features_red
+  rz.tech_stack_red = rz.use_cases_red
+  rz.test_files_red = 1 if max_cases_files == rz.cases else 0
+
   if (rz.prioritization and
       rz.cases + new_cases > rz.max_cases):
     new_features += (rz.cases + new_cases - rz.max_cases)
   
   rz.features = min(rz.features + new_features, rz.max_features)
   rz.feature_completeness = rz.features
+  rz.use_cases_red = 1 if rz.max_features == rz.features else 0
 
   rz.engineers = min(rz.engineers + rz.recruiters,
                      10 + rz.managers * 10)
+  rz.managers_red = (
+    1 if (rz.engineers == (10 + rz.managers * 10) or
+          rz.recruiters == rz.managers)
+    else 0)
+  rz.vps_red = 1 if rz.managers + 1 == 10 + rz.vps * 10 else 0
+  rz.senior_vps_red = 1 if rz.vps + 1 == 10 + rz.senior_vps * 10 else 0
   if rz.peer_reviews:
     a.maybe_promote_to_manager()
   if rz.leadership_summit:
@@ -55,6 +67,7 @@ def do_automation(a):
   if rz.automation:
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
+    rz.cycles_red = 1 if rz.runs_per_hour == rz.cycles else 0
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
 
   rz.cpus += rz.ops_bots

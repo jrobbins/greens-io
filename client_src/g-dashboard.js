@@ -33,6 +33,8 @@ class Dashboard extends LitElement {
     'Cases',
     'automation ? Runs per hour % cases',
     'automation ? Greens per hour % runs per hour',
+    '',
+    'Coverage criteria x',
     'coverage_criteria ? Test coverage % max_cases',
     '',
     'Test files',

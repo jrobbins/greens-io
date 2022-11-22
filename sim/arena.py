@@ -22,18 +22,23 @@ class TeamResources:
   test_coverage: int = 5  # always == cases
   max_cases: int = 50
   test_files: int = 5
+  test_files_red: int = 0
   test_suites: int = 0
   coverage_criteria: int = 0
+  coverage_criteria_red: int = 0
   runs_per_hour: int = 0
   greens_per_hour: int = 0
   automation: int = 0
 
   # Product box
   tech_stack: int = 0
+  tech_stack_red: int = 0
   features: int = 20
+  features_red: int = 0
   feature_completeness: int = 20  # always == features
   max_features: int = 20
   use_cases: int = 20
+  use_cases_red: int = 0
   user_journeys: int = 1
   products: int = 1
   categories: int = 1
@@ -48,6 +53,7 @@ class TeamResources:
   # Machines box
   multi_processing: int = 0
   cycles: int = 1000
+  cycles_red: int = 0
   cpus: int = 0
   servers: int = 0
   clusters: int = 0
@@ -59,8 +65,11 @@ class TeamResources:
   engineers: int = 0
   recruiters: int = 0
   managers: int = 0
+  managers_red: int = 0
   vps: int = 0
+  vps_red: int = 0
   senior_vps: int = 0
+  senior_vps_red: int = 0
   tech_leads: int = 0
   productivity: int = 1
   defect_rate: float = 0.1
@@ -217,7 +226,6 @@ class Arena:
 
   def record_contact(self, player_id):
     if player_id in self.roster:
-      logging.info('Record_Contact %r %r', player_id, int(time.time()))
       self.roster[player_id].last_contact = int(time.time())
       
   def authenticate(self, player_id, token):

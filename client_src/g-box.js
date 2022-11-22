@@ -27,6 +27,10 @@ sl-card::part(header) {
   font-weight: bold;
 }
 
+.bottleneck {
+ color: darkred;
+}
+
 th {
   text-align: left;
   font-weight: normal;
@@ -96,7 +100,8 @@ sl-button {
       resourceName = resourceName.substring(0, resourceName.length - 2);
       units = 'x';
     }
-    const value = this.rz[toSnakeCase(resourceName)];
+    const snake = toSnakeCase(resourceName);
+    const value = this.rz[snake];
     if (!value || value==1 && units=='x') return nothing;
     let percent = null;
     if (outOf) {
@@ -104,8 +109,9 @@ sl-button {
       if (outOfValue)
         percent = Math.floor(value / outOfValue * 100);
     }
+    const bottleneck = this.rz[snake + '_red'];
     return html`
-<tr>
+<tr class="${bottleneck ? 'bottleneck' : ''}">
   <th>${this.maybeRewrite(resourceName)}:</th>
   <td>${commas(value)}${units}</td>
   ${percent === null ? nothing : html`
