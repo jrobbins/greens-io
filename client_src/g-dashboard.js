@@ -51,6 +51,7 @@ class Dashboard extends LitElement {
   .rz=${this.rz}
   .resourceList=${[
     'Features', 
+    'Tech stack x',
     'use_case_workshop ? Use cases', 
     'user_journey_workshop ? User journeys', 
     'product_workshop ? Products', 
@@ -73,6 +74,7 @@ class Dashboard extends LitElement {
   .rz=${this.rz}
   .resourceList=${[
     'Engineers', 
+    'Productivity x',
     'Managers', 
     'Recruiters', 
     'VPs', 

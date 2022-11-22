@@ -63,7 +63,7 @@ LEARN_JAVASCRIPT = Upgrade(
   10, 'Learn JavaScript', incr='languages',
   tooltip='Add a language to your collection.',
   quiz=Quiz('''
-    According to github project wtfjs, which of the following
+    According to the github project wtfjs, which of the following
     expressions evaluates to true?
     |  +true
     |X parseInt(1 / 1999999) == 5
@@ -99,7 +99,7 @@ RECURSION = Upgrade(
   30, 'Recursion', incr='algorithms', prereq='languages',
   tooltip='Grow your algorithm repertoire.',
   quiz=Quiz('''
-    What does a tail-recursive function do to unwind:
+    What does a tail-recursive function do to unwind?
     |  Light reading
     |  Random walks
     |  Goat yoga

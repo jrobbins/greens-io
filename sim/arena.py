@@ -29,8 +29,9 @@ class TeamResources:
   automation: int = 0
 
   # Product box
+  tech_stack: int = 0
   features: int = 20
-  feature_completeness: int = 62  # always == features
+  feature_completeness: int = 20  # always == features
   max_features: int = 20
   use_cases: int = 20
   user_journeys: int = 1
@@ -54,7 +55,7 @@ class TeamResources:
   ops_bots: int = 0
   self_replicating_bots: int = 0
 
-  # People box
+  # Team box
   engineers: int = 0
   recruiters: int = 0
   managers: int = 0

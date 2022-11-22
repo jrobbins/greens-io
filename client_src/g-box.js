@@ -67,8 +67,11 @@ sl-button {
 	return false;
     }
     let [resourceName, outOf] = resourceSpec.split(' % ');
+    if (resourceName.endsWith(' x')) {
+      resourceName = resourceName.substring(0, resourceName.length - 2);
+    }
     const value = this.rz[toSnakeCase(resourceName)];
-    return value;
+    return value > 1;
   }
   
   renderResource(resourceSpec) {
@@ -81,6 +84,7 @@ sl-button {
     `;
     };
 
+    let units = '';
     if (resourceSpec.includes(' ? ')) {
       let cond = null;
       [cond, resourceSpec] = resourceSpec.split(' ? ');
@@ -88,8 +92,12 @@ sl-button {
       if (!condValue) return nothing;
     }
     let [resourceName, outOf] = resourceSpec.split(' % ');
+    if (resourceName.endsWith(' x')) {
+      resourceName = resourceName.substring(0, resourceName.length - 2);
+      units = 'x';
+    }
     const value = this.rz[toSnakeCase(resourceName)];
-    if (!value) return nothing;
+    if (!value || value==1 && units=='x') return nothing;
     let percent = null;
     if (outOf) {
       const outOfValue = this.rz[toSnakeCase(outOf)];
@@ -99,7 +107,7 @@ sl-button {
     return html`
 <tr>
   <th>${this.maybeRewrite(resourceName)}:</th>
-  <td>${commas(value)}</td>
+  <td>${commas(value)}${units}</td>
   ${percent === null ? nothing : html`
     <td>=</td>
     <td>${percent}%</td>

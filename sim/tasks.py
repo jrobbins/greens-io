@@ -28,7 +28,8 @@ def do_automation(a):
   max_cases_coverage = (10 if not rz.coverage_criteria
                         else rz.features * rz.coverage_criteria)
   max_cases_files = rz.test_files * 100
-  rz.max_features = rz.use_cases * (rz.languages or 1) * (rz.algorithms or 1)
+  rz.tech_stack = (rz.languages or 1) * (rz.algorithms or 1)
+  rz.max_features = rz.use_cases * rz.tech_stack
   rz.max_cases = min(max_cases_coverage, max_cases_files)
   rz.cases = min(rz.cases + new_cases, rz.max_cases)
   rz.test_coverage = rz.cases
