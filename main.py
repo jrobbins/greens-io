@@ -11,10 +11,12 @@ from api import story_api
 
 api_routes = [
     ('/story', story_api.StoryAPI),
-    ('/players', players_api.PlayersAPI),
-    ('/players/<string:player_id>', players_api.PlayersAPI),
-    ('/cmd/<int:player_id>', cmd_api.CommandAPI),
-    ('/arena/<int:player_id>', arena_api.ArenaAPI),
+    ('/players/<int:arena_id>', players_api.PlayersAPI),
+    ('/players/<int:arena_id>/<string:player_id>',
+     players_api.PlayersAPI),
+    ('/cmds/<int:arena_id>/<int:player_id>', cmd_api.CommandAPI),
+    ('/arenas', arena_api.ArenaAPI),
+    ('/arenas/<int:arena_id>/<int:player_id>', arena_api.ArenaAPI),
     ]
 
 app = basehandlers.FlaskApplication(

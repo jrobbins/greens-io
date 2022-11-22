@@ -8,8 +8,10 @@ from sim import tasks
 
 class ArenaAPI(basehandlers.APIHandler):
 
-  def do_get(self, player_id):
-    a = arena.main_arena
+  def do_get(self, arena_id, player_id):
+    a = arena.get_arena(arena_id)
+    if not a:
+      flask.abort(404, 'no such arena')
     a.record_contact(player_id)
     tasks.do_tasks(a)
     p = a.get_player(player_id)
@@ -23,5 +25,12 @@ class ArenaAPI(basehandlers.APIHandler):
     return {
       'resources': combined_resources,
       'news': news,
+    }
+
+  def do_post(self):
+    arena_name = self.get_param('arena')
+    arena_id = arena.create_arena(arena_name)
+    return {
+      'arena_id': arena_id,
     }
 

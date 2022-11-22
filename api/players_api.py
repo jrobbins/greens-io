@@ -7,8 +7,10 @@ from sim import arena
 
 class PlayersAPI(basehandlers.APIHandler):
 
-  def do_get(self, player_id=None):
-    a = arena.main_arena
+  def do_get(self, arena_id=None, player_id=None):
+    a = arena.get_arena(arena_id)
+    if not a:
+      flask.abort(404, 'no such arena')
     if player_id:
       p = a.get_player(player_id)
       return serialize_player(p)
@@ -16,7 +18,10 @@ class PlayersAPI(basehandlers.APIHandler):
       pl = a.get_all_players()
       return [serialize_player(p) for p in pl]
 
-  def do_post(self, player_id=None):
+  def do_post(self, arena_id=None, player_id=None):
+    a = arena.get_arena(arena_id)
+    if not a:
+      flask.abort(404, 'no such arena')
     if player_id:
       flask.abort(400, 'client should not create player IDs')
 
@@ -24,7 +29,6 @@ class PlayersAPI(basehandlers.APIHandler):
     if msg := validate_nick(nick):
       flask.abort(400, msg)
     
-    a = arena.main_arena
     p = a.enroll_player(nick)
     return serialize_player(p, include_token=True)
 

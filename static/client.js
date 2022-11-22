@@ -4,6 +4,7 @@ class GreensClient {
     this.token = null;
     this.playerId = null;
     this.errorCount = 0;
+    this.arenaId = 99;
   }
 
   /* Make a JSON API call to the server.
@@ -51,8 +52,17 @@ class GreensClient {
   // //////////////////////////////////////////////////////////////
   // Specific API calls
 
+  useArena(arena) {
+    return this.doPost('/arenas', {arena})
+      .then((res) => {
+	this.arenaId = res.arena_id;
+	return res;
+      });
+    // TODO: catch((error) => { display message }
+  }
+
   addPlayer(nick) {
-    return this.doPost('/players', {nick})
+    return this.doPost(`/players/${this.arenaId}`, {nick})
       .then((res) => {
 	this.token = res.token;
 	this.playerId = res.player_id;
@@ -62,7 +72,8 @@ class GreensClient {
   }
 
   getPlayers() {
-    return this.doGet(`/players`).then((res) => res);
+    return this.doGet(`/players/${this.arenaId}`)
+      .then((res) => res);
     // TODO: catch((error) => { display message }
   }
 
@@ -72,13 +83,13 @@ class GreensClient {
   }
 
   getArena() {
-    const url = `/arena/${this.playerId}`;
+    const url = `/arenas/${this.arenaId}/${this.playerId}`;
     return this.doGet(url).then((res) => res);
     // TODO: catch((error) => { display message }
   }
 
   postCmd(cmd) {
-    const url = `/cmd/${this.playerId}`;
+    const url = `/cmds/${this.arenaId}/${this.playerId}`;
     const body = {
       token: this.token,
       cmd,

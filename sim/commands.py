@@ -5,8 +5,7 @@ from sim import story
 from sim import utils
 
 
-def process_cmd(player_id, cmd):
-  a = arena.main_arena
+def process_cmd(a, player_id, cmd):
   rz = a.resources
   logging.info('process_cmd %r %r', player_id, cmd)
   if player_id not in a.roster:

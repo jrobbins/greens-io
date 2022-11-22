@@ -4,7 +4,8 @@ let nz = []; // News
 let nick = '';
 
 let chapters = [];
-
+let arena = location.pathname;
+gioClient.useArena(arena);
 
 function interp(oldObj, newObj, fraction) {
   const result = { ...oldObj };

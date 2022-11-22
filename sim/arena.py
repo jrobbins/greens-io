@@ -268,14 +268,22 @@ class Arena:
 
 
 
-main_arena = Arena('My team')
-main_arena_id = 'My team'
-multiverse = {
-  main_arena_id: main_arena,
-}
+next_arena_id = 10
+multiverse = {}
 
 
 def get_arena(arena_id):
   return multiverse.get(arena_id)
 
 
+def create_arena(team_name):
+  global next_arena_id
+  
+  for arena_id, a in multiverse.items():
+    if team_name == a.team_name:
+      return arena_id
+
+  next_arena_id += 1
+  a = Arena(team_name)
+  multiverse[next_arena_id] = a
+  return next_arena_id
