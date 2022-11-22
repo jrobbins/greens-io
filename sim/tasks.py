@@ -70,6 +70,7 @@ def do_automation(a):
     rz.cycles_red = 1 if rz.runs_per_hour == rz.cycles else 0
     rz.greens_per_hour = max(0, rz.runs_per_hour - rz.defects)
 
+  rz.cycles += rz.ops_bots * 10
   rz.cpus += rz.ops_bots
   rz.servers += rz.ops_bots // 10
   if rz.self_replicating_bots:
