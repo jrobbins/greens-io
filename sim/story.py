@@ -674,16 +674,17 @@ WELCOME_EMAIL = {
     """As you may have read in the press, our products have 
     suffered some recent failures due to software defects. 
     The board has made it clear to me that signigicant 
-    change is needed.  And we have exactly one calendar year
-    to do it.  That's why you're all 
-    here.""",
+    change is needed.  In fact, executive compensation will
+    be tied to the number of greens generated.   We have
+    exactly one calendar year to turn things around.  That's
+    why you're all here.""",
     """Every single one of you has been recruited because of 
     your single-minded obsession with tesing.  I need you
     to reach way down into your inner-most self, grab that
     testing energy with both hands and ride it like a
     stampede of greased elephants galloping down a steep hill
     during a hurricane. Don't stop for nothing or nobody.""",
-    "Let's get down to work!"],
+    "Generate!"],
   }
 
 PROMO_EMAIL = {
@@ -700,7 +701,8 @@ PROMO_EMAIL = {
     your skillset by learning as many languages and algorithms
     as you possibly can in the remainder of the quarter.""",
     """Given your track record so far, I'm expecting you to
-    exceeed all expectations.  Even mine!"""],
+    exceeed all expectations.  Even meta-expectations.""",
+    """Validate!"""],
   }
 
 TEAMWORK_EMAIL = {
@@ -721,7 +723,8 @@ TEAMWORK_EMAIL = {
     the universe more powerful than the raw ambition
     of a few determined, obsessive, dedicated... slightly
     unbalanced.... individuals.""",
-    """Except, for butts-in-seats."""],
+    """Except, for butts-in-seats.""",
+    """Collaborate!"""],
   }
 
 SMARTER_EMAIL = {
@@ -733,11 +736,30 @@ SMARTER_EMAIL = {
     out to chop down more trees than anyone else in the
     crew.  On the first day he impressed everyone.   On the second
     day, he worked harder, but chopped fewer.  On the third
-    day he wore himself out for the fewest logs.""",
+    day he wore himself out while producing the fewest logs.""",
     """Finally, a wise old lumberjack gave him some valuable advice:
     "Son, that's a chainsaw." """,
     """Innovate!"""],
   }
+
+AMBITION_EMAIL = {
+  'from': 'The CEO',
+  'to': 'Team leads',
+  'subject': 'Merger madness',
+  'body': [
+    """Friends, I am overjoyed to see all our hard work pay off.""",
+    """Our culture of quality, innovation, and obsessively hard work
+    has allowed us to surpass other firms in our category.""",
+    """As a result, we can now bring in outsiders
+    to be your new boss's boss's boss.  Also, we will soon have many
+    new employees from acquisitions, so there may need to be some
+    cuts, while we maintain our focus on doing whatever it is you do.""",
+    """Speaking of which, we'll need you to do more of it, because we
+    will be acquiring a bunch of other products, all of which have LOTS
+    of problems."""
+    """Integrate!"""],
+  }
+
 
 
 ALL_EMAILS = {
@@ -745,6 +767,7 @@ ALL_EMAILS = {
   1: PROMO_EMAIL,
   2: TEAMWORK_EMAIL,
   3: SMARTER_EMAIL,
+  4: AMBITION_EMAIL,
   }
 
 
