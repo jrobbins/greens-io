@@ -144,6 +144,7 @@ sl-button {
 
     return html`
 <sl-button size=small pill variant=primary
+    id=${toSnakeCase(cmd)}
     @click=${this.handleClick.bind(this, cmd)}
     ?disabled=${disabled}
     >

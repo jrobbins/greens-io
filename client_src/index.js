@@ -8,6 +8,7 @@ import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/radio-group/radio-group.js';
 import '@shoelace-style/shoelace/dist/components/radio/radio.js';
 import '@shoelace-style/shoelace/dist/components/card/card.js';
+import '@shoelace-style/shoelace/dist/components/popup/popup.js';
 
 import {setBasePath} from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 
@@ -25,3 +26,4 @@ import './g-news';
 import './g-box';
 import './g-quiz';
 import './g-email';
+import './g-tutor';

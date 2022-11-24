@@ -1,7 +1,9 @@
 import {LitElement, css, html, nothing} from 'lit';
+import {ref, createRef} from 'lit/directives/ref.js';
 
 class App extends LitElement {
-  
+  tutorRef = createRef();
+
   static get properties() {
     return {
       rz: {type: Object},
@@ -67,6 +69,10 @@ class App extends LitElement {
     this.chapters = [];
   }
 
+  startTutorial() {
+    this.tutorRef.value.start();
+  }
+  
   render() {
     return html`
       <g-odometer .rz=${this.rz}></g-odometer>
@@ -76,6 +82,7 @@ class App extends LitElement {
       <g-calendar .day=${this.rz.day} .hour=${this.rz.hour}
          .maxdays=${this.rz.maxdays}></g-calendar>
       <g-news .nz=${this.nz}></g-news>
+      <g-tutor ${ref(this.tutorRef)}></g-tutor>
     `;
   }
 }

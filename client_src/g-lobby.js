@@ -56,6 +56,7 @@ class Lobby extends LitElement {
     gioClient.addPlayer(this.nick).then((res) => {
       console.log(res);
       this.roster = res;
+      appEl.startTutorial();
     });
   }
 
@@ -85,7 +86,6 @@ class Lobby extends LitElement {
           <li>Do manual and automated testing to earn greens.
           <li>Accumulate as many as you can in 20 minutes.
           <li>Work through upgrades to advance your progress.
-          <li>Collaborate to unblock teammates.
         </ul>
       </sl-dialog>
     `;

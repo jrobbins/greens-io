@@ -27,7 +27,7 @@ class Dashboard extends LitElement {
   render() {
     return html`
 <g-box
-  name="Tests"
+  id="tests" name="Tests"
   .rz=${this.rz}
   .resourceList=${[
     'Cases',
