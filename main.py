@@ -44,4 +44,7 @@ def node_modules(filename):
 @app.route('/<path:path>')
 def spa_pages(path):
     logging.info('serving spa page: %r', path)
-    return app.send_static_file("index.html")
+    return flask.render_template(
+        'index.html',
+        version=settings.APP_VERSION)
+    # return app.send_static_file("index.html")

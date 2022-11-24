@@ -70,7 +70,7 @@ class App extends LitElement {
   }
 
   startTutorial() {
-    this.tutorRef.value.start();
+    tutorEl.start();
   }
   
   render() {
@@ -82,7 +82,6 @@ class App extends LitElement {
       <g-calendar .day=${this.rz.day} .hour=${this.rz.hour}
          .maxdays=${this.rz.maxdays}></g-calendar>
       <g-news .nz=${this.nz}></g-news>
-      <g-tutor ${ref(this.tutorRef)}></g-tutor>
     `;
   }
 }
