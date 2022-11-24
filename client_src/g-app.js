@@ -73,7 +73,8 @@ class App extends LitElement {
       <g-upgrades .rz=${this.rz} .chapters=${this.chapters}>
       </g-upgrades>
       <g-dashboard .rz=${this.rz}></g-dashboard>
-      <g-calendar .day=${this.rz.day}></g-calendar>
+      <g-calendar .day=${this.rz.day} .hour=${this.rz.hour}
+         .maxdays=${this.rz.maxdays}></g-calendar>
       <g-news .nz=${this.nz}></g-news>
     `;
   }

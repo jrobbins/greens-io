@@ -22,6 +22,8 @@ class Calendar extends LitElement {
   static get properties() {
     return {
       day: {type: Number},
+      maxdays: {type: Number},
+      hour: {type: Number},
     };
   }
   
@@ -73,6 +75,8 @@ span {
   constructor() {
     super();
     this.day = 1;
+    this.maxdays = 365;
+    this.hour = 1;
   }
 
   renderCalendar() {
@@ -102,8 +106,25 @@ span {
     `;
   }
 
+  redFinalDays() {
+    if (!this.day) return nothing;
+    let daysLeft = this.maxdays - this.day; //this.rz.maxdays
+    if (daysLeft > 20) return nothing;
+    if (this.hour % 2 ==0) daysLeft = 20;
+
+    return html`
+<style>
+  :host {
+    transition: background .6s;
+    background: hsla(0 100% ${85 + daysLeft/2}%) !important;
+  }
+</style>
+      `;
+  }
+  
   render() {
     return html`
+${this.redFinalDays()}
 <div class="outer">
   <div class="calendar">
     ${this.renderCalendar()}
