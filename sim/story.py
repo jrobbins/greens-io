@@ -39,10 +39,9 @@ LEARN_HTML = Upgrade(
   10, 'Learn HTML',
   tooltip='HTML sure comes in handy when testing a web app.',
   quiz=Quiz('''
-    Based on documentation on MDN, what HTML element would you
-    use to indicate a foreign phrase in an English sentence?
+    The HTML <i> element used to mean Italic, but now it is:
     |  Emphasis
-    |  Italic
+    |  I can't believe it's not italic (TM)
     |X Idiomatic text
     |  Italiano
   '''))
@@ -183,8 +182,8 @@ BUBBLE_SORT = Upgrade(
     |  Distort
   '''))
 
-AUTOMATION = Upgrade(
-  1*K, 'Automation', prereq='languages', incr='automation',
+TEST_AUTOMATION = Upgrade(
+  1*K, 'Test automation', prereq='languages', incr='test_automation',
   tooltip='Run tests every hour.',
   quiz=Quiz('''
     A "deamon" is a program that:
@@ -572,7 +571,7 @@ CHAP_2 = Chapter(
     LEARN_BASIC,
     BINARY_SEARCH,
     BUBBLE_SORT,
-    AUTOMATION,
+    TEST_AUTOMATION,
     LEARN_C,
     STATEMENT_COVERAGE,
     SPEC_WRITING,

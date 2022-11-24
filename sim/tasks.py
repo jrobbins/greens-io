@@ -64,7 +64,7 @@ def do_automation(a):
     if rz.hour == 0:
       rz.recruiters += 1
 
-  if rz.automation:
+  if rz.test_automation:
     rz.greens += rz.greens_per_hour
     rz.runs_per_hour = min(rz.cases, rz.cycles)
     rz.cycles_red = 1 if rz.runs_per_hour == rz.cycles else 0

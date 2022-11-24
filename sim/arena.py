@@ -28,7 +28,7 @@ class TeamResources:
   coverage_criteria_red: int = 0
   runs_per_hour: int = 0
   greens_per_hour: int = 0
-  automation: int = 0
+  test_automation: int = 0
 
   # Product box
   tech_stack: int = 0
@@ -84,7 +84,7 @@ class TeamResources:
 @dataclasses.dataclass
 class PlayerSkills:
   test_runner: int = 0
-  automation: int = 0
+  test_automation: int = 0
 
   ides: int = 0
   version_control: int = 0

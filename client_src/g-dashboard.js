@@ -31,8 +31,8 @@ class Dashboard extends LitElement {
   .rz=${this.rz}
   .resourceList=${[
     'Cases',
-    'automation ? Runs per hour % cases',
-    'automation ? Greens per hour % runs per hour',
+    'test_automation ? Runs per hour % cases',
+    'test_automation ? Greens per hour % runs per hour',
     '',
     'Coverage criteria x',
     'coverage_criteria ? Test coverage % max_cases',
