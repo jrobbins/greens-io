@@ -306,32 +306,83 @@ USE_CASE_WORKSHOP = Upgrade(
 LEARN_GO = Upgrade(
   8*K, 'Learn Go', incr='languages',
   tooltip='Add a language to your collection.',
-  )
+  quiz=Quiz('''
+    Which of the following is NOT a Go keyworod?
+    |  chan
+    |X elect
+    |  defer
+    |  range
+    |  fallthrough
+  '''))
+
 
 LEARN_TYPESCRIPT = Upgrade(
   9*K, 'Learn TypeScript', incr='languages',
   tooltip='Add a language to your collection.',
-  )
+  quiz=Quiz('''
+  TypeScript was initially developer at Microsoft.
+  Which of the following is NOT a language developed at Microsoft?
+    |  C#
+    |  VisualBasic
+    |  F#
+    |X Very#
+    |  Visual J#
+    |  Applesoft BASIC
+  '''))
+
 
 WATERFALL_MODEL = Upgrade(
   10*K, 'Waterfall model',
   tooltip='Allow hiring of engineers.',
-  )
+  quiz=Quiz('''
+  Which of the following is NOT a phase of the 
+  waterfall model of software development?
+    |  Requirements
+    |  Design
+    |  Implementation
+    |X Hydration
+    |  Testing
+    |  Maintenance
+  '''))
+
 
 BRANCH_COVERAGE = Upgrade(
   12*K, 'Branch coverage', incr='coverage_criteria', prereq='languages',
   tooltip='Allow more test cases for each feature.',
-  )
+  quiz=Quiz('''
+    Branch coverage is better than statement coverage because it prompts
+    developers to write tests that:
+    |X Completely skip the execution of a loop
+    |  Completely reverse the items of a list
+    |  Completely break a style guideline
+    |  Completely free allocated memory
+  '''))
 
 PROMO_PROCESS = Upgrade(
   15*K, 'Promo process',
   tooltip='Allow promoting engineers to managers.',
-  )
+  quiz=Quiz('''
+  Promotions typically happen after a:
+    |  Full moon
+    |  Stock split
+    |  Black Friday sale
+    |X Performance evaluation 
+    |  World Cup
+    |  Ritual robot dance
+  '''))
+
 
 TEST_DRIVEN_DEVELOPMENT = Upgrade(
   30*K, 'Test driven development', incr='coverage_criteria',
   tooltip='Allow more test cases for each feature.',
-  )
+  quiz=Quiz('''
+  Test Driven Development requires developers to write tests before:
+    |  Eating breakfast
+    |  Shopping for Christmas
+    |X Writing the code to be tested
+    |  Depositing their pay checks
+    |  Understanding the requirements
+  '''))
 
 RECRUITING = Upgrade(
   30*K, 'Recruiting',

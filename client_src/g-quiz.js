@@ -44,7 +44,7 @@ sl-dialog::part(body) {
     this.answers = [];
     this.submitDisabled = true;
     this.correct = true;
-    this.totalDelay = 5000;
+    this.totalDelay = 1000;
     this.delaySoFar = 0;
   }
 
@@ -65,7 +65,7 @@ sl-dialog::part(body) {
     this.correct = this.answers.includes(guess);
 
     if (this.correct) {
-      this.totalDelay = Math.max(2000, this.totalDelay - 3000);
+      this.totalDelay = Math.max(1000, this.totalDelay - 3000);
     } else {
       this.totalDelay = Math.min(30000, this.totalDelay + 3000);
     }
