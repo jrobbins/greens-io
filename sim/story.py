@@ -387,7 +387,14 @@ TEST_DRIVEN_DEVELOPMENT = Upgrade(
 RECRUITING = Upgrade(
   30*K, 'Recruiting',
   tooltip='Allow hiring of recruiters.',
-  )
+  quiz=Quiz('''
+  Recruiters typically scan thousands of resumes looking for:
+    |X The most matching keywords
+    |  The smallest mistakes
+    |  The earliest signs of the apocalypse
+    |  The funniest movie script ideas
+    |  The highest salary requirements
+  '''))
 
 PEER_REVIEWS = Upgrade(
   50*K, 'Peer reviews', incr='peer_reviews',
