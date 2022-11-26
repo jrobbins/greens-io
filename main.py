@@ -40,11 +40,16 @@ def node_modules(filename):
 
 
 @app.route('/', defaults={'path': ''})
+def home_page(path):
+    logging.info('serving home page: %r', path)
+    return flask.render_template(
+        'index.html',
+        version=settings.APP_VERSION)
+
 @app.route("/<string:path>") 
 @app.route('/<path:path>')
 def spa_pages(path):
     logging.info('serving spa page: %r', path)
     return flask.render_template(
-        'index.html',
+        'game.html',
         version=settings.APP_VERSION)
-    # return app.send_static_file("index.html")

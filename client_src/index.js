@@ -16,6 +16,7 @@ import {setBasePath} from '@shoelace-style/shoelace/dist/utilities/base-path.js'
 setBasePath('/static/shoelace');
 
 
+import './g-intro';
 import './g-lobby';
 import './g-app';
 import './g-odometer';

@@ -11,6 +11,10 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#526E9C">
 
+  <script defer src="/static/constants.js?v={{version}}"></script>
+  <script defer src="/static/client.js?v={{version}}"></script>
+  <script defer src="/static/lobby.js?v={{version}}"></script>
+  <script defer src="/static/game.js?v={{version}}"></script>
   <script type="module" src="/static/dist/index.js?v={{version}}"></script>
     
   <link rel="stylesheet" href="/static/style.css">
@@ -19,6 +23,8 @@
 </head>
 
 <body>
-  <g-intro></g-intro>
+  <g-app></g-app>
+  <g-lobby></g-lobby>
+  <g-tutor></g-tutor>
 </body>
 </html>

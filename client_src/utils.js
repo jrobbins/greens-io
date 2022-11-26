@@ -38,3 +38,9 @@ export function toSnakeCase(s) {
   const words = [...s.matchAll(/[a-z0-9]+/ig)].map(m => m[0]);
   return words.join('_');
 }
+
+export function toSlug(s) {
+  s = s.toLowerCase();
+  const words = [...s.matchAll(/[a-z0-9]+/ig)].map(m => m[0]);
+  return words.join('-');
+}
