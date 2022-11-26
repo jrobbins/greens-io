@@ -151,7 +151,7 @@ class Intro extends LitElement {
       <sl-dialog open label="Greens.io"
         @sl-request-close=${e => e.preventDefault()}>
           <div id=row1>
-          Team name:
+          <span style="white-space:nowrap">Team name:</span>
           <sl-input id=team autofocus 
               size="small" ${ref(this.teamRef)}
               @sl-input=${e => {console.log(23322); this.teamChange()}}
