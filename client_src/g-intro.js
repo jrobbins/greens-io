@@ -1,29 +1,28 @@
 import {LitElement, css, html, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
-import {commas, toSlug} from './utils.js';
 
 
 const WORD_ONE_CHOICES = [
-  'awesome', 'happy', 'senior', 'techo', 'jammin', 'loud',
-  'adorable', 'adventurous', 'bored', 'brainy', 'brave',
-  'bright', 'busy', 'calm', 'careful', 'cautious', 'charming',
-  'cheerful', 'clever', 'clumsy', 'colorful', 'comfortable',
-  'confused', 'cooperative', 'courageous', 'crazy',
-  'curious', 'disgusted', 'distinct', 'dizzy', '  doubtful',
-  'eager', 'elated', 'elegant', 'enchanting', 'encouraging',
-  'energetic', 'enthusiastic', 'excited', 'exuberant', 'fair',
-  'faithful', 'famous', 'fancy', 'fantastic', 'fierce', 'friendly',
-  'funny', 'gentle', 'gifted', 'glamorous', 'gleaming', 'glorious',
-  'graceful', 'grumpy', 'handsome', 'healthy', 'helpful', 'hilarious',
-  'hungry', 'innocent', 'inquisitive', 'jealous', 'jittery', 'jolly',
-  'joyous', 'kind', 'lucky', 'magnificent', 'modern', 'mysterious',
-  'nutty', 'obedient', 'odd', 'outrageous', 'outstanding', 'perfect',
-  'pleasant', 'poised', 'powerful', 'prickly', 'proud', 'puzzled',
-  'quaint', 'real', 'shiny', 'shy', 'silly', 'sleepy', 'smiling',
-  'sparkling', 'splendid', 'spotless', 'stormy', 'strange',
-  'successful', 'super', 'talented', 'tame', 'tasty', 'tender',
-  'thankful', 'thoughtful', 'tough', 'unsightly', 'unusual',
-  'victorious', 'wandering', 'wild', 'witty', 'zany', 'zealous'];
+  'Awesome', 'Happy', 'Senior', 'Techo', 'Jammin', 'Loud',
+  'Adorable', 'Adventurous', 'Bored', 'Brainy', 'Brave',
+  'Bright', 'Busy', 'Calm', 'Careful', 'Cautious', 'Charming',
+  'Cheerful', 'Clever', 'Clumsy', 'Colorful', 'Comfortable',
+  'Confused', 'Cooperative', 'Courageous', 'Crazy',
+  'Curious', 'Disgusted', 'Distinct', 'Dizzy', '  Doubtful',
+  'Eager', 'Elated', 'Elegant', 'Enchanting', 'Encouraging',
+  'Energetic', 'Enthusiastic', 'Excited', 'Exuberant', 'Fair',
+  'Faithful', 'Famous', 'Fancy', 'Fantastic', 'Fierce', 'Friendly',
+  'Funny', 'Gentle', 'Gifted', 'Glamorous', 'Gleaming', 'Glorious',
+  'Graceful', 'Grumpy', 'Handsome', 'Healthy', 'Helpful', 'Hilarious',
+  'Hungry', 'Innocent', 'Inquisitive', 'Jealous', 'Jittery', 'Jolly',
+  'Joyous', 'Kind', 'Lucky', 'Magnificent', 'Modern', 'Mysterious',
+  'Nutty', 'Obedient', 'Odd', 'Outrageous', 'Outstanding', 'Perfect',
+  'Pleasant', 'Poised', 'Powerful', 'Prickly', 'Proud', 'Puzzled',
+  'Quaint', 'Real', 'Shiny', 'Shy', 'Silly', 'Sleepy', 'Smiling',
+  'Sparkling', 'Splendid', 'Spotless', 'Stormy', 'Strange',
+  'Successful', 'Super', 'Talented', 'Tame', 'Tasty', 'Tender',
+  'Thankful', 'Thoughtful', 'Tough', 'Unstoppable', 'Unusual',
+  'Victorious', 'Wandering', 'Wild', 'Witty', 'Zany', 'Zealous'];
 
 const WORD_TWO_CHOICES = [
   'bit', 'byte', 'button', 'computer', 'server', 'software',
@@ -33,7 +32,8 @@ const WORD_TWO_CHOICES = [
   'page', 'internet', 'interanet', 'protocol', 'corp',
   'breakfast', 'snack', 'lunch', 'dinner', 'coffee',
   'mountain', 'ocean', 'desert', 'valley', 'river',
-  'gameshow'];
+  'gameshow', 'art', 'pet', 'music', 'game', 'power',
+  'daytime', 'night', 'morning', 'rally', 'sports'];
 
 const WORD_THREE_CHOICES = [
   'hackers', 'heros', 'inspectors', 'handlers', 'wranglers',
@@ -41,7 +41,8 @@ const WORD_THREE_CHOICES = [
   'students', 'inventors', 'ninjas', 'crew', 'team', 'party',
   'troop', 'bunch', 'committee', 'clique', 'hosts', 'newbies',
   'bears', 'cats', 'flock', 'birds', 'tigers', 'lions',
-  'wolves', 'pirates', 'eagles', 'sharks', 'highlanders'];
+  'wolves', 'pirates', 'eagles', 'sharks', 'highlanders',
+  'wizards', 'people', 'folks', 'singers', 'fans', 'superfans'];
 
 
 class Intro extends LitElement {
@@ -119,7 +120,7 @@ class Intro extends LitElement {
 
   teamChange() {
     console.log(this.teamRef.value.value);
-    this.slug = toSlug(this.teamRef.value.value);
+    this.slug = this.teamRef.value.value;
   }
   
   copy() {
