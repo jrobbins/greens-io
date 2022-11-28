@@ -30,6 +30,10 @@ class Quiz extends LitElement {
 sl-dialog::part(body) {
   padding-top: 0;
 }
+
+sl-radio:not(:last-of-type) {
+  margin-bottom: 16px;
+}
     `];
   }
 
@@ -174,7 +178,7 @@ sl-dialog::part(body) {
     return html`
 <sl-dialog label=${this.up.name} ?open=${this.open}
        @sl-hide=${e => this.open = false}>
-  <div>${this.up.tooltip}</div>
+  <div><b>${this.up.tooltip}</b></div>
   ${this.renderQuiz()}
   <span slot="footer" id="msg">
     ${this.renderMessage()}

@@ -40,6 +40,33 @@ th {
 sl-button {
   margin: 4px;
 }
+
+.fall-in {
+  animation-duration: 1.2s;
+  animation-name: fall-in;
+}
+
+@keyframes fall-in {
+  from {
+    transform: scale(5)  translateX(100px) translateY(-70px) rotate(160deg);
+  }
+
+  60% {
+    transform: scale(1.5);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1) translateX(0) translateY(0) rotate(0deg);
+  }
+}
     `];
   }
 
@@ -133,7 +160,8 @@ sl-button {
   }
 
   renderAction(actionSpec) {
-    if (actionSpec.includes(' ? ')) {
+    const hasCond = actionSpec.includes(' ? ');
+    if (hasCond) {
       let cond = null;
       [cond, actionSpec] = actionSpec.split(' ? ');
       const condValue = this.rz[toSnakeCase(cond)];
@@ -144,6 +172,7 @@ sl-button {
 
     return html`
 <sl-button size=small pill variant=primary
+    class="${hasCond ? 'fall-in' : ''}"
     id=${toSnakeCase(cmd)}
     @click=${this.handleClick.bind(this, cmd)}
     ?disabled=${disabled}
