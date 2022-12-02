@@ -813,7 +813,7 @@ AMBITION_EMAIL = {
     cuts, while we maintain our focus on doing whatever it is you do.""",
     """Speaking of which, we'll need you to do more of it, because we
     will be acquiring a bunch of other products, all of which have LOTS
-    of problems."""
+    of problems.""",
     """Integrate!"""],
   }
 

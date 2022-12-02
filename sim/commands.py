@@ -27,15 +27,15 @@ def process_cmd(a, player_id, cmd):
 
   if (cmd == 'Create test file' and
       rz.languages):
-    rz.cases += 10
-    rz.test_files += 1
+    rz.cases += 10 * (rz.productivity or 1)
+    rz.test_files += (rz.productivity or 1)
     return
 
   if (cmd == 'Create test suite' and
       rz.languages):
-    rz.cases += 10
-    rz.test_files += 10
-    rz.test_suites += 1
+    rz.cases += 30 * (rz.productivity or 1)
+    rz.test_files += 20 * (rz.productivity or 1)
+    rz.test_suites += 1 * (rz.productivity or 1)
     return
 
   if (cmd == 'Define feature' and
@@ -45,31 +45,31 @@ def process_cmd(a, player_id, cmd):
 
   if (cmd == 'Define use case' and
       sz.use_case_workshop):
-    rz.use_cases += 1
+    rz.use_cases += (rz.productivity or 1)
     return
 
   if (cmd == 'Define user journey' and
       sz.user_journey_workshop):
-    rz.features += 50
-    rz.use_cases += 10
-    rz.user_journeys += 1
+    rz.features += 50 * (rz.productivity or 1)
+    rz.use_cases += 10 * (rz.productivity or 1)
+    rz.user_journeys += 1 * (rz.productivity or 1)
     return
 
   if (cmd == 'Define product' and
       sz.product_workshop):
-    rz.features += 500
-    rz.use_cases += 70
-    rz.user_journeys += 10
-    rz.products += 1
+    rz.features += 150 * (rz.productivity or 1)
+    rz.use_cases += 50 * (rz.productivity or 1)
+    rz.user_journeys += 10 * (rz.productivity or 1)
+    rz.products += (rz.productivity or 1)
     return
 
   if (cmd == 'Define category' and
       sz.category_workshop):
-    rz.features += 5000
-    rz.use_cases += 600
-    rz.user_journeys += 70
-    rz.products += 8
-    rz.categories += 1
+    rz.features += 500 * (rz.productivity or 1)
+    rz.use_cases += 150 * (rz.productivity or 1)
+    rz.user_journeys += 15 * (rz.productivity or 1)
+    rz.products += 5 * (rz.productivity or 1)
+    rz.categories += (rz.productivity or 1)
     return
 
   if cmd == 'Hire engineer':
@@ -130,7 +130,7 @@ def process_cmd(a, player_id, cmd):
     rz.data_centers += 1
 
   if cmd == 'Build ops bots':
-    rz.ops_bots += 100
+    rz.ops_bots += 234
 
   if cmd in story.ALL_UPGRADES:
     up = story.ALL_UPGRADES[cmd]
